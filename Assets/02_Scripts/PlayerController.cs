@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        Jump();
        
         
     }
@@ -42,5 +43,20 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         transform.position = new Vector3(speedX + position.x, position.y, position.z);
     }
-   
+    void Jump()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastLenght, layerFloor);
+        onGround = hit.collider != null;
+        if (onGround && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * raycastLenght);
+    }
+
 }
