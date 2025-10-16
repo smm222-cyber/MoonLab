@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     
     public float speed = 5f;
-    //For Jumping
+    //Para salto
     public float jumpForce = 3f;
     public float raycastLenght = 0.1f;
     public LayerMask layerFloor;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        //Changes the player orientation
+        //Cambia la orientacion
         if (speedX < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
