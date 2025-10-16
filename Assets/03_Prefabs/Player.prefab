@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5201859249859189318}
   - component: {fileID: 5201859249859189319}
   - component: {fileID: 3250973677330060739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4111286293506754872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InteractController
   m_TagString: Untagged
   m_Icon: {fileID: 0}

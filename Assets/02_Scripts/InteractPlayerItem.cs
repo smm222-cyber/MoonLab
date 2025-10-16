@@ -9,14 +9,37 @@ public class InteractPlayerItem : MonoBehaviour
     [SerializeField] private Vector2 boxDimensions= new Vector2(2f,2f);
     //Layermask donde pondremos todos los items interactuables
     [SerializeField] private LayerMask interactiveLayers;
+    private List<Item> highlightedItems = new List<Item>();
 
     // Update is called once per frame
     void Update()
     {
+        DetectItems();
         //Se tiene un input manager llamado interact que se activa cuando apretas la tecla E
         if (Input.GetButtonDown("Interact"))
         {
             Interact();
+        }
+    }
+    void DetectItems()
+    {
+        Collider2D[] nearbyItems = Physics2D.OverlapBoxAll(interactController.position, boxDimensions, 0f, interactiveLayers);
+
+        // Primero, desactivar los indicadores de los ítems que ya no están cerca
+        foreach (Item item in highlightedItems)
+        {
+            item.ShowIndicator(false);
+        }
+        highlightedItems.Clear();
+
+        // Activar indicador en todos los ítems cercanos
+        foreach (Collider2D col in nearbyItems)
+        {
+            if (col.TryGetComponent(out Item item))
+            {
+                item.ShowIndicator(true);
+                highlightedItems.Add(item);
+            }
         }
     }
     void Interact()
