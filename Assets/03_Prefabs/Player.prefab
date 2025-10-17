@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 3
+  jumpForce: 7
   raycastLenght: 2
   layerFloor:
     serializedVersion: 2
