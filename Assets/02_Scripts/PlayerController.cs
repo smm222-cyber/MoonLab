@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     
     public float speed = 5f;
-    //For Jumping
+    //Para salto
     public float jumpForce = 3f;
     public float raycastLenght = 0.1f;
     public LayerMask layerFloor;
