@@ -6,6 +6,12 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private GameObject interactUI;
 
+    private Animator animator;
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     //Si el jugador esta cerca, la UI se activa
     public void ShowIndicator(bool state)
     {
@@ -17,5 +23,10 @@ public class Item : MonoBehaviour
     public void Interact()
     {
         Destroy(gameObject);
+
+        if (animator != null)
+        {
+            animator.SetTrigger("pickUp");
+        }
     }
 }

@@ -56,13 +56,11 @@ public class InteractPlayerItem : MonoBehaviour
             }
 
         }
-       
-        
+
     }
     //Solo es guia visual del area de recoleccion
     private void OnDrawGizmos()
     {
-       
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(interactController.position, boxDimensions);
     }
