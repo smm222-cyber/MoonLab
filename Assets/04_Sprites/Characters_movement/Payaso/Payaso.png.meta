@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 1677703486230434032
     second: Payasoo_2
+  - first:
+      213: -7095163037768053012
+    second: Payaso_0
+  - first:
+      213: 2305817246153798006
+    second: Payaso_1
+  - first:
+      213: 7695254931222506132
+    second: Payaso_2
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -113,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Payasoo_0
+      name: Payaso_0
       rect:
         serializedVersion: 2
         x: 49
@@ -127,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ed9db3b73f01be20800000000000000
-      internalID: 3364487128535637478
+      spriteID: cee8a561fcae88d90800000000000000
+      internalID: -7095163037768053012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Payasoo_1
+      name: Payaso_1
       rect:
         serializedVersion: 2
         x: 196
@@ -148,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9563c30f14a85c400800000000000000
-      internalID: 343832962371696217
+      spriteID: 67177f19198efff10800000000000000
+      internalID: 2305817246153798006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Payasoo_2
+      name: Payaso_2
       rect:
         serializedVersion: 2
         x: 348
@@ -169,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f0133f8e66684710800000000000000
-      internalID: 1677703486230434032
+      spriteID: 49a2797b6990bca60800000000000000
+      internalID: 7695254931222506132
       vertices: []
       indices: 
       edges: []

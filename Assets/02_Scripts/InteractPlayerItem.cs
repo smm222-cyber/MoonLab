@@ -11,6 +11,13 @@ public class InteractPlayerItem : MonoBehaviour
     [SerializeField] private LayerMask interactiveLayers;
     private List<IInteractable> highlightedItems = new List<IInteractable>();
 
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +26,8 @@ public class InteractPlayerItem : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             Interact();
+
+            animator.SetTrigger("pickUp");
         }
     }
     void DetectItems()
