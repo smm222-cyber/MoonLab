@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 0}
   infoText: {fileID: 0}
+  npcDialogBox: {fileID: 0}
+  npcDialogText: {fileID: 0}
+  npcName: {fileID: 0}

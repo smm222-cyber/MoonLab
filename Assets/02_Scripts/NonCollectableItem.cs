@@ -11,6 +11,7 @@ public class NonCollectableItem : MonoBehaviour, IInteractable
     {
         manager=FindObjectOfType<GameManager>();
     }
+    //Si el jugador esta cerca, la UI se activa
     public void ShowIndicator(bool state)
     {
         if (interactUI != null)
