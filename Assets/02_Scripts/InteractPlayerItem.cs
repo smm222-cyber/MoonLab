@@ -9,7 +9,7 @@ public class InteractPlayerItem : MonoBehaviour
     [SerializeField] private Vector2 boxDimensions= new Vector2(2f,2f);
     //Layermask donde pondremos todos los items interactuables
     [SerializeField] private LayerMask interactiveLayers;
-    private List<Item> highlightedItems = new List<Item>();
+    private List<IInteractable> highlightedItems = new List<IInteractable>();
 
     // Update is called once per frame
     void Update()
@@ -26,7 +26,7 @@ public class InteractPlayerItem : MonoBehaviour
         Collider2D[] nearbyItems = Physics2D.OverlapBoxAll(interactController.position, boxDimensions, 0f, interactiveLayers);
 
         // Primero, desactivar los indicadores de los ítems que ya no están cerca
-        foreach (Item item in highlightedItems)
+        foreach (IInteractable item in highlightedItems)
         {
             item.ShowIndicator(false);
         }
@@ -35,7 +35,7 @@ public class InteractPlayerItem : MonoBehaviour
         // Activar indicador en todos los ítems cercanos
         foreach (Collider2D col in nearbyItems)
         {
-            if (col.TryGetComponent(out Item item))
+            if (col.TryGetComponent(out IInteractable item))
             {
                 item.ShowIndicator(true);
                 highlightedItems.Add(item);
@@ -50,9 +50,14 @@ public class InteractPlayerItem : MonoBehaviour
         {
             Debug.Log(i.name);
             //Solo los objetos con el script itrm seran recogibles(sujeto a cambio segun la logica de inventario)
-            if (i.TryGetComponent(out Item item))
+            if (i.TryGetComponent(out IInteractable item))
             {
                 item.Interact();
+            }
+            //Accion a tomar en caso de q sea un objeto no recolectable
+            else if (i.TryGetComponent(out NonCollectableItem nonCollectable))
+            {
+                nonCollectable.Interact();
             }
 
         }

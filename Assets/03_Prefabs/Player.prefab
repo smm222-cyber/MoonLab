@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactController: {fileID: 4111286293506754872}
-  boxDimensions: {x: 1, y: 1}
+  boxDimensions: {x: 2, y: 4}
   interactiveLayers:
     serializedVersion: 2
     m_Bits: 64
