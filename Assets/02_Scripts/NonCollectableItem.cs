@@ -5,6 +5,7 @@ using UnityEngine;
 public class NonCollectableItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject interactUI;
+    [TextArea(2, 5)]
     public string text = "";
     GameManager manager;
     void Start()

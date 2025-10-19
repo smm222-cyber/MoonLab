@@ -25,14 +25,6 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     {
         // Dividir el texto en páginas
         List<string> pages = SplitTextIntoPages(dialogueText, maxCharactersPerPage);
-
-        // Debug para ver cuántas páginas se crearon
-        Debug.Log($"Texto dividido en {pages.Count} páginas");
-        for (int i = 0; i < pages.Count; i++)
-        {
-            Debug.Log($"Página {i + 1}: {pages[i]}");
-        }
-
         manager.NPCShowText(pages, npcName, npcImage);
     }
 
@@ -72,7 +64,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                 }
                 else
                 {
-                    // Si la palabra sola es más larga que maxChars, agregarla de todos modos
+                    // Si la palabra sola es más larga que maxchars agregar en su propia pagina
                     pages.Add(word);
                     currentPage = "";
                 }

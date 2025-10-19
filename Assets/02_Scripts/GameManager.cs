@@ -44,10 +44,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Detectar click cuando el diálogo está activo
+        // Detectar click cuando el diálogo esta activo
         if (npcDialogBox.activeSelf && Input.GetMouseButtonDown(0))
         {
             HandleDialogClick();
+        }
+        //Detecta cuando el cuadro de texto esta activo
+        if (textBox.activeSelf && Input.GetMouseButtonDown(0))
+        {
+            CloseNonCollectableText();
         }
     }
 
@@ -133,7 +138,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Cierra el cuadro de diálogo
+    //Cierra los diálogos
     private void CloseDialog()
     {
         npcDialogBox.SetActive(false);
@@ -146,5 +151,10 @@ public class GameManager : MonoBehaviour
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
         }
+    }
+    public void CloseNonCollectableText()
+    {
+        if (textBox != null)
+            textBox.SetActive(false);
     }
 }

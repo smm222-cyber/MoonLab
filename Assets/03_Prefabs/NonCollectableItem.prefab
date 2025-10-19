@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactUI: {fileID: 9161456212249749031}
-  text: Olaa
+  text: Aloo
 --- !u!1 &9161456213467601536
 GameObject:
   m_ObjectHideFlags: 0
