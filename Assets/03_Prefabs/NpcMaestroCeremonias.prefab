@@ -139,9 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default
-  image: {fileID: 3364487128535637478, guid: b684064f9841f2d4bb3f4cc59c4d6200, type: 3}
+  npcName: Maestro de ceremonias
+  npcImage: {fileID: 0}
   interactUI: {fileID: 0}
+  dialogueText: 
+  maxCharactersPerPage: 40
 --- !u!95 &7365109221284659793
 Animator:
   serializedVersion: 5
