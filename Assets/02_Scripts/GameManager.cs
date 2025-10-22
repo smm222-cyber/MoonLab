@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     private bool isTyping = false;
     private Coroutine typingCoroutine;
     private string currentFullText = "";
+    private AudioClip currentTypingSound;
+
+    public AudioSource audioSource;
+
+    public bool DialogFinished { get; private set; } = false;
 
     void Awake()
     {
@@ -35,6 +40,11 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.playOnAwake = false;
+            }
         }
         else
         {
@@ -63,14 +73,18 @@ public class GameManager : MonoBehaviour
     }
 
     // Función que recibe las páginas del diálogo
-    public void NPCShowText(List<string> dialogPages, string name, Sprite image)
+    public void NPCShowText(List<string> dialogPages, string name, Sprite image, AudioClip typingSound = null)
+
     {
         currentDialogPages = dialogPages;
         currentPageIndex = 0;
+        DialogFinished = false;
 
         npcDialogBox.SetActive(true);
         npcName.text = name;
         npcImage.sprite = image;
+
+        currentTypingSound = typingSound;
 
         ShowCurrentPage();
     }
@@ -98,11 +112,21 @@ public class GameManager : MonoBehaviour
         isTyping = true;
         npcDialogText.text = "";
 
+        if (currentTypingSound != null)
+        {
+            audioSource.clip = currentTypingSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+
         foreach (char c in text)
         {
             npcDialogText.text += c;
             yield return new WaitForSeconds(1f / textSpeed);
         }
+
+        if (audioSource.isPlaying)
+            audioSource.Stop();
 
         isTyping = false;
     }
@@ -119,6 +143,10 @@ public class GameManager : MonoBehaviour
             }
             npcDialogText.text = currentFullText;
             isTyping = false;
+
+            //Detener sonido 
+            if (audioSource.isPlaying)
+                audioSource.Stop();
         }
         // Si ya terminó de escribir, pasar a la siguiente página
         else
@@ -151,6 +179,9 @@ public class GameManager : MonoBehaviour
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
         }
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+        DialogFinished = true;
     }
     public void CloseNonCollectableText()
     {
