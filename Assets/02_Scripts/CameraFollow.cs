@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    //Camara sigue a la protagonista
     public Transform target;
     private void LateUpdate()
     {
