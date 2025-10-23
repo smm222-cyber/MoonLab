@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    //Control de movimiento del jugador
+    public static bool CanPlayerMove { get; private set; } = true;
+
     //Texto para los objetos no recolectables
     public GameObject textBox;
     public TextMeshProUGUI infoText;
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
     {
         textBox.SetActive(true);
         infoText.text = text;
+        CanPlayerMove = false; // Bloquear movimiento del jugador
     }
 
     // Función que recibe las páginas del diálogo
@@ -85,6 +89,7 @@ public class GameManager : MonoBehaviour
         npcImage.sprite = image;
 
         currentTypingSound = typingSound;
+        CanPlayerMove = false; 
 
         ShowCurrentPage();
     }
@@ -182,10 +187,12 @@ public class GameManager : MonoBehaviour
         if (audioSource.isPlaying)
             audioSource.Stop();
         DialogFinished = true;
+        CanPlayerMove = true; // Desbloquear movimiento del jugador
     }
     public void CloseNonCollectableText()
     {
         if (textBox != null)
             textBox.SetActive(false);
+        CanPlayerMove = true; 
     }
 }
