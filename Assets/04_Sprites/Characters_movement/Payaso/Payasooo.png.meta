@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: b1667e1cf177caa469a790202cc257b1
+guid: 6b944550cbb4ce647963497ad951b068
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5676307067494625584
+    second: Payasooo_0
+  - first:
+      213: -5876610538324012194
+    second: Payasooo_1
+  - first:
+      213: -579258742575133809
+    second: Payasooo_2
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -41,7 +50,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -88,21 +97,72 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Payasooo_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 160
+        width: 65
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de81f5ebc4b931b0800000000000000
+      internalID: -5676307067494625584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Payasooo_1
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 159
+        width: 65
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5351ebd9d5127ea0800000000000000
+      internalID: -5876610538324012194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Payasooo_2
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 159
+        width: 113
+        height: 173
+      alignment: 9
+      pivot: {x: 0.7289021, y: 0.48699898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b05cf1e3f06f7f0800000000000000
+      internalID: -579258742575133809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

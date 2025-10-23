@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: a1159b55fac0cb14d9768a5f338fe6f6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2185047941546511563
+    second: VendedorMovimiento_0
+  - first:
+      213: 5159911623570307617
+    second: VendedorMovimiento_1
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -41,7 +47,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -102,7 +108,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: VendedorMovimiento_0
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 55
+        width: 130
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc0415a689d25e10800000000000000
+      internalID: 2185047941546511563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VendedorMovimiento_1
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 55
+        width: 133
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12a31538840bb9740800000000000000
+      internalID: 5159911623570307617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

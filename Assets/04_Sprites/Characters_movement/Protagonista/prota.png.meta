@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: c6896635ee8144d4da95ddd138f034b9
+guid: 8b8966fb7d7d6484eb372bb11ae41d98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2866264570861677371
-    second: PayasoMovimiento_0
+      213: -1080554493355756316
+    second: prota_0
   - first:
-      213: -250704420443870588
-    second: PayasoMovimiento_1
+      213: 8297444405556861574
+    second: prota_1
   - first:
-      213: -7264056095426007608
-    second: PayasoMovimiento_2
+      213: 9035257459984780541
+    second: prota_2
+  - first:
+      213: 7617069811817917502
+    second: prota_3
+  - first:
+      213: 2066248355406556313
+    second: prota_4
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -97,29 +103,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PayasoMovimiento_0
+      name: prota_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 145
-        width: 80
-        height: 212
+        x: 7
+        y: 171
+        width: 135
+        height: 163
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3b6f7ae07407c720800000000000000
-      internalID: 2866264570861677371
+      spriteID: 4e4f31fc9691101f0800000000000000
+      internalID: -1080554493355756316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PayasoMovimiento_1
+      name: prota_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 143
-        width: 80
-        height: 210
+        x: 138
+        y: 170
+        width: 118
+        height: 166
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48aa2db68a1558cf0800000000000000
-      internalID: -250704420443870588
+      spriteID: 68ad4c0a9b1762370800000000000000
+      internalID: 8297444405556861574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PayasoMovimiento_2
+      name: prota_2
       rect:
         serializedVersion: 2
-        x: 325
-        y: 143
-        width: 138
-        height: 211
+        x: 261
+        y: 170
+        width: 111
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,8 +163,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cd2f93c773e03b90800000000000000
-      internalID: -7264056095426007608
+      spriteID: dfc479cf9cea36d70800000000000000
+      internalID: 9035257459984780541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prota_3
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 170
+        width: 104
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3c22ca03a445b960800000000000000
+      internalID: 7617069811817917502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prota_4
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c2eb98ee9ccac10800000000000000
+      internalID: 2066248355406556313
       vertices: []
       indices: 
       edges: []

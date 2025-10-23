@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3368337943354452850}
-  - component: {fileID: 2324121331187319887}
   - component: {fileID: 3368337943354452851}
+  - component: {fileID: 5216848992948492689}
   - component: {fileID: 3368337943354452812}
   - component: {fileID: 3368337943354452849}
-  - component: {fileID: 7365109221284659793}
+  - component: {fileID: 8435523875330055030}
   m_Layer: 6
-  m_Name: NpcMaestroCeremonias
+  m_Name: NpcTrapecista
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,26 +30,11 @@ Transform:
   m_GameObject: {fileID: 3368337943354452813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.99, y: -1.91, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2324121331187319887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368337943354452813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4454692b6112f64495c8d5364d52dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  idleTime: 3
-  inflateTime: 2
 --- !u!212 &3368337943354452851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8054326819233997984, guid: 3cd4f6e0f6849ae49b93a0de912c8031, type: 3}
+  m_Sprite: {fileID: 2177715127827051581, guid: 6d398bb783c601649952fa178cf87729, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5216848992948492689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943354452813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe35a41492a0fae4e8a4197ae2fd7301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8435523875330055030}
+  idleTime: 3
+  inflateTime: 2
 --- !u!61 &3368337943354452812
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,18 +114,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.30493283, y: 0.09035039}
+  m_Offset: {x: 0, y: -0.013076782}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.88, y: 2.59}
+    oldSize: {x: 0.99, y: 2.77}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1190825, y: 2.722804}
+  m_Size: {x: 1, y: 2.6870027}
   m_EdgeRadius: 0
 --- !u!114 &3368337943354452849
 MonoBehaviour:
@@ -139,12 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Maestro de ceremonias
+  npcName: 
   npcImage: {fileID: 0}
   interactUI: {fileID: 0}
   dialogueText: 
   maxCharactersPerPage: 40
---- !u!95 &7365109221284659793
+--- !u!95 &8435523875330055030
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Animator:
   m_GameObject: {fileID: 3368337943354452813}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec618f0659f9144409991a2e0a3e11fc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1d4f2dc3a7360be449a34d852e53bf80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

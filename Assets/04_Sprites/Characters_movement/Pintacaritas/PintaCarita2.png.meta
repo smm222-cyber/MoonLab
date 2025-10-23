@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: 5f24ccba1df112c40a1f235dc923fce0
+guid: da3813de17bc1024290f4a9d7269b10d
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1288801683789895918
+    second: Pintacarita2_0
+  - first:
+      213: -4180311120590220848
+    second: Pintacarita2_1
+  - first:
+      213: -2243254094548350440
+    second: Pintacarita2_2
+  - first:
+      213: -282748240383282661
+    second: Pintacarita2_3
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -41,7 +53,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -88,21 +100,93 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Pintacarita2_0
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 515
+        width: 133
+        height: 422
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21727cb62b14d1ee0800000000000000
+      internalID: -1288801683789895918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pintacarita2_1
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 514
+        width: 162
+        height: 423
+      alignment: 9
+      pivot: {x: 0.5440917, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1da9e1f2d8cf5c0800000000000000
+      internalID: -4180311120590220848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pintacarita2_2
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 23
+        width: 132
+        height: 422
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5112842}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a4189494c5ed0e0800000000000000
+      internalID: -2243254094548350440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pintacarita2_3
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 22
+        width: 145
+        height: 423
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5168863}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12761339f9731cf0800000000000000
+      internalID: -282748240383282661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
