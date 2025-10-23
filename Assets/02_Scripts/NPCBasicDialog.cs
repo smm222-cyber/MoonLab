@@ -12,21 +12,26 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     [TextArea(3, 10)]
     public string dialogueText;
 
-    [Header("Configuración")]
-    [Tooltip("Máximo de caracteres por página")]
+    //Max caracteres por página
     public int maxCharactersPerPage = 40;
+    //Audio
+    public AudioClip typingSound;
+
 
     void Start()
     {
         manager = FindObjectOfType<GameManager>();
+
+        
     }
 
     public void Interact()
     {
         // Dividir el texto en páginas
         List<string> pages = SplitTextIntoPages(dialogueText, maxCharactersPerPage);
-        manager.NPCShowText(pages, npcName, npcImage);
+        manager.NPCShowText(pages, npcName, npcImage, typingSound);
     }
+    
 
     public void ShowIndicator(bool state)
     {

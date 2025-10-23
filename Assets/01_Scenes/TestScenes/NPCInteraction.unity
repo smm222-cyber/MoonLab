@@ -201,6 +201,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcPayaso
       objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5129dfe56528e694db5f36528f46d585, type: 3}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: dialogueText
+      value: hola que tal, soy un payasito, claro que si
+      objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -550,6 +558,10 @@ PrefabInstance:
       propertyPath: name
       value: Maestro
       objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: dialogueText
       value: Hola que tal, como te encuentrasm sisis,1Hola que tal, como te encuentrasm
