@@ -58,17 +58,11 @@ public class InteractPlayerItem : MonoBehaviour
         foreach (Collider2D i in grabbedItems)
         {
             Debug.Log(i.name);
-            //Solo los objetos con el script itrm seran recogibles(sujeto a cambio segun la logica de inventario)
+            //Interactuar con cualquier objeto que implemente IInteractable
             if (i.TryGetComponent(out IInteractable item))
             {
                 item.Interact();
             }
-            //Accion a tomar en caso de q sea un objeto no recolectable
-            else if (i.TryGetComponent(out NonCollectableItem nonCollectable))
-            {
-                nonCollectable.Interact();
-            }
-
         }
        
         

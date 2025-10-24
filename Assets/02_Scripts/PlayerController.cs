@@ -30,9 +30,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        Jump();
-        
+        // Solo permitir movimiento si el GameManager lo permite
+        if (GameManager.CanPlayerMove)
+        {
+            Movement();
+            Jump();
+        }
+        else
+        {
+            // Detener la animación de movimiento cuando está bloqueado
+            animator.SetFloat("Speed", 0f);
+        }
     }
     void Movement()
     {

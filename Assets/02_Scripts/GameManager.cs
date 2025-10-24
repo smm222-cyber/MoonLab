@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    //Control de movimiento del jugador
+    public static bool CanPlayerMove { get; private set; } = true;
+
     //Texto para los objetos no recolectables
     public GameObject textBox;
     public TextMeshProUGUI infoText;
@@ -20,6 +23,11 @@ public class GameManager : MonoBehaviour
 
     //Velocidad de texto
     public float textSpeed = 30f;
+    
+    
+    public float audioFadeOutDelay = 0.2f;
+    //Duración del fadeout del audio
+    public float audioFadeOutDuration = 0.3f;
 
     // Variables privadas para el sistema de diálogo
     private List<string> currentDialogPages;
@@ -70,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         textBox.SetActive(true);
         infoText.text = text;
+        CanPlayerMove = false; // Bloquear movimiento del jugador
     }
 
     // Función que recibe las páginas del diálogo
@@ -85,6 +94,7 @@ public class GameManager : MonoBehaviour
         npcImage.sprite = image;
 
         currentTypingSound = typingSound;
+        CanPlayerMove = false; 
 
         ShowCurrentPage();
     }
@@ -125,8 +135,9 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f / textSpeed);
         }
 
+        // Fadeout del audio cuando termina de escribir
         if (audioSource.isPlaying)
-            audioSource.Stop();
+            yield return StartCoroutine(FadeOutAudio());
 
         isTyping = false;
     }
@@ -144,9 +155,9 @@ public class GameManager : MonoBehaviour
             npcDialogText.text = currentFullText;
             isTyping = false;
 
-            //Detener sonido 
+            //Detener sonido
             if (audioSource.isPlaying)
-                audioSource.Stop();
+                StartCoroutine(FadeOutAudio());
         }
         // Si ya terminó de escribir, pasar a la siguiente página
         else
@@ -180,12 +191,35 @@ public class GameManager : MonoBehaviour
             typingCoroutine = null;
         }
         if (audioSource.isPlaying)
-            audioSource.Stop();
+            StartCoroutine(FadeOutAudio());
         DialogFinished = true;
+        CanPlayerMove = true; // Desbloquear movimiento del jugador
     }
+    
+    // Fadeout suave del audio
+    private IEnumerator FadeOutAudio()
+    {
+        // Esperar antes de empezar el fade-out
+        yield return new WaitForSeconds(audioFadeOutDelay);
+        
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < audioFadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / audioFadeOutDuration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume; // Restaurar el volumen original para el próximo uso
+    }
+    
     public void CloseNonCollectableText()
     {
         if (textBox != null)
             textBox.SetActive(false);
+        CanPlayerMove = true; 
     }
 }
