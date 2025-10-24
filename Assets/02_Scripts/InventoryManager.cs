@@ -28,6 +28,8 @@ public class InventoryManager : MonoBehaviour
     }
 
 
+
+
     //añadi esto para guardar los items recolectados
     public List<string> GetCollectedItemNames()
     {
@@ -39,7 +41,6 @@ public class InventoryManager : MonoBehaviour
         }
         return names;
     }
-
     public void SetItemsByName(List<string> names, List<Sprite> allSprites)
     {
         //Limpiamos el inventario actual

@@ -29,7 +29,7 @@ public class SavePoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             interactIndicator.SetActive(true);
-            Debug.Log("Jugador entró al punto de guardado");
+            Debug.Log("Jugador entro al punto de guardado");
         }
     }
 
@@ -38,7 +38,7 @@ public class SavePoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             interactIndicator.SetActive(false);
-            Debug.Log("Jugador salió del punto de guardado");
+            Debug.Log("Jugador salio del punto de guardado");
         }
     }
 

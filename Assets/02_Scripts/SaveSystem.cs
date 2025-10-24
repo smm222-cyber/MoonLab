@@ -7,13 +7,15 @@ using System.IO;
 [System.Serializable]
 public class PlayerData
 {
-    //esto es lo que gusrdamos
+    //esto es lo wue vamos a guardar
     //posision
     public float[] position;
     //vida
     public int health;
     //items
     public List<string> collectedItems;
+    //rrloj
+    public float dayProgress;
 }
 public class SaveSystem : MonoBehaviour
 {
@@ -26,22 +28,31 @@ public class SaveSystem : MonoBehaviour
         data.position[2] = player.transform.position.z;
         data.health = player.health;
 
-        // Guardar items, si no hay InventoryManager o no hay items, guardamos lista vacia
+        //guardar items, si no hay InventoryManager o no hay items, guardamos lista vacia
         if (InventoryManager.Instance != null)
         {
             data.collectedItems = InventoryManager.Instance.GetCollectedItemNames();
         }
         else
         {
-            data.collectedItems = new List<string>(); // lista vacía
+            //lista vacia
+            data.collectedItems = new List<string>();
         }
 
-
+        //Guardar hora del juego
+        ClockController clock = GameObject.FindObjectOfType<ClockController>();
+        if (clock != null)
+        {
+            data.dayProgress = clock.GetDayProgress();
+        }
+        else
+        {
+            data.dayProgress = 0f;
+        }
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(Application.persistentDataPath + "/" + fileName, json);
     }
-
 
     public static void LoadGame(string fileName, PlayerController player, List<Sprite> allItemSprites)
     {
@@ -59,6 +70,13 @@ public class SaveSystem : MonoBehaviour
             if (InventoryManager.Instance != null)
             {
                 InventoryManager.Instance.SetItemsByName(data.collectedItems, allItemSprites);
+            }
+
+            //Restaurar hora del juego
+            ClockController clock = GameObject.FindObjectOfType<ClockController>();
+            if (clock != null)
+            {
+                clock.SetDayProgress(data.dayProgress);
             }
 
         }
