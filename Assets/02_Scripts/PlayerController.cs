@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public float raycastLenght = 0.1f;
     public LayerMask layerFloor;
     private bool onGround;
-    //
+    
     private Rigidbody2D rb;
 
     //animator
     private Animator animator;
+
+    //vida
+    public int health = 100;
 
     // Start is called before the first frame update
     void Start()
