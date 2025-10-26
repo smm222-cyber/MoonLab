@@ -11,11 +11,17 @@ public class PlayerController : MonoBehaviour
     public float raycastLenght = 0.1f;
     public LayerMask layerFloor;
     private bool onGround;
-    //
+    
     private Rigidbody2D rb;
 
     //animator
     private Animator animator;
+
+    //vida
+    public int health = 100;
+
+    //distincion de dormir
+    public bool isSleeping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +33,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //para poder dormir
+        if (isSleeping)
+        {
+            // no poder moverse ni saltar 
+            animator.SetFloat("Speed", 0f);
+            animator.SetBool("IsGrounded", true); 
+           
+            return;
+        }
         // Solo permitir movimiento si el GameManager lo permite
         if (GameManager.CanPlayerMove)
         {

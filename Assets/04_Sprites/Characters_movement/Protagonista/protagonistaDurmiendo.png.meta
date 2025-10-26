@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: 8b8966fb7d7d6484eb372bb11ae41d98
+guid: 721552b8e06293f4a85fc2a67e75bbac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1080554493355756316
-    second: prota_0
+      213: -2097330495354026663
+    second: protagonistaDurmiendo_0
   - first:
-      213: 8297444405556861574
-    second: prota_1
+      213: 1402204199941957933
+    second: protagonistaDurmiendo_1
   - first:
-      213: 9035257459984780541
-    second: prota_2
-  - first:
-      213: 7617069811817917502
-    second: prota_3
-  - first:
-      213: 2066248355406556313
-    second: prota_4
+      213: 7519416661849067568
+    second: protagonistaDurmiendo_2
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -47,7 +41,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -107,106 +101,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: prota_0
+      name: protagonistaDurmiendo_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 171
-        width: 131
-        height: 163
+        x: 3
+        y: 196
+        width: 196
+        height: 58
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e4f31fc9691101f0800000000000000
-      internalID: -1080554493355756316
+      spriteID: 95544dfc609c4e2e0800000000000000
+      internalID: -2097330495354026663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prota_1
+      name: protagonistaDurmiendo_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 170
-        width: 115
-        height: 166
+        x: 204
+        y: 197
+        width: 148
+        height: 115
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68ad4c0a9b1762370800000000000000
-      internalID: 8297444405556861574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prota_2
-      rect:
-        serializedVersion: 2
-        x: 261
-        y: 170
-        width: 111
-        height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfc479cf9cea36d70800000000000000
-      internalID: 9035257459984780541
+      spriteID: d29e9186a41a57310800000000000000
+      internalID: 1402204199941957933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prota_3
+      name: protagonistaDurmiendo_2
       rect:
         serializedVersion: 2
-        x: 381
-        y: 170
-        width: 104
-        height: 166
+        x: 353
+        y: 197
+        width: 137
+        height: 75
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3c22ca03a445b960800000000000000
-      internalID: 7617069811817917502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prota_4
-      rect:
-        serializedVersion: 2
-        x: 467
-        y: 29
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99c2eb98ee9ccac10800000000000000
-      internalID: 2066248355406556313
+      spriteID: 030daa74d955a5860800000000000000
+      internalID: 7519416661849067568
       vertices: []
       indices: 
       edges: []

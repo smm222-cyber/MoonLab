@@ -331,4 +331,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    //añadido para restringir el movimiento del jugador mientras duerme
+    public void SetPlayerMovement(bool canMove)
+    {
+        CanPlayerMove = canMove;
+    }
+
 }

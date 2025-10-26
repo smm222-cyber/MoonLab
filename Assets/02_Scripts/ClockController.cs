@@ -41,5 +41,23 @@ public class ClockController : MonoBehaviour
         string minuteString = Mathf.Floor(((dayNormalized * hourPerDay) % 1f) * minutesPerHour).ToString("00");
 
         timeText.text = hourString+":"+minuteString;
+
     }
+
+
+
+
+
+    //Devuelve el progreso del dia ...0 a 1
+    public float GetDayProgress()
+    {
+        return day;
+    }
+
+    //Establece el progreso del dia
+    public void SetDayProgress(float progress)
+    {
+        day = progress;
+    }
+
 }
