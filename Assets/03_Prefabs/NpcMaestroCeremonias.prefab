@@ -140,10 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Maestro de ceremonias
-  npcImage: {fileID: 0}
+  npcImage: {fileID: 21300000, guid: ca0d397b292e19c4c9a43e61ff9910eb, type: 3}
   interactUI: {fileID: 0}
   dialogueText: 
   maxCharactersPerPage: 40
+  typingSound: {fileID: 0}
 --- !u!95 &7365109221284659793
 Animator:
   serializedVersion: 5
