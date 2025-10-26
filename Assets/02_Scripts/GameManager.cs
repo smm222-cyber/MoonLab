@@ -11,6 +11,13 @@ public class GameManager : MonoBehaviour
     //Control de movimiento del jugador
     public static bool CanPlayerMove { get; private set; } = true;
 
+    //Variables para escenario
+    public GameObject[] scenarios;
+    public GameObject player;
+    public FadeController fadeController;
+
+    private int currentScenario = 0;
+
     //Texto para los objetos no recolectables
     public GameObject textBox;
     public TextMeshProUGUI infoText;
@@ -38,6 +45,8 @@ public class GameManager : MonoBehaviour
     private AudioClip currentTypingSound;
 
     public AudioSource audioSource;
+
+    
 
     public bool DialogFinished { get; private set; } = false;
 
@@ -222,4 +231,47 @@ public class GameManager : MonoBehaviour
             textBox.SetActive(false);
         CanPlayerMove = true; 
     }
+    public void ChangeScenario(int newScenario, Transform specificSpawn)
+    {
+        if (newScenario < 0 || newScenario >= scenarios.Length || newScenario == currentScenario)
+            return;
+
+        if (fadeController != null)
+            StartCoroutine(ChangeWithFade(newScenario, specificSpawn));
+        else
+            ChangeDirect(newScenario, specificSpawn);
+    }
+
+    void ChangeDirect(int newScenario, Transform specificSpawn)
+    {
+        scenarios[currentScenario].SetActive(false);
+        scenarios[newScenario].SetActive(true);
+
+        if (player != null && specificSpawn != null)
+            player.transform.position = specificSpawn.position;
+
+        currentScenario = newScenario;
+    }
+
+    IEnumerator ChangeWithFade(int newScenario, Transform specificSpawn)
+    {
+        // Bloquear movimiento durante la transición
+        CanPlayerMove = false;
+
+        yield return fadeController.FadeOut();
+
+        scenarios[currentScenario].SetActive(false);
+        scenarios[newScenario].SetActive(true);
+
+        if (player != null && specificSpawn != null)
+            player.transform.position = specificSpawn.position;
+
+        currentScenario = newScenario;
+
+        yield return fadeController.FadeIn();
+
+        // Desbloquear movimiento después de la transición
+        CanPlayerMove = true;
+    }
+
 }
