@@ -1963,6 +1963,10 @@ PrefabInstance:
       value: NpcTrapecista
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 442a08b72cd33b84386c4523ecdafe6b, type: 3}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: usesMissionSystem
       value: 1
       objectReference: {fileID: 0}
@@ -6379,6 +6383,14 @@ PrefabInstance:
     - target: {fileID: 1551437073994410072, guid: 843d9bd199b31d24281072394ba5ac39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551437074893721210, guid: 843d9bd199b31d24281072394ba5ac39, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551437074893721210, guid: 843d9bd199b31d24281072394ba5ac39, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 11.100006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843d9bd199b31d24281072394ba5ac39, type: 3}
