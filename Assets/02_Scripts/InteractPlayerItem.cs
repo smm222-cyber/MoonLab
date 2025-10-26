@@ -55,17 +55,17 @@ public class InteractPlayerItem : MonoBehaviour
     {
         //Busca los colliders dentro del area de deteccion
         Collider2D[] grabbedItems=Physics2D.OverlapBoxAll(interactController.position,boxDimensions,0f,interactiveLayers);
-        foreach (Collider2D i in grabbedItems)
+        
+        // Solo interactuar con el primer objeto encontrado
+        if (grabbedItems.Length > 0)
         {
-            Debug.Log(i.name);
-            //Interactuar con cualquier objeto que implemente IInteractable
-            if (i.TryGetComponent(out IInteractable item))
+            Debug.Log(grabbedItems[0].name);
+            
+            if (grabbedItems[0].TryGetComponent(out IInteractable item))
             {
                 item.Interact();
             }
         }
-       
-        
     }
     //Solo es guia visual del area de recoleccion
     private void OnDrawGizmos()

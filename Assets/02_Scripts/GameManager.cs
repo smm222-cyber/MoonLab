@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     //Duración del fadeout del audio
     public float audioFadeOutDuration = 0.3f;
 
+    //Sistema de Misiones
+    public GameObject missionPanel;
+    public TextMeshProUGUI missionUIText;
+    private List<string> activeMissions = new List<string>();
+
     // Variables privadas para el sistema de diálogo
     private List<string> currentDialogPages;
     private int currentPageIndex = 0;
@@ -272,6 +277,58 @@ public class GameManager : MonoBehaviour
 
         // Desbloquear movimiento después de la transición
         CanPlayerMove = true;
+    }
+
+    //Misiones
+    
+    //Agregar nueva misión
+    public void AddMission(string missionDescription)
+    {
+        if (!activeMissions.Contains(missionDescription))
+        {
+            activeMissions.Add(missionDescription);
+            UpdateMissionUI();
+            
+            // Mostrar el panel de misiones si estaba oculto
+            if (missionPanel != null && activeMissions.Count > 0)
+                missionPanel.SetActive(true);
+        }
+    }
+
+    //Completar misión
+    public void CompleteMission(string missionDescription)
+    {
+        if (activeMissions.Contains(missionDescription))
+        {
+            activeMissions.Remove(missionDescription);
+            UpdateMissionUI();
+            
+            // Ocultar el panel si no hay misiones activas
+            if (missionPanel != null && activeMissions.Count == 0)
+                missionPanel.SetActive(false);
+        }
+    }
+
+    //Verificar si tiene una misión activa
+    public bool HasMission(string missionDescription)
+    {
+        return activeMissions.Contains(missionDescription);
+    }
+
+    //Actualizar el texto del panel de misiones
+    private void UpdateMissionUI()
+    {
+        if (missionUIText != null)
+        {
+            if (activeMissions.Count > 0)
+            {
+                missionUIText.text = "Misiones:\n" + string.Join("\n", activeMissions);
+            }
+            else
+            {
+                missionUIText.text = "";
+            }
+        }
     }
 
 }
