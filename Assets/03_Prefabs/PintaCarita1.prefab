@@ -115,8 +115,8 @@ BoxCollider2D:
   m_Offset: {x: -0.03596902, y: -0.03596902}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.81, y: 5.19}
+    pivot: {x: 0.7119327, y: 0.4961742}
+    oldSize: {x: 1.81, y: 5.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -137,11 +137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Pinta Caritas
   npcImage: {fileID: 0}
   interactUI: {fileID: 0}
+  usesMissionSystem: 0
+  missions: []
   dialogueText: 
   maxCharactersPerPage: 40
+  typingSound: {fileID: 0}
 --- !u!95 &1193307900969936966
 Animator:
   serializedVersion: 5
