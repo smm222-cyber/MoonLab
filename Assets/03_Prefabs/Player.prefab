@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5201859249859189307}
   - component: {fileID: 5201859249859189304}
   - component: {fileID: 5201859249859189305}
+  - component: {fileID: 6681344390474908678}
   - component: {fileID: 5201859249859189318}
   - component: {fileID: 5201859249859189319}
   - component: {fileID: 3250973677330060739}
@@ -114,6 +115,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6681344390474908678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201859249859189316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afad29b858cdb64b9cf38f7b5894baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corduraSlider: {fileID: 0}
+  clock: {fileID: 0}
+  player: {fileID: 0}
+  bed: {fileID: 0}
+  cordura: 100
+  drainAmount: 5
+  recoverSpeed: 15
+  sleepRange: 2
+  drainInterval: 5
+  animator: {fileID: 0}
 --- !u!50 &5201859249859189318
 Rigidbody2D:
   serializedVersion: 4
@@ -153,6 +176,7 @@ MonoBehaviour:
   layerFloor:
     serializedVersion: 2
     m_Bits: 8
+  health: 100
 --- !u!114 &3250973677330060739
 MonoBehaviour:
   m_ObjectHideFlags: 0

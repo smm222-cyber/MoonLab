@@ -222,4 +222,11 @@ public class GameManager : MonoBehaviour
             textBox.SetActive(false);
         CanPlayerMove = true; 
     }
+
+    //añadido para restringir el movimiento del jugador mientras duerme
+    public void SetPlayerMovement(bool canMove)
+    {
+        CanPlayerMove = canMove;
+    }
+
 }
