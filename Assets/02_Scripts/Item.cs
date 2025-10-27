@@ -9,7 +9,7 @@ public class Item : MonoBehaviour,IInteractable
     
     [Header("Misión (Opcional)")]
     [SerializeField] private string missionToComplete = ""; // Dejar vacío si no completa misión
-    [SerializeField] private bool requiresMission = false; // ¿Solo se puede recoger si tienes la misión activa?
+    [SerializeField] private bool requiresMission = false; // Solo se puede recoger si tienes la misión activa?
     
     [Header("Mensaje si no tienes la misión")]
     [SerializeField] private string lockedMessage = "No necesito esto ahora..."; // Mensaje cuando está bloqueado
