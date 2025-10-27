@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &163673961028572006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281945184
   m_fontColor: {r: 0.3773585, g: 0.29970112, b: 0.22309242, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282206295
+    rgba: 4281087039
   m_fontColor: {r: 0.24528301, g: 0.20345318, b: 0.17277795, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -482,8 +482,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220.05492, y: -4.092}
-  m_SizeDelta: {x: 180.83, y: 156.474}
+  m_AnchoredPosition: {x: -218.188, y: -7.543}
+  m_SizeDelta: {x: 163.516, y: 156.782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5160520827099538404
 CanvasRenderer:
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ca0d397b292e19c4c9a43e61ff9910eb, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
