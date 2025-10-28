@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource audioSource;
 
-    
+    // Variable para controlar si ya se mostró el diálogo de Pintacaritas
+    private bool pintacaritasDialogShown = false;
 
     public bool DialogFinished { get; private set; } = false;
 
@@ -72,6 +74,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        // Verificar si estamos en la escena Pintacaritas_Level
+        CheckForPintacaritasScene();
     }
 
     void Update()
@@ -330,6 +338,50 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    // Verificar si estamos en la escena Pintacaritas_Level y mostrar diálogo
+    void CheckForPintacaritasScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        
+        if (currentSceneName == "Pintacaritas_Level" && !pintacaritasDialogShown)
+        {
+            StartCoroutine(ShowPintacaritasIntroDialog());
+        }
+    }
+
+    // Diálogo de introducción de Pintacaritas
+    IEnumerator ShowPintacaritasIntroDialog()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+
+        pintacaritasDialogShown = true;
+
+        // Obtener imagen y sonido del jugador
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        Sprite playerImage = null;
+        AudioClip typingSound = null;
+
+        if (playerController != null)
+        {
+            playerImage = playerController.playerDialogImage;
+            typingSound = playerController.playerTypingSound;
+        }
+
+        // Crear las líneas de diálogo de la protagonista hablando consigo misma
+        List<string> dialogPages = new List<string>
+        {
+            "Hasta ahora no ví a ninguna de las pintacaritas...",
+            "Debería acercarme a preguntar si necesitan ayuda en algo.",
+            "¿Por dónde estarán ellas?",
+            "Mejor las busco."
+        };
+
+        // Mostrar el diálogo
+        NPCShowText(dialogPages, "...", playerImage, typingSound);
+    }
+
 
 
     //añadido para restringir el movimiento del jugador mientras duerme

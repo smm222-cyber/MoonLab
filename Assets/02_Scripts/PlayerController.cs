@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     //distincion de dormir
     public bool isSleeping = false;
 
+    [Header("Configuración de Diálogos")]
+    public Sprite playerDialogImage; // Imagen del jugador para diálogos
+    public AudioClip playerTypingSound; // Sonido de tipeo para diálogos
+
     // Start is called before the first frame update
     void Start()
     {
