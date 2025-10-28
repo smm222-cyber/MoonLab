@@ -3156,6 +3156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: playerTypingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
 --- !u!1 &1054848796
