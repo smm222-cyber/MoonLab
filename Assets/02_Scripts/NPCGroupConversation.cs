@@ -34,6 +34,10 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     [Header("Sistema de Misiones")]
     [Tooltip("Misión que se agrega al completar la conversación inicial")]
     public string missionToGiveAfterInitial;
+    [Tooltip("Misión que se completa al iniciar esta conversación después de tener missionRequired")]
+    public string missionToCompleteWhenShowingAfter;
+    [Tooltip("Misión que se da después de la conversación posterior")]
+    public string missionToGiveAfterSecond;
 
     [Header("Audio")]
     public AudioClip typingSound;
@@ -43,6 +47,7 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
 
     private GameManager manager;
     private bool hasInteracted = false;
+    private bool hasGivenInitialMission = false; // Para evitar dar la misión inicial múltiples veces
 
     void Start()
     {
@@ -69,23 +74,40 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
 
         // Determinar qué conversación mostrar
         List<DialogueLine> conversationToShow = initialConversation;
+        bool shouldGiveInitialMission = false;
+        bool shouldShowAfterConversation = false;
 
-        // Si hay una misión requerida Y está activa (completada), mostrar la conversación alternativa
+        // Si hay una misión requerida Y está activa, mostrar la conversación alternativa
         if (!string.IsNullOrEmpty(missionRequired) && manager.HasMission(missionRequired))
         {
             if (afterMissionConversation.Count > 0)
             {
                 conversationToShow = afterMissionConversation;
+                shouldShowAfterConversation = true;
+            }
+        }
+        else
+        {
+            // Mostrar conversación inicial
+            conversationToShow = initialConversation;
+            // Solo dar la misión inicial si no se ha dado antes
+            if (!hasGivenInitialMission && !string.IsNullOrEmpty(missionToGiveAfterInitial))
+            {
+                shouldGiveInitialMission = true;
             }
         }
 
         // Convertir la conversación en diálogos para el sistema
-        StartCoroutine(ShowGroupConversation(conversationToShow));
+        StartCoroutine(ShowGroupConversation(conversationToShow, shouldGiveInitialMission, shouldShowAfterConversation));
     }
 
-    private IEnumerator ShowGroupConversation(List<DialogueLine> conversation)
+    private IEnumerator ShowGroupConversation(List<DialogueLine> conversation, bool giveInitialMission, bool isAfterMissionConversation)
     {
-        bool isInitialConversation = (conversation == initialConversation);
+        // Si es la conversación posterior y hay misión para completar, completarla ANTES del diálogo
+        if (isAfterMissionConversation && !string.IsNullOrEmpty(missionToCompleteWhenShowingAfter))
+        {
+            manager.CompleteMission(missionToCompleteWhenShowingAfter);
+        }
 
         foreach (DialogueLine line in conversation)
         {
@@ -102,10 +124,19 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
             yield return new WaitForSeconds(0.3f);
         }
 
-        // Si era la conversación inicial y hay una misión para dar, agregarla
-        if (isInitialConversation && !string.IsNullOrEmpty(missionToGiveAfterInitial))
+        // Si debemos dar la misión inicial (solo la primera vez)
+        if (giveInitialMission)
         {
             manager.AddMission(missionToGiveAfterInitial);
+            hasGivenInitialMission = true; // Marcar que ya se dio la misión
+            Debug.Log($"[{gameObject.name}] Misión inicial dada: {missionToGiveAfterInitial}");
+        }
+        
+        // Si era la conversación posterior y hay una misión para dar, agregarla
+        if (isAfterMissionConversation && !string.IsNullOrEmpty(missionToGiveAfterSecond))
+        {
+            manager.AddMission(missionToGiveAfterSecond);
+            Debug.Log($"[{gameObject.name}] Misión posterior dada: {missionToGiveAfterSecond}");
         }
     }
 

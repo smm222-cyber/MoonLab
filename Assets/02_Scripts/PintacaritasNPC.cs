@@ -26,11 +26,11 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     public string dialogoFinal;
 
     [Header("Sistema de Progreso")]
-    [Tooltip("Nombre de la misión que indica que ya hablaste con Pintacaritas 1")]
-    public string misionPintacaritas1 = "HablasteCon_Pintacaritas1";
+    [Tooltip("Misión requerida para cambiar el diálogo (normalmente la de la trapecista)")]
+    public string misionRequeridaParaDialogoLargo = "Escuchar la historia completa";
     
-    [Tooltip("Nombre de la misión que indica que ya hablaste con la Trapecista")]
-    public string misionTrapecista = "HablasteCon_Trapecista";
+    [Tooltip("Misión que se completa al hablar con este NPC (se completa después del diálogo)")]
+    public string misionACompletar = "Escuchar la historia completa";
 
     [Header("Audio")]
     public AudioClip typingSound;
@@ -99,6 +99,24 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         
         // Mostrar el diálogo
         manager.NPCShowText(pages, npcName, npcImage, typingSound);
+        
+        // Completar la misión después de mostrar el diálogo (si está configurada)
+        if (!string.IsNullOrEmpty(misionACompletar))
+        {
+            StartCoroutine(CompletarMisionDespuesDelDialogo());
+        }
+    }
+    
+    IEnumerator CompletarMisionDespuesDelDialogo()
+    {
+        // Esperar a que termine el diálogo
+        yield return new WaitUntil(() => manager.DialogFinished);
+        
+        // Completar la misión
+        if (manager.HasMission(misionACompletar))
+        {
+            manager.CompleteMission(misionACompletar);
+        }
     }
 
     private string DeterminarDialogo()
@@ -109,21 +127,21 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
             return dialogoSinHablarConPintacaritas1;
         }
         
-        // Verificar si tiene las misiones activas
-        bool tieneMisionTrapecista = manager.HasMission(misionTrapecista);
+        // Verificar si tiene la misión requerida para mostrar el diálogo largo
+        bool tieneMisionRequerida = manager.HasMission(misionRequeridaParaDialogoLargo);
 
-        // Lógica SIMPLE:
-        // - Si tiene misión de Trapecista = Diálogo largo
-        // - Si NO tiene misión de Trapecista = Diálogo corto
+        // Lógica:
+        // - Si tiene la misión requerida = Diálogo largo
+        // - Si NO tiene la misión requerida = Diálogo corto
         
-        if (tieneMisionTrapecista && !string.IsNullOrEmpty(dialogoDespuesDeHablarConPintacaritas1))
+        if (tieneMisionRequerida && !string.IsNullOrEmpty(dialogoDespuesDeHablarConPintacaritas1))
         {
-            // Tiene la misión de buscar a la otra pintacaritas → Diálogo largo
+            // Tiene la misión "Escuchar la historia completa" → Diálogo largo
             return dialogoDespuesDeHablarConPintacaritas1;
         }
         else
         {
-            // NO tiene la misión de trapecista → Diálogo corto
+            // NO tiene la misión → Diálogo corto
             return dialogoSinHablarConPintacaritas1;
         }
     }

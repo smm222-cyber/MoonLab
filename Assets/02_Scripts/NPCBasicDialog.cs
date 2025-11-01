@@ -9,6 +9,7 @@ public class NPCMission
     public string dialogueText;
     public string missionToGive;      // Misión que se da en este diálogo
     public string missionRequired;     // Misión que debe completarse para ver este diálogo
+    public string missionToComplete;   // Misión que se completa con este diálogo
 }
 
 public class NPCBasicDialog : MonoBehaviour, IInteractable
@@ -54,50 +55,42 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         
         string textToShow = dialogueText;
         string missionToAdd = "";
+        string missionToCompleteNow = "";
 
-        // Si usa el sistema de misiones, usar el índice actual
+        // Si usa el sistema de misiones, determinar qué misión mostrar
         if (usesMissionSystem && missions.Count > 0)
         {
-            // Asegurarse de no salirse del rango
-            if (currentMissionIndex >= missions.Count)
-            {
-                currentMissionIndex = missions.Count - 1;
-            }
-
-            NPCMission currentMission = missions[currentMissionIndex];
+            NPCMission missionToUse = null;
             
-            // Verificar si tiene la misión anterior activa (no la completó)
-            if (currentMissionIndex > 0)
+            // Buscar la primera misión que cumpla con los requisitos
+            for (int i = 0; i < missions.Count; i++)
             {
-                NPCMission previousMission = missions[currentMissionIndex - 1];
+                NPCMission mission = missions[i];
                 
-                // Si la misión anterior todavía está activa, repetir el diálogo anterior
-                if (!string.IsNullOrEmpty(previousMission.missionToGive) && 
-                    manager.HasMission(previousMission.missionToGive))
+                // Si la misión requiere otra misión, verificar si está activa
+                if (!string.IsNullOrEmpty(mission.missionRequired))
                 {
-                    textToShow = previousMission.dialogueText;
-                    missionToAdd = ""; // No dar misión nueva
+                    if (manager.HasMission(mission.missionRequired))
+                    {
+                        // Tiene la misión requerida, usar esta misión
+                        missionToUse = mission;
+                        break;
+                    }
                 }
                 else
                 {
-                    // La misión anterior se completó, avanzar
-                    textToShow = currentMission.dialogueText;
-                    missionToAdd = currentMission.missionToGive;
-                    currentMissionIndex++; // Solo avanzar si completó la anterior
+                    // No tiene requisitos, usar esta misión
+                    missionToUse = mission;
+                    break;
                 }
             }
-            else
+            
+            // Si encontramos una misión válida, usarla
+            if (missionToUse != null)
             {
-                // Primera misión
-                textToShow = currentMission.dialogueText;
-                missionToAdd = currentMission.missionToGive;
-                
-                // Solo avanzar si no tiene la misión activa (para evitar dar la misión múltiples veces)
-                if (string.IsNullOrEmpty(currentMission.missionToGive) || 
-                    !manager.HasMission(currentMission.missionToGive))
-                {
-                    currentMissionIndex++;
-                }
+                textToShow = missionToUse.dialogueText;
+                missionToCompleteNow = missionToUse.missionToComplete;
+                missionToAdd = missionToUse.missionToGive;
             }
         }
 
@@ -105,18 +98,29 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         List<string> pages = SplitTextIntoPages(textToShow, maxCharactersPerPage);
         manager.NPCShowText(pages, npcName, npcImage, typingSound);
 
-        // Agregar la misión después de mostrar el diálogo
-        if (!string.IsNullOrEmpty(missionToAdd))
+        // Completar y agregar misiones después de mostrar el diálogo
+        if (!string.IsNullOrEmpty(missionToCompleteNow) || !string.IsNullOrEmpty(missionToAdd))
         {
-            StartCoroutine(AddMissionAfterDialog(missionToAdd));
+            StartCoroutine(HandleMissionsAfterDialog(missionToCompleteNow, missionToAdd));
         }
     }
 
-    IEnumerator AddMissionAfterDialog(string mission)
+    IEnumerator HandleMissionsAfterDialog(string missionToComplete, string missionToAdd)
     {
         // Esperar a que termine el diálogo
         yield return new WaitUntil(() => manager.DialogFinished);
-        manager.AddMission(mission);
+        
+        // Primero completar la misión si existe
+        if (!string.IsNullOrEmpty(missionToComplete))
+        {
+            manager.CompleteMission(missionToComplete);
+        }
+        
+        // Luego agregar la nueva misión si existe
+        if (!string.IsNullOrEmpty(missionToAdd))
+        {
+            manager.AddMission(missionToAdd);
+        }
     }
     
 

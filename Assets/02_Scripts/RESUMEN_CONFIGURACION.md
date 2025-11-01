@@ -23,8 +23,8 @@ He creado 3 archivos para ti:
 
 **Configuración del Script:**
 ```
-Mission To Give After Initial: Averiguar qué pasó
-Mission Required: Buscar a la otra pintacaritas
+Mission To Give After Initial: Averiguar qué está pasando
+Mission Required: Preguntar por la pelea
 
 CONVERSACIÓN INICIAL (3 líneas):
 - Maestro → "¡Necesito que pinten más caras hoy!"
@@ -52,14 +52,16 @@ CONVERSACIÓN DESPUÉS:
 Uses Mission System: ✅
 
 MISIÓN 1:
-- Dialogue: "¿Has visto a las pintacaritas?"
-- Mission To Give: Buscar a la otra pintacaritas
-- Mission Required: (vacío)
+- Dialogue: "¡Ay! Viste la pelea en el pasillo? Entre Héctor el Pintacaritas y el Maestro de Ceremonias. Fue terrible... Héctor estaba muy molesto por algo. Si quieres saber más, pregúntale a él sobre lo que pasó."
+- Mission Required: Averiguar qué está pasando
+- Mission To Complete: Averiguar qué está pasando ✅
+- Mission To Give: Preguntar por la pelea
 
-MISIÓN 2:
-- Dialogue: "Gracias por preguntar."
-- Mission To Give: (vacío)
+MISIÓN 2 (opcional - para después):
+- Dialogue: "Espero que se arreglen las cosas..."
 - Mission Required: (vacío)
+- Mission To Complete: (vacío)
+- Mission To Give: (vacío)
 ```
 
 ---
@@ -84,8 +86,8 @@ Dialogo Sin Hablar Con Pintacaritas1:
 Dialogo Despues De Hablar Con Pintacaritas1:
 "¡Ah! Mi compañera te envió. Ya voy para allá."
 
-Mision Pintacaritas1: Averiguar qué pasó
-Mision Trapecista: Buscar a la otra pintacaritas
+Mision Requerida Para Dialogo Largo: Escuchar la historia completa
+Mision A Completar: Escuchar la historia completa
 ```
 
 ---
@@ -99,18 +101,21 @@ Mision Trapecista: Buscar a la otra pintacaritas
    ↓
 3. Jugador presiona E en GRUPO
    → Ve conversación entre Maestro y Pintacaritas1
-   → Se agrega misión: "Averiguar qué pasó"
+   → Se agrega misión: "Averiguar qué está pasando"
    ↓
 4. Jugador presiona E en TRAPECISTA
-   → Ve su diálogo
-   → Se agrega misión: "Buscar a la otra pintacaritas"
+   → Completa misión: "Averiguar qué está pasando"
+   → Se agrega misión: "Preguntar por la pelea"
    ↓
 5. Jugador vuelve al GRUPO
+   → Completa misión: "Preguntar por la pelea"
    → Ve nueva conversación (Pintacaritas1 habla con jugador)
+   → Se agrega misión: "Escuchar la historia completa"
    ↓
 6. Jugador presiona E en PINTACARITAS2
-   → Si habló con Pintacaritas1: Diálogo largo
-   → Si no habló: Diálogo corto
+   → Completa misión: "Escuchar la historia completa"
+   → Si tiene la misión activa: Diálogo largo
+   → Si no tiene la misión: Diálogo corto
 ```
 
 ---
@@ -153,8 +158,9 @@ Si algo no funciona:
 ## 📝 NOMBRES DE MISIONES PARA COPIAR
 
 ```
-Averiguar qué pasó
-Buscar a la otra pintacaritas
+Averiguar qué está pasando
+Preguntar por la pelea
+Escuchar la historia completa
 ```
 
 **⚠️ IMPORTANTE:** Copia y pega estos nombres exactamente como están (con acentos y espacios). Si hay un error de tipeo, el sistema no funcionará.
