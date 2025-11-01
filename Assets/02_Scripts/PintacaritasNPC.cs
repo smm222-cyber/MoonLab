@@ -42,15 +42,60 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
 
     void Start()
     {
-        manager = FindObjectOfType<GameManager>();
+        // Intentar obtener el GameManager
+        GetManagerReference();
+    }
+
+    private void GetManagerReference()
+    {
+        if (manager == null)
+        {
+            manager = GameManager.Instance;
+            
+            if (manager == null)
+            {
+                manager = FindObjectOfType<GameManager>();
+            }
+            
+            if (manager == null)
+            {
+                Debug.LogError($"GameManager no encontrado para {gameObject.name}!");
+            }
+        }
     }
 
     public void Interact()
     {
+        // Intentar obtener el manager si aún es null
+        if (manager == null)
+        {
+            GetManagerReference();
+        }
+        
+        if (manager == null)
+        {
+            Debug.LogError($"No se puede interactuar con {gameObject.name}: GameManager es null");
+            return;
+        }
+        
         string dialogoAMostrar = DeterminarDialogo();
+        
+        // Validar que el diálogo no esté vacío
+        if (string.IsNullOrEmpty(dialogoAMostrar))
+        {
+            Debug.LogWarning("El diálogo está vacío. Asegúrate de configurar los textos en el Inspector.");
+            return;
+        }
         
         // Dividir el texto en páginas si es necesario
         List<string> pages = SplitTextIntoPages(dialogoAMostrar, maxCharactersPerPage);
+        
+        // Validar que la lista no esté vacía
+        if (pages == null || pages.Count == 0)
+        {
+            Debug.LogWarning("No se pudieron crear páginas de diálogo.");
+            return;
+        }
         
         // Mostrar el diálogo
         manager.NPCShowText(pages, npcName, npcImage, typingSound);
@@ -58,21 +103,27 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
 
     private string DeterminarDialogo()
     {
-        // Verificar si ya completó la misión de hablar con Pintacaritas 1
-        bool habloCon1 = !manager.HasMission(misionPintacaritas1);
-        bool habloConTrapecista = !manager.HasMission(misionTrapecista);
-
-        // Lógica de decisión de diálogo
-        if (!string.IsNullOrEmpty(dialogoFinal) && habloCon1 && habloConTrapecista)
+        if (manager == null)
         {
-            return dialogoFinal;
+            Debug.LogWarning($"{gameObject.name}: Manager es null en DeterminarDialogo, usando diálogo por defecto.");
+            return dialogoSinHablarConPintacaritas1;
         }
-        else if (habloCon1 && !string.IsNullOrEmpty(dialogoDespuesDeHablarConPintacaritas1))
+        
+        // Verificar si tiene las misiones activas
+        bool tieneMisionTrapecista = manager.HasMission(misionTrapecista);
+
+        // Lógica SIMPLE:
+        // - Si tiene misión de Trapecista = Diálogo largo
+        // - Si NO tiene misión de Trapecista = Diálogo corto
+        
+        if (tieneMisionTrapecista && !string.IsNullOrEmpty(dialogoDespuesDeHablarConPintacaritas1))
         {
+            // Tiene la misión de buscar a la otra pintacaritas → Diálogo largo
             return dialogoDespuesDeHablarConPintacaritas1;
         }
         else
         {
+            // NO tiene la misión de trapecista → Diálogo corto
             return dialogoSinHablarConPintacaritas1;
         }
     }
@@ -87,6 +138,13 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     private List<string> SplitTextIntoPages(string text, int maxChars)
     {
         List<string> pages = new List<string>();
+
+        // Validar entrada
+        if (string.IsNullOrEmpty(text))
+        {
+            Debug.LogWarning("Texto vacío en SplitTextIntoPages");
+            return pages;
+        }
 
         if (text.Length <= maxChars)
         {

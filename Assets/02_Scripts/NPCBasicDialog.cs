@@ -35,13 +35,23 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
 
     void Start()
     {
-        manager = FindObjectOfType<GameManager>();
-
+        // Usar la instancia singleton del GameManager
+        manager = GameManager.Instance;
         
+        if (manager == null)
+        {
+            Debug.LogError($"GameManager.Instance es null para {gameObject.name}. Asegúrate de que el GameManager existe y se inicializa primero.");
+        }
     }
 
     public void Interact()
     {
+        if (manager == null)
+        {
+            Debug.LogError($"No se puede interactuar con {gameObject.name}: GameManager es null");
+            return;
+        }
+        
         string textToShow = dialogueText;
         string missionToAdd = "";
 

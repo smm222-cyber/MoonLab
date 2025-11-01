@@ -69,15 +69,27 @@ public class GameManager : MonoBehaviour
                 audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.playOnAwake = false;
             }
+            Debug.Log("GameManager inicializado correctamente");
         }
         else
         {
+            Debug.LogWarning($"GameManager duplicado encontrado en {gameObject.name}. Destruyendo este.");
             Destroy(gameObject);
         }
     }
 
     void Start()
     {
+        // Verificar que las referencias estén asignadas
+        if (npcDialogBox == null)
+            Debug.LogError("npcDialogBox no está asignado en el GameManager!");
+        if (npcDialogText == null)
+            Debug.LogError("npcDialogText no está asignado en el GameManager!");
+        if (npcName == null)
+            Debug.LogError("npcName no está asignado en el GameManager!");
+        if (npcImage == null)
+            Debug.LogError("npcImage no está asignado en el GameManager!");
+            
         // Verificar si estamos en la escena Pintacaritas_Level
         CheckForPintacaritasScene();
     }

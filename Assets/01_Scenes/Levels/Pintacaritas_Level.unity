@@ -1261,7 +1261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252320894
 Transform:
   m_ObjectHideFlags: 0
@@ -1796,7 +1796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2624106675981421336, guid: 41c7c4129a313a742a7b05214a7dca6f, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2624106675981421336, guid: 41c7c4129a313a742a7b05214a7dca6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2019,7 +2019,7 @@ Transform:
   - {fileID: 1125003964}
   - {fileID: 869365162}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540580320
 GameObject:
@@ -2455,6 +2455,7 @@ Transform:
   - {fileID: 1459593913}
   - {fileID: 1576947742}
   - {fileID: 1564002009}
+  - {fileID: 1106715512}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2562,6 +2563,30 @@ PrefabInstance:
     - target: {fileID: 3368337943354452813, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: m_Name
       value: NpcTrapecista
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: usesMissionSystem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[0].dialogueText
+      value: "Hola, viste qu epaso, a lo que se se no se hablan m\xE1s de una sema.a"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[1].dialogueText
+      value: Asi que paso eso.., ya veo, ojala las peudas ayudar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[0].missionToGive
+      value: Buscar a carita pintada
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[1].missionToGive
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: m_RootOrder
@@ -3140,6 +3165,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5201859249859189304, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5201859249859189307, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -3502,6 +3531,93 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1106715511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106715512}
+  - component: {fileID: 1106715514}
+  - component: {fileID: 1106715513}
+  m_Layer: 6
+  m_Name: Grupo_Pintacaritas1_Maestro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106715512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106715511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.36, y: -2.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 738506670}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1106715513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106715511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2522e4f55b1cf4cb5c4c6123409f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupName: "Conversaci\xF3n"
+  groupIcon: {fileID: 0}
+  interactUI: {fileID: 0}
+  initialConversation:
+  - speakerName: Pinta caritas
+    speakerSprite: {fileID: 0}
+    dialogue: ....
+  - speakerName: Maestro de ceremonias
+    speakerSprite: {fileID: 0}
+    dialogue: "Ya van m\xE1s de una semana peleadas, deben arreglarlo ya."
+  - speakerName: Maestro de ceremonias
+    speakerSprite: {fileID: 0}
+    dialogue: Si no lo arreglan afectara el ambiente del circo.
+  - speakerName: ...
+    speakerSprite: {fileID: 0}
+    dialogue: Parece que estan ocupados, pregunatre que paso
+  missionRequired: Hablar con la trapecista
+  afterMissionConversation:
+  - speakerName: Pintacaritas
+    speakerSprite: {fileID: 0}
+    dialogue: "Hola, c\xF3mo estas"
+  - speakerName: ...
+    speakerSprite: {fileID: 0}
+    dialogue: Bien, paso algo?
+  missionToGiveAfterInitial: "Preguntar qu\xE9 pas\xF3"
+  typingSound: {fileID: 0}
+  isActive: 1
+--- !u!58 &1106715514
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106715511}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.94917536, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.4491754
 --- !u!1 &1107683565
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,9 +3843,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 738506670}
     m_Modifications:
+    - target: {fileID: 3368337943354452812, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452813, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: m_Name
       value: PintaCarita1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452813, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: m_RootOrder
@@ -3855,6 +3983,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1169249263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd34211d71c8b449a97fb329c4ff846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Caita Pintada
+  npcImage: {fileID: 0}
+  interactUI: {fileID: 0}
+  dialogoSinHablarConPintacaritas1: Hola... estoy ocupada ahora.
+  dialogoDespuesDeHablarConPintacaritas1: "Viniste a preguntarme qu\xE9 paso??, yo
+    oslo queria ayudaral consu tranajoy ella es la que se emfado, no entiendo que
+    lepasa"
+  dialogoFinal: Ok
+  misionPintacaritas1: HablasteCon_Pintacaritas1
+  misionTrapecista: HablasteCon_Trapecista
+  typingSound: {fileID: 0}
+  maxCharactersPerPage: 40
 --- !u!4 &1216253440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
@@ -3882,9 +4034,21 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1576947743}
+    - target: {fileID: 3368337943354452812, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452813, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_Name
       value: NpcMaestroCeremonias
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452813, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: dialogueText
@@ -3941,6 +4105,10 @@ PrefabInstance:
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452851, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
@@ -4093,7 +4261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1308850875
 Transform:
   m_ObjectHideFlags: 0
@@ -4804,6 +4972,7 @@ Transform:
   - {fileID: 2011747542}
   - {fileID: 487476187}
   - {fileID: 2018049705}
+  - {fileID: 3368337943641556032}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6421,3 +6590,149 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843d9bd199b31d24281072394ba5ac39, type: 3}
+--- !u!95 &2319790591870559547
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2628c3098badea4f897f7fd3c8a5c2d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &3368337943641556032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -74.85146, y: -17.110615, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1506816541}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3368337943641556033
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1288801683789895918, guid: da3813de17bc1024290f4a9d7269b10d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &3368337943641556094
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.022751391, y: 0.05686295}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.33, y: 4.22}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4095265, y: 4.2212086}
+  m_EdgeRadius: 0
+--- !u!1 &3368337943641556095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3368337943641556032}
+  - component: {fileID: 3368337943641556033}
+  - component: {fileID: 7213778042118393965}
+  - component: {fileID: 3368337943641556094}
+  - component: {fileID: 2319790591870559547}
+  - component: {fileID: 1169249263}
+  m_Layer: 6
+  m_Name: PintaCarita2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &7213778042118393965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943641556095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ef4a98c0b5090459ceb226ee50a855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2319790591870559547}
