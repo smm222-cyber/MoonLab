@@ -4,17 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// VERSIÓN SIMPLIFICADA Y MÁS ROBUSTA DEL SISTEMA DE UI PARA OPCIONES
-/// 
-/// Esta versión tiene más validaciones y debugging para asegurarse de que funciona.
-/// 
-/// IMPORTANTE: Este script debe estar en un GameObject que SIEMPRE esté activo,
-/// NO en el panel que se activa/desactiva. Por ejemplo:
-/// - Canvas (SIEMPRE ACTIVO) ← Script aquí
-///   - DialogueChoicesPanel (se activa/desactiva)
-///     - ButtonsContainer
-/// </summary>
+
 public class DialogueChoicesUIFixed : MonoBehaviour
 {
     [Header("Referencias UI")]
