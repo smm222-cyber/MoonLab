@@ -10,7 +10,8 @@
 6. **Hablas con PINTACARITAS2 (2da vez)** → Te da "Buscar las pinturas de la pintacaritas"
 7. **Agarras las PINTURAS** → Completa "Buscar las pinturas de la pintacaritas" ✅
 8. **Hablas con PINTACARITAS2 (3ra vez)** → Te da "Hablar con Héctor el Pintacaritas"
-9. **Hablas con PINTACARITAS1 (del grupo)** → Completa "Hablar con Héctor el Pintacaritas" ✅
+9. **Hablas con GRUPO (3ra vez - conversación de Héctor)** → Completa "Hablar con Héctor el Pintacaritas" ✅
+10. **Hablas con HÉCTOR INDIVIDUAL** → Te da 2 opciones de diálogo, eliges una y obtienes respuesta diferente
 
 ---
 
@@ -104,7 +105,58 @@ Is Active: ✅
 **⚠️ IMPORTANTE:** El mismo GameObject del GRUPO ahora maneja 3 conversaciones:
 1. **Conversación Inicial**: Primera vez que hablas con ellos
 2. **Conversación Después de Misión**: Cuando tienes "Preguntar por la pelea"
-3. **Conversación Final**: Cuando tienes "Hablar con Héctor el Pintacaritas" ✨ NUEVO
+3. **Conversación Final**: Cuando tienes "Hablar con Héctor el Pintacaritas" ✨
+
+---
+
+### 1️⃣C PINTACARITAS1 INDIVIDUAL (Héctor) - Diálogo con Opciones
+
+**NUEVO:** Después de la conversación final del GRUPO, crea un GameObject individual para Héctor que ofrezca opciones de diálogo.
+
+**GameObject:** `Hector_Pintacaritas1_Individual`
+
+**Componentes:**
+- Circle Collider 2D (Is Trigger ✅)
+- Script: `NPCDialogueWithChoices` (NUEVO - recién creado)
+- Layer: `Interactable`
+
+**Campos del Script:**
+
+```
+NPC Name: Héctor
+NPC Image: (sprite de Héctor/Pintacaritas1)
+Interact UI: (tu indicador E)
+
+[MISIÓN REQUERIDA]
+Mission Required: (vacío - no requiere misión, hablas después del grupo)
+Complete Mission On Start: ❌ (no hay misión que completar)
+
+[DIÁLOGO INICIAL]
+Initial Dialogue: "Entonces... ¿qué te pareció trabajar con nosotros en el circo? ¿Te gustaría quedarte o prefieres seguir tu camino?"
+
+[OPCIONES DE DIÁLOGO]
+Choices (tamaño: 2):
+
+  Opción 1:
+    Choice Text: "Me gustaría quedarme y trabajar en el circo"
+    Response Dialogue: "¡Excelente! Siempre necesitamos gente talentosa como tú. Bienvenido al equipo del circo. Te va a encantar trabajar aquí, ya verás."
+  
+  Opción 2:
+    Choice Text: "Prefiero seguir mi camino"
+    Response Dialogue: "Lo entiendo perfectamente. Has sido de gran ayuda y siempre serás bienvenido aquí. ¡Que tengas un gran viaje!"
+
+[DIÁLOGO POR DEFECTO]
+Default Dialogue: "Hola, ¿en qué puedo ayudarte?"
+
+Max Characters Per Page: 40
+Typing Sound: (tu sonido de escritura)
+```
+
+**⚠️ NOTA IMPORTANTE:** Este script necesita que **implementes un sistema de UI para mostrar las opciones**. Actualmente el script:
+1. Muestra el diálogo inicial
+2. Llama a `ShowChoicesUI()` donde debes mostrar botones con las opciones
+3. El jugador hace clic en un botón
+4. Llamas a `OnChoiceSelected(índice)` para mostrar la respuesta
 
 ---
 
@@ -195,11 +247,13 @@ Typing Sound: (tu sonido de escritura)
 - [x] NPCGroupConversation.cs creado
 - [x] PintacaritasNPC.cs creado
 - [x] NPCBasicDialog.cs actualizado con sistema de completar misiones
+- [x] NPCDialogueWithChoices.cs creado (NUEVO - para diálogos con opciones)
 
 ### GameObjects
 - [ ] Grupo_Pintacaritas1_Maestro creado con NPCGroupConversation
 - [ ] Trapecista tiene NPCBasicDialog
 - [ ] Pintacaritas2 tiene PintacaritasNPC
+- [ ] Hector_Pintacaritas1_Individual creado con NPCDialogueWithChoices (NUEVO)
 - [ ] Todos tienen Circle Collider 2D (Is Trigger ✅)
 - [ ] Todos están en Layer "Interactable"
 
@@ -228,6 +282,7 @@ Typing Sound: (tu sonido de escritura)
 - [ ] Grupo: 2+ líneas en Final Conversation (diálogo de Héctor)
 - [ ] Trapecista: 1 misión con diálogo largo
 - [ ] Pintacaritas2: 5 diálogos diferentes (inicial, fase 2, fase 3, fase 4, final)
+- [ ] Héctor Individual: 1 diálogo inicial + 2 opciones con sus respuestas (NUEVO)
 
 ### Objetos Interactivos
 - [ ] Crear objeto "Pincel" en tu sistema de items
@@ -346,11 +401,22 @@ Hablar con Héctor el Pintacaritas
                     │
                     ▼
     ┌───────────────────────────────┐
-    │ HABLAR CON PINTACARITAS1      │
-    │          (HÉCTOR)             │
+    │ HABLAR CON GRUPO (3ra vez)    │
+    │    (Conversación de Héctor)   │
     │   Completa: "Hablar con       │
     │             Héctor el         │
     │             Pintacaritas" ✅   │
+    └───────────────┬───────────────┘
+                    │
+                    ▼
+    ┌───────────────────────────────┐
+    │ HABLAR CON HÉCTOR INDIVIDUAL  │
+    │                               │
+    │  Opción 1: "Quedarme"         │
+    │  → "¡Bienvenido al equipo!"   │
+    │                               │
+    │  Opción 2: "Seguir mi camino" │
+    │  → "¡Buen viaje!"             │
     └───────────────┬───────────────┘
                     │
                     ▼
@@ -387,6 +453,76 @@ Hablar con Héctor el Pintacaritas
   - Con misión requerida → Diálogo largo (completa y da misión)
   - Después de dar misión → Diálogo final (repetible)
 - ✅ Usa coroutina `HandleMissionsDespuesDelDialogo`
+
+### NPCDialogueWithChoices.cs (NUEVO)
+- ✅ Sistema de diálogo con opciones múltiples
+- ✅ El jugador puede elegir entre diferentes respuestas
+- ✅ Cada opción tiene su propio diálogo de respuesta
+- ✅ Sistema de misión opcional para activar el diálogo
+- ✅ Método `OnChoiceSelected(index)` para integrar con UI
+- ⚠️ **REQUIERE**: Implementar UI para mostrar las opciones al jugador
+
+---
+
+## 🎨 IMPLEMENTAR UI DE OPCIONES
+
+El script `NPCDialogueWithChoices` necesita que implementes un sistema de UI para mostrar las opciones. Aquí está el flujo:
+
+### Paso 1: Detectar cuando mostrar opciones
+
+El script llama a `ShowChoicesUI()` cuando termina el diálogo inicial. Aquí debes:
+
+1. **Activar tu panel de UI de opciones**
+2. **Crear botones** para cada opción en `choices`
+3. **Configurar cada botón** con:
+   - Texto: `choices[i].choiceText`
+   - OnClick: Llamar a `OnChoiceSelected(i)`
+
+### Paso 2: Ejemplo de código para UI
+
+```csharp
+// En ShowChoicesUI(), reemplaza el código temporal con:
+private void ShowChoicesUI()
+{
+    // Activar tu panel de opciones
+    choicesPanel.SetActive(true);
+    
+    // Limpiar botones anteriores
+    foreach (Transform child in buttonsContainer)
+    {
+        Destroy(child.gameObject);
+    }
+    
+    // Crear un botón para cada opción
+    for (int i = 0; i < choices.Count; i++)
+    {
+        GameObject buttonObj = Instantiate(choiceButtonPrefab, buttonsContainer);
+        Button button = buttonObj.GetComponent<Button>();
+        TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
+        
+        // Configurar texto
+        buttonText.text = choices[i].choiceText;
+        
+        // Configurar click (capturar i en variable local)
+        int index = i;
+        button.onClick.AddListener(() => {
+            OnChoiceSelected(index);
+            choicesPanel.SetActive(false); // Ocultar panel
+        });
+    }
+}
+```
+
+### Paso 3: Agregar campos al script
+
+Si vas a usar este enfoque, agrega estos campos públicos al script:
+
+```csharp
+[Header("UI de Opciones")]
+public GameObject choicesPanel;
+public Transform buttonsContainer;
+public GameObject choiceButtonPrefab;
+```
 
 ---
 

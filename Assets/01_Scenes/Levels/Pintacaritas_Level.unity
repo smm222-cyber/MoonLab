@@ -1285,6 +1285,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &281693789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1308850875}
+    m_Modifications:
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552490, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: lockedMessage
+      value: Un bote de tinta
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552490, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: requiresMission
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552490, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: missionToComplete
+      value: Encontrar tinta
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552493, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Name
+      value: Tinta
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
 --- !u!1 &287301679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,6 +2102,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &497288557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+  m_PrefabInstance: {fileID: 281693789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540580320
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,11 +2668,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
-      value: Buscar a carita pintada
+      value: Preguntar por la pelea
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: missions.Array.data[1].missionToGive
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[0].missionRequired
+      value: "Averiguar qu\xE9 est\xE1 pasando"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[1].missionRequired
+      value: Escuchar la historia completa
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: missions.Array.data[0].missionToComplete
+      value: "Averiguar qu\xE9 est\xE1 pasando"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: m_RootOrder
@@ -2759,6 +2857,107 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &875572095
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683051, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513725392858683054, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+      propertyPath: m_Name
+      value: ChoicesCanvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
 --- !u!1001 &918404622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3591,7 +3790,7 @@ MonoBehaviour:
   - speakerName: ...
     speakerSprite: {fileID: 0}
     dialogue: Parece que estan ocupados, pregunatre que paso
-  missionRequired: Hablar con la trapecista
+  missionRequired: Preguntar por la pelea
   afterMissionConversation:
   - speakerName: Pintacaritas
     speakerSprite: {fileID: 0}
@@ -3599,7 +3798,19 @@ MonoBehaviour:
   - speakerName: ...
     speakerSprite: {fileID: 0}
     dialogue: Bien, paso algo?
-  missionToGiveAfterInitial: "Preguntar qu\xE9 pas\xF3"
+  missionRequiredForFinalConversation: Hablar con la pintacaritas
+  finalConversation:
+  - speakerName: Pinta Caeitas
+    speakerSprite: {fileID: 0}
+    dialogue: Asi que eso fue lo que paso?
+  - speakerName: ...
+    speakerSprite: {fileID: 0}
+    dialogue: Sip
+  missionToGiveAfterInitial: "Averiguar qu\xE9 est\xE1 pasando"
+  missionToCompleteWhenShowingAfter: Preguntar por la pelea
+  missionToGiveAfterSecond: Escuchar la historia completa
+  missionToCompleteInFinalConversation: Hablar con la pintacaritas
+  missionToGiveAfterFinal: Informar encuentro
   typingSound: {fileID: 0}
   isActive: 1
 --- !u!58 &1106715514
@@ -3995,18 +4206,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd34211d71c8b449a97fb329c4ff846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Caita Pintada
+  npcName: Carita Pintada
   npcImage: {fileID: 0}
   interactUI: {fileID: 0}
   dialogoSinHablarConPintacaritas1: Hola... estoy ocupada ahora.
-  dialogoDespuesDeHablarConPintacaritas1: "Viniste a preguntarme qu\xE9 paso??, yo
-    oslo queria ayudaral consu tranajoy ella es la que se emfado, no entiendo que
-    lepasa"
-  dialogoFinal: Ok
-  misionPintacaritas1: HablasteCon_Pintacaritas1
-  misionTrapecista: HablasteCon_Trapecista
+  misionRequeridaFase2: Escuchar la historia completa
+  dialogoFase2: Ya veo, asi que ell a dijo eso, traeme papel
+  misionACompletarFase2: Escuchar la historia completa
+  misionADarFase2: Encontrar papel
+  misionRequeridaFase3: Encontrar papel
+  dialogoFase3: Necesito tinta ahora
+  misionADarFase3: Encontrar tinta
+  misionRequeridaFase4: Encontrar tinta
+  dialogoFase4: Graciaas, dale esto a porfis
+  misionADarFase4: Hablar con la pintacaritas
+  misionRequeridaFase5: Informar encuentro
+  dialogoFase5Inicial: Gracias por ayudarnos, sabes la verdad es que no nos peleabamos
+    hace tiempo. Quieres que te ayude con algo??
+  opcionesFase5:
+  - choiceText: Preguntar sobre ellas
+    responseDialogue: Quieres saber sobre nosotras??
+  - choiceText: Preguntar sobre ti
+    responseDialogue: Te cuento lo que se
+  misionACompletarFase5: Informar encuentro
+  dialogoFinal: Listo
   typingSound: {fileID: 0}
   maxCharactersPerPage: 40
+  choicesUISystem: {fileID: 1939998776}
 --- !u!4 &1216253440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
@@ -4280,6 +4506,7 @@ Transform:
   - {fileID: 1101403180}
   - {fileID: 205248342}
   - {fileID: 1216253440}
+  - {fileID: 497288557}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5951,6 +6178,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1939998776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7513725391005691117, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+  m_PrefabInstance: {fileID: 875572095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f20f196a50af7408ed9a0fd174056c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982109129
 GameObject:
   m_ObjectHideFlags: 0

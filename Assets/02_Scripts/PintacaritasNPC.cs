@@ -53,8 +53,33 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     [Tooltip("Misión que se da en FASE 4 (hablar con Pintacaritas1)")]
     public string misionADarFase4 = "Hablar con Héctor el Pintacaritas";
 
-    [Header("FASE 5: Diálogo Final")]
-    [Tooltip("Diálogo final después de completar todas las misiones")]
+    [Header("FASE 5: Diálogo con Opciones")]
+    [Tooltip("Misión requerida para la FASE 5 (volver después de hablar con Héctor)")]
+    public string misionRequeridaFase5 = "Volver con Pintacaritas2";
+    
+    [Tooltip("Diálogo FASE 5 - Antes de mostrar opciones")]
+    [TextArea(3, 10)]
+    public string dialogoFase5Inicial;
+    
+    [System.Serializable]
+    public class DialogueChoice
+    {
+        [Tooltip("Texto de la opción que verá el jugador")]
+        public string choiceText;
+        
+        [Tooltip("Diálogo que dice el NPC después de elegir esta opción")]
+        [TextArea(3, 10)]
+        public string responseDialogue;
+    }
+    
+    [Tooltip("Opciones de diálogo para la FASE 5")]
+    public List<DialogueChoice> opcionesFase5 = new List<DialogueChoice>();
+    
+    [Tooltip("Misión que se completa al iniciar la FASE 5")]
+    public string misionACompletarFase5 = "Volver con Pintacaritas2";
+
+    [Header("FASE 6: Diálogo Final")]
+    [Tooltip("Diálogo final después de elegir una opción")]
     [TextArea(3, 10)]
     public string dialogoFinal;
 
@@ -64,10 +89,16 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     [Header("Configuración Avanzada")]
     public int maxCharactersPerPage = 40;
     
+    [Header("Sistema de UI (Opcional)")]
+    [Tooltip("Referencia al sistema de UI de opciones. Si no está asignado, usará el sistema por defecto de testing")]
+    public DialogueChoicesUI choicesUISystem;
+    
     private GameManager manager;
     private bool misionFase2Dada = false;
     private bool misionFase3Dada = false;
     private bool misionFase4Dada = false;
+    private bool opcionesFase5Mostradas = false;
+    private int opcionSeleccionada = -1;
 
     void Start()
     {
@@ -140,6 +171,20 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         
         // Determinar en qué fase estamos y actuar en consecuencia
         
+        // FASE 5: Mostrar opciones de diálogo
+        if (!string.IsNullOrEmpty(misionRequeridaFase5) && manager.HasMission(misionRequeridaFase5) && !opcionesFase5Mostradas)
+        {
+            if (!string.IsNullOrEmpty(misionACompletarFase5))
+            {
+                manager.CompleteMission(misionACompletarFase5);
+                Debug.Log($"[{gameObject.name}] FASE 5 - Misión completada: {misionACompletarFase5}");
+            }
+            
+            opcionesFase5Mostradas = true;
+            yield return StartCoroutine(MostrarOpcionesDeDialogo());
+            yield break; // Terminar aquí, las opciones manejarán el resto
+        }
+        
         // FASE 2: Completar misión inicial y dar primera misión de objeto
         if (!string.IsNullOrEmpty(misionRequeridaFase2) && manager.HasMission(misionRequeridaFase2) && !misionFase2Dada)
         {
@@ -186,11 +231,19 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
             return dialogoSinHablarConPintacaritas1;
         }
         
-        // FASE 5: Ya completó todo - Diálogo final
-        if (misionFase4Dada && !string.IsNullOrEmpty(dialogoFinal))
+        // FASE 6: Ya eligió una opción - Diálogo final
+        if (opcionSeleccionada >= 0 && !string.IsNullOrEmpty(dialogoFinal))
         {
-            Debug.Log($"[{gameObject.name}] FASE 5 - Diálogo final");
+            Debug.Log($"[{gameObject.name}] FASE 6 - Diálogo final después de elegir opción");
             return dialogoFinal;
+        }
+        
+        // FASE 5: Volvió después de hablar con Héctor - Mostrar opciones
+        if (!string.IsNullOrEmpty(misionRequeridaFase5) && manager.HasMission(misionRequeridaFase5) && 
+            !opcionesFase5Mostradas && !string.IsNullOrEmpty(dialogoFase5Inicial))
+        {
+            Debug.Log($"[{gameObject.name}] FASE 5 - Preparando opciones de diálogo");
+            return dialogoFase5Inicial;
         }
         
         // FASE 4: Ya recogió el segundo objeto (no tiene la misión) - Pedir hablar con Pintacaritas1
@@ -278,6 +331,68 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         }
 
         return pages;
+    }
+
+    // =======================
+    // SISTEMA DE OPCIONES
+    // =======================
+    
+    IEnumerator MostrarOpcionesDeDialogo()
+    {
+        Debug.Log($"[{gameObject.name}] Mostrando opciones de diálogo");
+        
+        if (opcionesFase5 == null || opcionesFase5.Count == 0)
+        {
+            Debug.LogError($"[{gameObject.name}] No hay opciones configuradas en opcionesFase5");
+            yield break;
+        }
+        
+        // Verificar si hay un sistema de UI asignado
+        if (choicesUISystem != null)
+        {
+            // MODO PRODUCCIÓN: Usar el sistema de UI real
+            Debug.Log($"[{gameObject.name}] Usando sistema de UI para mostrar {opcionesFase5.Count} opciones");
+            choicesUISystem.ShowChoices(this, opcionesFase5);
+            
+            // El sistema de UI llamará a OnChoiceSelected() cuando el jugador elija
+            // No necesitamos hacer nada más aquí
+        }
+        else
+        {
+            // MODO TESTING: Simulación automática sin UI
+            Debug.LogWarning($"[{gameObject.name}] ⚠️ SISTEMA DE OPCIONES NO IMPLEMENTADO - Usando opción por defecto para testing");
+            Debug.Log($"[{gameObject.name}] Opciones disponibles:");
+            for (int i = 0; i < opcionesFase5.Count; i++)
+            {
+                Debug.Log($"  {i + 1}. {opcionesFase5[i].choiceText}");
+            }
+            
+            Debug.Log($"[{gameObject.name}] Simulando elección automática en 2 segundos...");
+            yield return new WaitForSeconds(2f);
+            OnChoiceSelected(0); // Opción por defecto para testing
+        }
+    }
+    
+    // Este método debe ser llamado por tu sistema de UI cuando el jugador elija una opción
+    public void OnChoiceSelected(int choiceIndex)
+    {
+        if (opcionesFase5 == null || choiceIndex < 0 || choiceIndex >= opcionesFase5.Count)
+        {
+            Debug.LogError($"[{gameObject.name}] Índice de opción inválido: {choiceIndex}");
+            return;
+        }
+        
+        opcionSeleccionada = choiceIndex;
+        string responseDialogue = opcionesFase5[choiceIndex].responseDialogue;
+        
+        Debug.Log($"[{gameObject.name}] Jugador eligió opción {choiceIndex + 1}: {opcionesFase5[choiceIndex].choiceText}");
+        
+        // Mostrar la respuesta del NPC
+        if (!string.IsNullOrEmpty(responseDialogue))
+        {
+            List<string> pages = SplitTextIntoPages(responseDialogue, maxCharactersPerPage);
+            manager.NPCShowText(pages, npcName, npcImage, typingSound);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

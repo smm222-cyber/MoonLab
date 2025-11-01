@@ -31,7 +31,7 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     public string missionRequired; // Misión que debe completarse para cambiar el diálogo
     public List<DialogueLine> afterMissionConversation = new List<DialogueLine>();
 
-    [Header("Conversación Final (para misión de Héctor)")]
+    [Header("Conversación Final")]
     public string missionRequiredForFinalConversation; // Misión para activar conversación final
     public List<DialogueLine> finalConversation = new List<DialogueLine>();
 
@@ -44,6 +44,8 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     public string missionToGiveAfterSecond;
     [Tooltip("Misión que se completa al mostrar la conversación final")]
     public string missionToCompleteInFinalConversation;
+    [Tooltip("Misión que se da después de la conversación final")]
+    public string missionToGiveAfterFinal;
 
     [Header("Audio")]
     public AudioClip typingSound;
@@ -165,6 +167,13 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
         {
             manager.AddMission(missionToGiveAfterSecond);
             Debug.Log($"[{gameObject.name}] Misión posterior dada: {missionToGiveAfterSecond}");
+        }
+        
+        // Si era la conversación FINAL y hay una misión para dar, agregarla
+        if (isFinalConversation && !string.IsNullOrEmpty(missionToGiveAfterFinal))
+        {
+            manager.AddMission(missionToGiveAfterFinal);
+            Debug.Log($"[{gameObject.name}] Misión FINAL dada: {missionToGiveAfterFinal}");
         }
     }
 
