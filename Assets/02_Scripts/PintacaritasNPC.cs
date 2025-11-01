@@ -93,6 +93,9 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     [Tooltip("Referencia al sistema de UI de opciones. Si no está asignado, usará el sistema por defecto de testing")]
     public DialogueChoicesUI choicesUISystem;
     
+    [Tooltip("Versión alternativa del sistema de UI (más robusta). Usa esta si la otra no funciona")]
+    public DialogueChoicesUIFixed choicesUISystemFixed;
+    
     private GameManager manager;
     private bool misionFase2Dada = false;
     private bool misionFase3Dada = false;
@@ -347,11 +350,20 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
             yield break;
         }
         
-        // Verificar si hay un sistema de UI asignado
-        if (choicesUISystem != null)
+        // Verificar si hay un sistema de UI asignado (versión Fixed tiene prioridad)
+        if (choicesUISystemFixed != null)
         {
-            // MODO PRODUCCIÓN: Usar el sistema de UI real
-            Debug.Log($"[{gameObject.name}] Usando sistema de UI para mostrar {opcionesFase5.Count} opciones");
+            // MODO PRODUCCIÓN: Usar la versión Fixed (más robusta)
+            Debug.Log($"[{gameObject.name}] Usando DialogueChoicesUIFixed para mostrar {opcionesFase5.Count} opciones");
+            choicesUISystemFixed.ShowChoices(this, opcionesFase5);
+            
+            // El sistema de UI llamará a OnChoiceSelected() cuando el jugador elija
+            // No necesitamos hacer nada más aquí
+        }
+        else if (choicesUISystem != null)
+        {
+            // MODO PRODUCCIÓN: Usar el sistema de UI real (versión original)
+            Debug.Log($"[{gameObject.name}] Usando DialogueChoicesUI para mostrar {opcionesFase5.Count} opciones");
             choicesUISystem.ShowChoices(this, opcionesFase5);
             
             // El sistema de UI llamará a OnChoiceSelected() cuando el jugador elija

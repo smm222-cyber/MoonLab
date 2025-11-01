@@ -39,18 +39,26 @@
 Línea 0:
   Speaker Name: Pintacaritas1
   Speaker Sprite: [sprite P1]
+  Speaker Sound: [AudioClip de Pintacaritas1] (OPCIONAL) ⭐
   Dialogue: "¡Mira, un niño! Tal vez pueda ayudarnos..."
 
 Línea 1:
   Speaker Name: Pintacaritas3
   Speaker Sprite: [sprite P3]
+  Speaker Sound: [AudioClip de Pintacaritas3] (OPCIONAL) ⭐
   Dialogue: "No sé si debemos involucrar a alguien más en nuestros problemas..."
 
 Línea 2:
   Speaker Name: Pintacaritas4
   Speaker Sprite: [sprite P4]
+  Speaker Sound: [AudioClip de Pintacaritas4] (OPCIONAL) ⭐
   Dialogue: "Bueno... si está aquí, al menos puede escuchar nuestra historia."
 ```
+
+💡 **Nota sobre Speaker Sound:**
+- Si asignas un sonido aquí, ese personaje usará su propio sonido de typing
+- Si lo dejas vacío, usará el sonido general del grupo (Typing Sound al final)
+- Útil para dar personalidad única a cada personaje
 
 #### **Sistema de Misiones - Initial Conversation**
 - **Mission To Give After Initial:** `Averiguar qué está pasando`
@@ -63,11 +71,13 @@ Línea 2:
 Línea 0:
   Speaker Name: Pintacaritas1
   Speaker Sprite: [sprite P1]
+  Speaker Sound: [AudioClip de Pintacaritas1] (OPCIONAL)
   Dialogue: "¿Ya hablaste con Pintacaritas2? ¿Te contó algo?"
 
 Línea 1:
   Speaker Name: Grupo de Pintacaritas
   Speaker Sprite: [sprite grupo]
+  Speaker Sound: [AudioClip del grupo] (OPCIONAL)
   Dialogue: "Ella tiene una perspectiva diferente de lo que pasó..."
 ```
 
@@ -83,16 +93,19 @@ Línea 1:
 Línea 0:
   Speaker Name: Héctor
   Speaker Sprite: [sprite Héctor]
+  Speaker Sound: [AudioClip de Héctor] (OPCIONAL)
   Dialogue: "Así que realmente quieres saber qué pasó... Muy bien, te contaré mi versión."
 
 Línea 1:
   Speaker Name: Héctor
   Speaker Sprite: [sprite Héctor]
+  Speaker Sound: [AudioClip de Héctor] (OPCIONAL)
   Dialogue: "[Historia larga de Héctor explicando el conflicto]"
 
 Línea 2:
   Speaker Name: Héctor
   Speaker Sprite: [sprite Héctor]
+  Speaker Sound: [AudioClip de Héctor] (OPCIONAL)
   Dialogue: "Ahora entiendes por qué las cosas están así. Ve con Pintacaritas2, seguro tiene más que decir."
 ```
 
@@ -101,7 +114,13 @@ Línea 2:
 - **Mission To Give After Final:** `Volver con Pintacaritas2` ⭐ **NUEVO**
 
 #### **Audio**
-- **Typing Sound:** *(clip de sonido)*
+- **Typing Sound:** *(clip de sonido general - se usa si no asignas Speaker Sound individual)*
+
+💡 **Cómo funciona el audio:**
+- Cada línea de diálogo puede tener su propio `Speaker Sound`
+- Si una línea tiene `Speaker Sound` asignado, usa ese sonido
+- Si una línea NO tiene `Speaker Sound`, usa el `Typing Sound` general del grupo
+- Esto te permite dar personalidad única a cada personaje o usar un solo sonido para todos
 
 ---
 

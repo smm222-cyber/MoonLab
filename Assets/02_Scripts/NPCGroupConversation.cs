@@ -13,6 +13,10 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     {
         public string speakerName; // Nombre del NPC que habla
         public Sprite speakerSprite; // Imagen del NPC que habla
+        
+        [Tooltip("Sonido específico para este personaje (opcional). Si está vacío, usa el sonido general del grupo")]
+        public AudioClip speakerSound; // Sonido de typing de este personaje
+        
         [TextArea(3, 10)]
         public string dialogue; // Lo que dice
     }
@@ -141,11 +145,14 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
 
         foreach (DialogueLine line in conversation)
         {
-            // Crear una lista con una sola línea para cada personaje
+            // Crear una lista de una sola página
             List<string> singlePage = new List<string> { line.dialogue };
             
+            // Usar el sonido específico del personaje si existe, si no usar el sonido general del grupo
+            AudioClip soundToUse = line.speakerSound != null ? line.speakerSound : typingSound;
+            
             // Mostrar el diálogo
-            manager.NPCShowText(singlePage, line.speakerName, line.speakerSprite, typingSound);
+            manager.NPCShowText(singlePage, line.speakerName, line.speakerSprite, soundToUse);
 
             // Esperar hasta que el diálogo termine
             yield return new WaitUntil(() => manager.DialogFinished);

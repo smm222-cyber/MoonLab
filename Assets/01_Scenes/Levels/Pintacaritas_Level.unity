@@ -203,6 +203,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 168471721864212444, guid: 88b8f3b689092f64085f78557cc5ede9, type: 3}
   m_PrefabInstance: {fileID: 19775458}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &43776429 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7513725391114316604, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+  m_PrefabInstance: {fileID: 875572095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108896016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,6 +2428,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 10}
   m_EdgeRadius: 0
+--- !u!1 &687199773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7513725392858683054, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+  m_PrefabInstance: {fileID: 875572095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &687199778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687199773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ba3eb993e320b4a9102fb9458e8098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choicesPanel: {fileID: 1939998774}
+  buttonsContainer: {fileID: 43776429}
+  choiceButtonPrefab: {fileID: 8942604445465562777, guid: ca8a99dce7c87e14ab204609cae5ce43, type: 3}
 --- !u!1001 &719205840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2650,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcTrapecista
       objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 442a08b72cd33b84386c4523ecdafe6b, type: 3}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: usesMissionSystem
       value: 1
@@ -2956,7 +2985,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChoicesCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7513725391005691117, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
 --- !u!1001 &918404622
 PrefabInstance:
@@ -3780,31 +3810,39 @@ MonoBehaviour:
   initialConversation:
   - speakerName: Pinta caritas
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: ....
   - speakerName: Maestro de ceremonias
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     dialogue: "Ya van m\xE1s de una semana peleadas, deben arreglarlo ya."
   - speakerName: Maestro de ceremonias
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     dialogue: Si no lo arreglan afectara el ambiente del circo.
   - speakerName: ...
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Parece que estan ocupados, pregunatre que paso
   missionRequired: Preguntar por la pelea
   afterMissionConversation:
   - speakerName: Pintacaritas
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "Hola, c\xF3mo estas"
   - speakerName: ...
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Bien, paso algo?
   missionRequiredForFinalConversation: Hablar con la pintacaritas
   finalConversation:
   - speakerName: Pinta Caeitas
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: Asi que eso fue lo que paso?
   - speakerName: ...
     speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Sip
   missionToGiveAfterInitial: "Averiguar qu\xE9 est\xE1 pasando"
   missionToCompleteWhenShowingAfter: Preguntar por la pelea
@@ -4225,14 +4263,15 @@ MonoBehaviour:
     hace tiempo. Quieres que te ayude con algo??
   opcionesFase5:
   - choiceText: Preguntar sobre ellas
-    responseDialogue: Quieres saber sobre nosotras??
+    responseDialogue: Quieres saber sobre nosotras??, la cosa esdque jsjaolkskdsdsdda
   - choiceText: Preguntar sobre ti
-    responseDialogue: Te cuento lo que se
+    responseDialogue: Te cuento lo que se,kajksoaoqouujdsjalkda
   misionACompletarFase5: Informar encuentro
   dialogoFinal: Listo
-  typingSound: {fileID: 0}
+  typingSound: {fileID: 8300000, guid: 0bd6210a182c89f46b30762279933c96, type: 3}
   maxCharactersPerPage: 40
-  choicesUISystem: {fileID: 1939998776}
+  choicesUISystem: {fileID: 0}
+  choicesUISystemFixed: {fileID: 687199778}
 --- !u!4 &1216253440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
@@ -6178,17 +6217,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939998776 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7513725391005691117, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
+--- !u!1 &1939998774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7513725391005691091, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
   m_PrefabInstance: {fileID: 875572095}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f20f196a50af7408ed9a0fd174056c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1982109129
 GameObject:
   m_ObjectHideFlags: 0

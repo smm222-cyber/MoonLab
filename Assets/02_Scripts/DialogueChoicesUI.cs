@@ -56,21 +56,50 @@ public class DialogueChoicesUI : MonoBehaviour
             return;
         }
         
+        Debug.Log($"DialogueChoicesUI: ShowChoices llamado con {choices.Count} opciones");
+        
         currentNPC = npc;
+        
+        // ACTIVAR EL PANEL PRIMERO
+        if (choicesPanel != null)
+        {
+            choicesPanel.SetActive(true);
+            Debug.Log("DialogueChoicesUI: Panel activado");
+        }
+        else
+        {
+            Debug.LogError("DialogueChoicesUI: choicesPanel es null! Asigna la referencia en el Inspector");
+            return;
+        }
         
         // Limpiar botones anteriores si existen
         ClearButtons();
+        
+        // Verificar que tenemos el prefab
+        if (choiceButtonPrefab == null)
+        {
+            Debug.LogError("DialogueChoicesUI: choiceButtonPrefab es null! Asigna el prefab en el Inspector");
+            return;
+        }
+        
+        if (buttonsContainer == null)
+        {
+            Debug.LogError("DialogueChoicesUI: buttonsContainer es null! Asigna la referencia en el Inspector");
+            return;
+        }
         
         // Crear un botón por cada opción
         for (int i = 0; i < choices.Count; i++)
         {
             GameObject buttonObj = Instantiate(choiceButtonPrefab, buttonsContainer);
+            Debug.Log($"DialogueChoicesUI: Botón {i} creado: {choices[i].choiceText}");
             
             // Obtener el componente de texto (TextMeshProUGUI o Text)
             TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
                 buttonText.text = choices[i].choiceText;
+                Debug.Log($"DialogueChoicesUI: Texto asignado con TextMeshProUGUI");
             }
             else
             {
@@ -79,6 +108,11 @@ public class DialogueChoicesUI : MonoBehaviour
                 if (legacyText != null)
                 {
                     legacyText.text = choices[i].choiceText;
+                    Debug.Log($"DialogueChoicesUI: Texto asignado con Text (legacy)");
+                }
+                else
+                {
+                    Debug.LogWarning($"DialogueChoicesUI: No se encontró componente de texto en el botón {i}");
                 }
             }
             
@@ -88,15 +122,17 @@ public class DialogueChoicesUI : MonoBehaviour
             {
                 int choiceIndex = i; // Capturar el índice en una variable local
                 button.onClick.AddListener(() => OnChoiceClicked(choiceIndex));
+                Debug.Log($"DialogueChoicesUI: Listener agregado al botón {i}");
+            }
+            else
+            {
+                Debug.LogError($"DialogueChoicesUI: El prefab no tiene componente Button!");
             }
             
             spawnedButtons.Add(buttonObj);
         }
         
-        // Mostrar el panel
-        choicesPanel.SetActive(true);
-        
-        Debug.Log($"DialogueChoicesUI: Mostrando {choices.Count} opciones");
+        Debug.Log($"DialogueChoicesUI: ✅ {choices.Count} botones creados y panel activado");
     }
     
     /// <summary>
