@@ -4,33 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// EJEMPLO DE SISTEMA DE UI PARA OPCIONES DE DIÁLOGO
-/// 
-/// Este script es un EJEMPLO de cómo implementar una UI para mostrar opciones de diálogo.
-/// Puedes adaptarlo a tu sistema de UI existente.
-/// 
-/// CÓMO USAR:
-/// 1. Crea un Canvas con un Panel para las opciones
-/// 2. Crea un Prefab de botón (con TextMeshProUGUI)
-/// 3. Asigna este script al Panel
-/// 4. Asigna las referencias en el Inspector
-/// 5. Llama a ShowChoices() desde PintacaritasNPC.cs
-/// </summary>
+
 public class DialogueChoicesUI : MonoBehaviour
 {
     [Header("Referencias UI")]
-    [Tooltip("Panel que contiene todos los botones de opciones")]
+    [Tooltip("Panel de opciones")]
     public GameObject choicesPanel;
     
-    [Tooltip("Contenedor donde se instanciarán los botones (ej: Vertical Layout Group)")]
+    [Tooltip("Contenedor de botones")]
     public Transform buttonsContainer;
     
-    [Tooltip("Prefab del botón de opción (debe tener TextMeshProUGUI)")]
+    [Tooltip("Prefab del botón")]
     public GameObject choiceButtonPrefab;
     
     [Header("Configuración")]
-    [Tooltip("Espaciado entre botones")]
+    [Tooltip("Espaciado")]
     public float buttonSpacing = 10f;
     
     private PintacaritasNPC currentNPC;
@@ -38,16 +26,14 @@ public class DialogueChoicesUI : MonoBehaviour
     
     void Start()
     {
-        // Asegurarse de que el panel esté oculto al inicio
+        // Ocultar panel
         if (choicesPanel != null)
         {
             choicesPanel.SetActive(false);
         }
     }
     
-    /// <summary>
-    /// Muestra las opciones de diálogo del NPC especificado
-    /// </summary>
+    // Mostrar opciones
     public void ShowChoices(PintacaritasNPC npc, List<PintacaritasNPC.DialogueChoice> choices)
     {
         if (npc == null || choices == null || choices.Count == 0)
@@ -60,7 +46,7 @@ public class DialogueChoicesUI : MonoBehaviour
         
         currentNPC = npc;
         
-        // ACTIVAR EL PANEL PRIMERO
+    // Activar panel
         if (choicesPanel != null)
         {
             choicesPanel.SetActive(true);
@@ -72,10 +58,10 @@ public class DialogueChoicesUI : MonoBehaviour
             return;
         }
         
-        // Limpiar botones anteriores si existen
+    // Limpiar botones
         ClearButtons();
         
-        // Verificar que tenemos el prefab
+    // Prefab existe?
         if (choiceButtonPrefab == null)
         {
             Debug.LogError("DialogueChoicesUI: choiceButtonPrefab es null! Asigna el prefab en el Inspector");
@@ -88,13 +74,13 @@ public class DialogueChoicesUI : MonoBehaviour
             return;
         }
         
-        // Crear un botón por cada opción
+    // Crear botones
         for (int i = 0; i < choices.Count; i++)
         {
             GameObject buttonObj = Instantiate(choiceButtonPrefab, buttonsContainer);
             Debug.Log($"DialogueChoicesUI: Botón {i} creado: {choices[i].choiceText}");
             
-            // Obtener el componente de texto (TextMeshProUGUI o Text)
+            // Texto del botón
             TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
@@ -103,7 +89,7 @@ public class DialogueChoicesUI : MonoBehaviour
             }
             else
             {
-                // Fallback a Text si no usa TextMeshPro
+                // Si no hay TMP, usa Text
                 Text legacyText = buttonObj.GetComponentInChildren<Text>();
                 if (legacyText != null)
                 {
@@ -116,11 +102,11 @@ public class DialogueChoicesUI : MonoBehaviour
                 }
             }
             
-            // Configurar el botón
+            // Configurar botón
             Button button = buttonObj.GetComponent<Button>();
             if (button != null)
             {
-                int choiceIndex = i; // Capturar el índice en una variable local
+                int choiceIndex = i; // Índice local
                 button.onClick.AddListener(() => OnChoiceClicked(choiceIndex));
                 Debug.Log($"DialogueChoicesUI: Listener agregado al botón {i}");
             }
@@ -132,29 +118,25 @@ public class DialogueChoicesUI : MonoBehaviour
             spawnedButtons.Add(buttonObj);
         }
         
-        Debug.Log($"DialogueChoicesUI: ✅ {choices.Count} botones creados y panel activado");
+    Debug.Log($"DialogueChoicesUI: ✅ {choices.Count} botones creados y panel activado");
     }
     
-    /// <summary>
-    /// Se llama cuando el jugador hace click en una opción
-    /// </summary>
+    // Click en opción
     private void OnChoiceClicked(int choiceIndex)
     {
         Debug.Log($"DialogueChoicesUI: Jugador eligió opción {choiceIndex}");
         
-        // Notificar al NPC de la elección
+    // Avisar NPC
         if (currentNPC != null)
         {
             currentNPC.OnChoiceSelected(choiceIndex);
         }
         
-        // Ocultar el panel de opciones
+    // Ocultar panel
         HideChoices();
     }
     
-    /// <summary>
-    /// Oculta el panel de opciones
-    /// </summary>
+    // Ocultar panel
     public void HideChoices()
     {
         if (choicesPanel != null)
@@ -162,13 +144,11 @@ public class DialogueChoicesUI : MonoBehaviour
             choicesPanel.SetActive(false);
         }
         
-        ClearButtons();
-        currentNPC = null;
+    ClearButtons();
+    currentNPC = null;
     }
     
-    /// <summary>
-    /// Limpia todos los botones creados
-    /// </summary>
+    // Limpiar botones
     private void ClearButtons()
     {
         foreach (GameObject button in spawnedButtons)
