@@ -4,27 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// VERSIÓN SIMPLIFICADA Y MÁS ROBUSTA DEL SISTEMA DE UI PARA OPCIONES
-/// 
-/// Esta versión tiene más validaciones y debugging para asegurarse de que funciona.
-/// 
-/// IMPORTANTE: Este script debe estar en un GameObject que SIEMPRE esté activo,
-/// NO en el panel que se activa/desactiva. Por ejemplo:
-/// - Canvas (SIEMPRE ACTIVO) ← Script aquí
-///   - DialogueChoicesPanel (se activa/desactiva)
-///     - ButtonsContainer
-/// </summary>
+
 public class DialogueChoicesUIFixed : MonoBehaviour
 {
     [Header("Referencias UI")]
-    [Tooltip("Panel que se activará/desactivará (puede estar desactivado al inicio)")]
+    [Tooltip("Panel de opciones")]
     public GameObject choicesPanel;
     
-    [Tooltip("Contenedor donde se instanciarán los botones (hijo del panel)")]
+    [Tooltip("Contenedor de botones")]
     public Transform buttonsContainer;
     
-    [Tooltip("Prefab del botón de opción (debe tener Button y TextMeshProUGUI)")]
+    [Tooltip("Prefab del botón")]
     public GameObject choiceButtonPrefab;
     
     private PintacaritasNPC currentNPC;
@@ -32,10 +22,9 @@ public class DialogueChoicesUIFixed : MonoBehaviour
     
     void Awake()
     {
-        // Validar referencias en Awake (antes que Start)
+        // Validar referencias
         ValidateReferences();
-        
-        // Asegurarse de que el panel esté oculto al inicio
+        // Ocultar panel
         if (choicesPanel != null)
         {
             choicesPanel.SetActive(false);
@@ -71,14 +60,12 @@ public class DialogueChoicesUIFixed : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Muestra las opciones de diálogo del NPC especificado
-    /// </summary>
+    // Mostrar opciones
     public void ShowChoices(PintacaritasNPC npc, List<PintacaritasNPC.DialogueChoice> choices)
     {
         Debug.Log("=== DialogueChoicesUIFixed: ShowChoices() LLAMADO ===");
         
-        // Validaciones
+    // Validar datos
         if (npc == null)
         {
             Debug.LogError("❌ DialogueChoicesUIFixed: NPC es null!");
@@ -113,15 +100,15 @@ public class DialogueChoicesUIFixed : MonoBehaviour
         
         currentNPC = npc;
         
-        // Limpiar botones anteriores
+    // Limpiar botones
         ClearButtons();
         
-        // ACTIVAR EL PANEL
+    // Activar panel
         Debug.Log($"🔄 Activando panel: {choicesPanel.name}");
         choicesPanel.SetActive(true);
         Debug.Log($"✅ Panel activado. Estado actual: {choicesPanel.activeSelf}");
         
-        // Crear botones
+    // Crear botones
         for (int i = 0; i < choices.Count; i++)
         {
             Debug.Log($"🔄 Creando botón {i + 1}/{choices.Count}: '{choices[i].choiceText}'");
@@ -129,7 +116,7 @@ public class DialogueChoicesUIFixed : MonoBehaviour
             GameObject buttonObj = Instantiate(choiceButtonPrefab, buttonsContainer);
             buttonObj.name = $"ChoiceButton_{i}";
             
-            // Asignar texto
+            // Texto del botón
             TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
@@ -142,11 +129,6 @@ public class DialogueChoicesUIFixed : MonoBehaviour
                 if (legacyText != null)
                 {
                     legacyText.text = choices[i].choiceText;
-                    Debug.Log($"  ✅ Texto asignado (legacy): '{choices[i].choiceText}'");
-                }
-                else
-                {
-                    Debug.LogError($"  ❌ No se encontró TextMeshProUGUI ni Text en el prefab!");
                 }
             }
             
@@ -155,9 +137,8 @@ public class DialogueChoicesUIFixed : MonoBehaviour
             if (button != null)
             {
                 int choiceIndex = i;
-                button.onClick.RemoveAllListeners(); // Limpiar listeners anteriores
+                button.onClick.RemoveAllListeners(); // Limpiar listeners
                 button.onClick.AddListener(() => OnChoiceClicked(choiceIndex));
-                Debug.Log($"  ✅ Listener configurado para índice {choiceIndex}");
             }
             else
             {
@@ -170,14 +151,12 @@ public class DialogueChoicesUIFixed : MonoBehaviour
         Debug.Log($"🎉 ShowChoices COMPLETADO: {spawnedButtons.Count} botones creados, panel activo: {choicesPanel.activeSelf}");
     }
     
-    /// <summary>
-    /// Se llama cuando el jugador hace click en una opción
-    /// </summary>
+    // Click en opción
     private void OnChoiceClicked(int choiceIndex)
     {
         Debug.Log($"🖱️ DialogueChoicesUIFixed: Jugador hizo click en opción {choiceIndex}");
         
-        // Notificar al NPC
+    // Avisar NPC
         if (currentNPC != null)
         {
             currentNPC.OnChoiceSelected(choiceIndex);
@@ -188,13 +167,11 @@ public class DialogueChoicesUIFixed : MonoBehaviour
             Debug.LogError("❌ currentNPC es null, no se puede notificar la elección");
         }
         
-        // Ocultar panel
+    // Ocultar panel
         HideChoices();
     }
     
-    /// <summary>
-    /// Oculta el panel de opciones
-    /// </summary>
+    // Ocultar panel
     public void HideChoices()
     {
         Debug.Log("🔄 DialogueChoicesUIFixed: Ocultando panel...");
@@ -209,9 +186,7 @@ public class DialogueChoicesUIFixed : MonoBehaviour
         currentNPC = null;
     }
     
-    /// <summary>
-    /// Limpia todos los botones creados
-    /// </summary>
+    // Limpiar botones
     private void ClearButtons()
     {
         if (spawnedButtons.Count > 0)

@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Script específico para las Pintacaritas que cambia su diálogo basado en el progreso del jugador.
-/// </summary>
 public class PintacaritasNPC : MonoBehaviour, IInteractable
 {
     [Header("Información del NPC")]

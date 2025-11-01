@@ -2,68 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Script para manejar conversaciones entre múltiples NPCs que están juntos.
-/// El jugador puede presionar E para escuchar su conversación.
-/// </summary>
+
 public class NPCGroupConversation : MonoBehaviour, IInteractable
 {
     [System.Serializable]
     public class DialogueLine
     {
-        public string speakerName; // Nombre del NPC que habla
-        public Sprite speakerSprite; // Imagen del NPC que habla
+    public string speakerName; // Nombre
+    public Sprite speakerSprite; // Imagen
         
-        [Tooltip("Sonido específico para este personaje (opcional). Si está vacío, usa el sonido general del grupo")]
-        public AudioClip speakerSound; // Sonido de typing de este personaje
+    [Tooltip("Sonido específico (opcional)")]
+    public AudioClip speakerSound; // Sonido
         
-        [TextArea(3, 10)]
-        public string dialogue; // Lo que dice
+    [TextArea(3, 10)]
+    public string dialogue; // Diálogo
     }
 
-    [Header("Configuración de la Conversación Grupal")]
-    public string groupName = "Conversación"; // Nombre que aparece en el diálogo
-    public Sprite groupIcon; // Icono que representa al grupo
+    [Header("Grupo")]
+    public string groupName = "Conversación"; // Nombre
+    public Sprite groupIcon; // Icono
     public GameObject interactUI;
 
-    [Header("Líneas de Diálogo")]
+    [Header("Líneas")]
 
-    [Header("Conversación Inicial (antes de completar misión)")]
+    [Header("Inicial")]
     public List<DialogueLine> initialConversation = new List<DialogueLine>();
     
-    [Header("Conversación Después de Misión")]
-    public string missionRequired; // Misión que debe completarse para cambiar el diálogo
+    [Header("Después de Misión")]
+    public string missionRequired; // Misión necesaria
     public List<DialogueLine> afterMissionConversation = new List<DialogueLine>();
 
-    [Header("Conversación Final")]
-    public string missionRequiredForFinalConversation; // Misión para activar conversación final
+    [Header("Final")]
+    public string missionRequiredForFinalConversation; // Misión para final
     public List<DialogueLine> finalConversation = new List<DialogueLine>();
 
-    [Header("Sistema de Misiones")]
-    [Tooltip("Misión que se agrega al completar la conversación inicial")]
+    [Header("Misiones")]
+    [Tooltip("Misión tras inicial")]
     public string missionToGiveAfterInitial;
-    [Tooltip("Misión que se completa al iniciar esta conversación después de tener missionRequired")]
+    [Tooltip("Completa tras después")]
     public string missionToCompleteWhenShowingAfter;
-    [Tooltip("Misión que se da después de la conversación posterior")]
+    [Tooltip("Misión tras después")]
     public string missionToGiveAfterSecond;
-    [Tooltip("Misión que se completa al mostrar la conversación final")]
+    [Tooltip("Completa tras final")]
     public string missionToCompleteInFinalConversation;
-    [Tooltip("Misión que se da después de la conversación final")]
+    [Tooltip("Misión tras final")]
     public string missionToGiveAfterFinal;
 
     [Header("Audio")]
     public AudioClip typingSound;
 
-    [Header("Control de Activación")]
-    public bool isActive = true; // Si es false, esta conversación no se puede activar
+    [Header("Activación")]
+    public bool isActive = true; // Activo
 
     private GameManager manager;
     private bool hasInteracted = false;
-    private bool hasGivenInitialMission = false; // Para evitar dar la misión inicial múltiples veces
+    private bool hasGivenInitialMission = false; // Solo una vez
 
     void Start()
     {
-        // Usar la instancia singleton del GameManager
+    // Usar GameManager
         manager = GameManager.Instance;
         
         if (manager == null)
@@ -84,13 +81,13 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
 
         hasInteracted = true;
 
-        // Determinar qué conversación mostrar
+    // Qué conversación mostrar
         List<DialogueLine> conversationToShow = initialConversation;
         bool shouldGiveInitialMission = false;
         bool shouldShowAfterConversation = false;
         bool shouldShowFinalConversation = false;
 
-        // PRIORIDAD 1: Conversación FINAL (cuando tiene la misión de hablar con Héctor)
+    // Final
         if (!string.IsNullOrEmpty(missionRequiredForFinalConversation) && 
             manager.HasMission(missionRequiredForFinalConversation))
         {
@@ -101,7 +98,7 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
                 Debug.Log($"[{gameObject.name}] Mostrando conversación FINAL");
             }
         }
-        // PRIORIDAD 2: Conversación DESPUÉS DE MISIÓN (cuando tiene "Preguntar por la pelea")
+    // Después de misión
         else if (!string.IsNullOrEmpty(missionRequired) && manager.HasMission(missionRequired))
         {
             if (afterMissionConversation.Count > 0)
@@ -111,11 +108,11 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
                 Debug.Log($"[{gameObject.name}] Mostrando conversación DESPUÉS DE MISIÓN");
             }
         }
-        // PRIORIDAD 3: Conversación INICIAL
+    // Inicial
         else
         {
             conversationToShow = initialConversation;
-            // Solo dar la misión inicial si no se ha dado antes
+            // Solo una vez
             if (!hasGivenInitialMission && !string.IsNullOrEmpty(missionToGiveAfterInitial))
             {
                 shouldGiveInitialMission = true;
@@ -123,20 +120,20 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
             Debug.Log($"[{gameObject.name}] Mostrando conversación INICIAL");
         }
 
-        // Convertir la conversación en diálogos para el sistema
+    // Mostrar diálogos
         StartCoroutine(ShowGroupConversation(conversationToShow, shouldGiveInitialMission, shouldShowAfterConversation, shouldShowFinalConversation));
     }
 
     private IEnumerator ShowGroupConversation(List<DialogueLine> conversation, bool giveInitialMission, bool isAfterMissionConversation, bool isFinalConversation)
     {
-        // Si es la conversación posterior y hay misión para completar, completarla ANTES del diálogo
+    // Completar misión después
         if (isAfterMissionConversation && !string.IsNullOrEmpty(missionToCompleteWhenShowingAfter))
         {
             manager.CompleteMission(missionToCompleteWhenShowingAfter);
             Debug.Log($"[{gameObject.name}] Misión completada ANTES del diálogo: {missionToCompleteWhenShowingAfter}");
         }
 
-        // Si es la conversación FINAL y hay misión para completar, completarla ANTES del diálogo
+    // Completar misión final
         if (isFinalConversation && !string.IsNullOrEmpty(missionToCompleteInFinalConversation))
         {
             manager.CompleteMission(missionToCompleteInFinalConversation);
@@ -145,23 +142,23 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
 
         foreach (DialogueLine line in conversation)
         {
-            // Crear una lista de una sola página
+            // Una página
             List<string> singlePage = new List<string> { line.dialogue };
             
-            // Usar el sonido específico del personaje si existe, si no usar el sonido general del grupo
+            // Sonido específico o general
             AudioClip soundToUse = line.speakerSound != null ? line.speakerSound : typingSound;
             
-            // Mostrar el diálogo
+            // Mostrar diálogo
             manager.NPCShowText(singlePage, line.speakerName, line.speakerSprite, soundToUse);
 
-            // Esperar hasta que el diálogo termine
+            // Esperar diálogo
             yield return new WaitUntil(() => manager.DialogFinished);
             
-            // Pequeña pausa entre diálogos
+            // Pausa
             yield return new WaitForSeconds(0.3f);
         }
 
-        // Si debemos dar la misión inicial (solo la primera vez)
+    // Dar misión inicial
         if (giveInitialMission)
         {
             manager.AddMission(missionToGiveAfterInitial);
@@ -169,14 +166,14 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
             Debug.Log($"[{gameObject.name}] Misión inicial dada: {missionToGiveAfterInitial}");
         }
         
-        // Si era la conversación posterior y hay una misión para dar, agregarla
+    // Dar misión después
         if (isAfterMissionConversation && !string.IsNullOrEmpty(missionToGiveAfterSecond))
         {
             manager.AddMission(missionToGiveAfterSecond);
             Debug.Log($"[{gameObject.name}] Misión posterior dada: {missionToGiveAfterSecond}");
         }
         
-        // Si era la conversación FINAL y hay una misión para dar, agregarla
+    // Dar misión final
         if (isFinalConversation && !string.IsNullOrEmpty(missionToGiveAfterFinal))
         {
             manager.AddMission(missionToGiveAfterFinal);
@@ -184,19 +181,19 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
         }
     }
 
-    // Para activar/desactivar esta conversación desde otros scripts
+    // Activar/desactivar
     public void SetActive(bool active)
     {
         isActive = active;
     }
 
-    // Verificar si ya se interactuó con este grupo
+    // ¿Ya interactuó?
     public bool HasInteracted()
     {
         return hasInteracted;
     }
 
-    // Implementación de IInteractable
+    // IInteractable
     public void ShowIndicator(bool state)
     {
         if (interactUI != null)
