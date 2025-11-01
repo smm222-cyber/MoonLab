@@ -31,6 +31,10 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     public string missionRequired; // Misión que debe completarse para cambiar el diálogo
     public List<DialogueLine> afterMissionConversation = new List<DialogueLine>();
 
+    [Header("Conversación Final (para misión de Héctor)")]
+    public string missionRequiredForFinalConversation; // Misión para activar conversación final
+    public List<DialogueLine> finalConversation = new List<DialogueLine>();
+
     [Header("Sistema de Misiones")]
     [Tooltip("Misión que se agrega al completar la conversación inicial")]
     public string missionToGiveAfterInitial;
@@ -38,6 +42,8 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
     public string missionToCompleteWhenShowingAfter;
     [Tooltip("Misión que se da después de la conversación posterior")]
     public string missionToGiveAfterSecond;
+    [Tooltip("Misión que se completa al mostrar la conversación final")]
+    public string missionToCompleteInFinalConversation;
 
     [Header("Audio")]
     public AudioClip typingSound;
@@ -76,37 +82,59 @@ public class NPCGroupConversation : MonoBehaviour, IInteractable
         List<DialogueLine> conversationToShow = initialConversation;
         bool shouldGiveInitialMission = false;
         bool shouldShowAfterConversation = false;
+        bool shouldShowFinalConversation = false;
 
-        // Si hay una misión requerida Y está activa, mostrar la conversación alternativa
-        if (!string.IsNullOrEmpty(missionRequired) && manager.HasMission(missionRequired))
+        // PRIORIDAD 1: Conversación FINAL (cuando tiene la misión de hablar con Héctor)
+        if (!string.IsNullOrEmpty(missionRequiredForFinalConversation) && 
+            manager.HasMission(missionRequiredForFinalConversation))
+        {
+            if (finalConversation.Count > 0)
+            {
+                conversationToShow = finalConversation;
+                shouldShowFinalConversation = true;
+                Debug.Log($"[{gameObject.name}] Mostrando conversación FINAL");
+            }
+        }
+        // PRIORIDAD 2: Conversación DESPUÉS DE MISIÓN (cuando tiene "Preguntar por la pelea")
+        else if (!string.IsNullOrEmpty(missionRequired) && manager.HasMission(missionRequired))
         {
             if (afterMissionConversation.Count > 0)
             {
                 conversationToShow = afterMissionConversation;
                 shouldShowAfterConversation = true;
+                Debug.Log($"[{gameObject.name}] Mostrando conversación DESPUÉS DE MISIÓN");
             }
         }
+        // PRIORIDAD 3: Conversación INICIAL
         else
         {
-            // Mostrar conversación inicial
             conversationToShow = initialConversation;
             // Solo dar la misión inicial si no se ha dado antes
             if (!hasGivenInitialMission && !string.IsNullOrEmpty(missionToGiveAfterInitial))
             {
                 shouldGiveInitialMission = true;
             }
+            Debug.Log($"[{gameObject.name}] Mostrando conversación INICIAL");
         }
 
         // Convertir la conversación en diálogos para el sistema
-        StartCoroutine(ShowGroupConversation(conversationToShow, shouldGiveInitialMission, shouldShowAfterConversation));
+        StartCoroutine(ShowGroupConversation(conversationToShow, shouldGiveInitialMission, shouldShowAfterConversation, shouldShowFinalConversation));
     }
 
-    private IEnumerator ShowGroupConversation(List<DialogueLine> conversation, bool giveInitialMission, bool isAfterMissionConversation)
+    private IEnumerator ShowGroupConversation(List<DialogueLine> conversation, bool giveInitialMission, bool isAfterMissionConversation, bool isFinalConversation)
     {
         // Si es la conversación posterior y hay misión para completar, completarla ANTES del diálogo
         if (isAfterMissionConversation && !string.IsNullOrEmpty(missionToCompleteWhenShowingAfter))
         {
             manager.CompleteMission(missionToCompleteWhenShowingAfter);
+            Debug.Log($"[{gameObject.name}] Misión completada ANTES del diálogo: {missionToCompleteWhenShowingAfter}");
+        }
+
+        // Si es la conversación FINAL y hay misión para completar, completarla ANTES del diálogo
+        if (isFinalConversation && !string.IsNullOrEmpty(missionToCompleteInFinalConversation))
+        {
+            manager.CompleteMission(missionToCompleteInFinalConversation);
+            Debug.Log($"[{gameObject.name}] Misión FINAL completada: {missionToCompleteInFinalConversation}");
         }
 
         foreach (DialogueLine line in conversation)
