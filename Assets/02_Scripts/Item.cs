@@ -9,6 +9,7 @@ public class Item : MonoBehaviour,IInteractable
     
     [Header("Misión (Opcional)")]
     [SerializeField] private string missionToComplete = ""; // Dejar vacío si no completa misión
+    [SerializeField] private string missionToGive = ""; // Misión que se da al recoger (ej: "Entregar globo al payaso")
     [SerializeField] private bool requiresMission = false; // Solo se puede recoger si tienes la misión activa?
     
     [Header("Mensaje si no tienes la misión")]
@@ -58,6 +59,12 @@ public class Item : MonoBehaviour,IInteractable
             {
                 GameManager.Instance.CompleteMission(missionToComplete);
             }
+        }
+        
+        // Dar nueva misión si está configurada
+        if (!string.IsNullOrEmpty(missionToGive) && GameManager.Instance != null)
+        {
+            GameManager.Instance.AddMission(missionToGive);
         }
         
         // Añadir al inventario

@@ -86,11 +86,11 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         string missionToCompleteNow = "";
         NPCMission missionToUse = null; // Declarar aquí para que esté disponible en todo el método
 
-        // Si usa el sistema de misiones, determinar qué misión mostrar
+        // Si usa misiones, decidir cuál mostrar
         if (usesMissionSystem && missions.Count > 0)
         {
             
-            // PRIORIDAD 1: Buscar misiones que requieren otra misión activa (para completar)
+            // PRIORIDAD 1: misiones que requieren otra misión activa
             for (int i = 0; i < missions.Count; i++)
             {
                 NPCMission mission = missions[i];
@@ -102,7 +102,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                 }
             }
             
-            // PRIORIDAD 2: Buscar misiones que dan una nueva misión (y que el jugador NO tiene)
+            // PRIORIDAD 2: misiones que dan una misión nueva
             if (missionToUse == null)
             {
                 for (int i = 0; i < missions.Count; i++)
@@ -117,10 +117,8 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                         !manager.HasMission(mission.missionToGive) &&
                         !missionsAlreadyGiven.Contains(mission.missionToGive))
                     {
-                        // Verificar requisitos: si NO tiene requisitos, o si los tiene pero los cumple
+                        // Verificar requisitos: si no tiene requisitos se puede mostrar
                         bool canShow = string.IsNullOrEmpty(mission.missionRequired);
-                        
-                        // Si no pasó la verificación anterior, no usar esta misión
                         if (canShow)
                         {
                             missionToUse = mission;
@@ -130,7 +128,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                 }
             }
             
-            // PRIORIDAD 3: Buscar diálogos sin requisitos ni misiones (diálogos simples de relleno)
+            // PRIORIDAD 3: diálogos simples (sin requisitos ni misiones)
             if (missionToUse == null)
             {
                 for (int i = 0; i < missions.Count; i++)
@@ -148,7 +146,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                 }
             }
             
-            // Si encontramos una misión válida, usarla
+            // Si hay misión válida, usarla
             if (missionToUse != null)
             {
                 textToShow = missionToUse.dialogueText;
