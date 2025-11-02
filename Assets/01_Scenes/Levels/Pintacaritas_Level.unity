@@ -2544,7 +2544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &738506670
 Transform:
   m_ObjectHideFlags: 0
@@ -3819,11 +3819,11 @@ MonoBehaviour:
   - speakerName: Maestro de ceremonias
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
-    dialogue: Si no lo arreglan afectara el ambiente del circo.
+    dialogue: Lo siento, pero estan afectando el ambiente del circo.
   - speakerName: ...
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
-    dialogue: Parece que estan ocupados, pregunatre que paso
+    dialogue: Me pregunto que pasa, todos parecen tensos.
   missionRequired: Preguntar por la pelea
   afterMissionConversation:
   - speakerName: Pintacaritas
@@ -3833,17 +3833,37 @@ MonoBehaviour:
   - speakerName: ...
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
-    dialogue: Bien, paso algo?
+    dialogue: Bien... solo pasaba por aqui, paso algo?
+  - speakerName: Pintacaritas
+    speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
+    dialogue: "Ella pint\xF3 un rostro sin m\xED. Una ni\xF1a con estrellas en las
+      mejillas\u2026\ny olvid\xF3 el sol en sus ojos.\nDijo que el brillo ya no hac\xEDa
+      falta, senti que yo no hacia falta"
+  - speakerName: Pintacaritas
+    speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
+    dialogue: "Ella dice que lo \xF3lvide, pero siempre crei que pintariamos juntas,
+      me dolio algo tan peque\xF1o"
+  - speakerName: ...
+    speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
+    dialogue: Ire con ella, seguro que no quiso dar a entender eso.
   missionRequiredForFinalConversation: Hablar con la pintacaritas
   finalConversation:
   - speakerName: Pinta Caeitas
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
-    dialogue: Asi que eso fue lo que paso?
+    dialogue: "\xBFTe das cuenta...? Cuando mezclamos, el color vuelve a ser infinito
+      para ambas."
   - speakerName: ...
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
-    dialogue: Sip
+    dialogue: Su amistad debe ser muy fuerte...
+  - speakerName: Pinta Caeitas
+    speakerSprite: {fileID: 0}
+    speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
+    dialogue: "El circo\u2026 est\xE1 brillando otra vez."
   missionToGiveAfterInitial: "Averiguar qu\xE9 est\xE1 pasando"
   missionToCompleteWhenShowingAfter: Preguntar por la pelea
   missionToGiveAfterSecond: Escuchar la historia completa
@@ -4247,29 +4267,45 @@ MonoBehaviour:
   npcName: Carita Pintada
   npcImage: {fileID: 0}
   interactUI: {fileID: 0}
-  dialogoSinHablarConPintacaritas1: Hola... estoy ocupada ahora.
+  dialogoSinHablarConPintacaritas1: Hola... lo lamento pero no quiero hablar por
+    ahora
   misionRequeridaFase2: Escuchar la historia completa
-  dialogoFase2: Ya veo, asi que ell a dijo eso, traeme papel
+  dialogoFase2: "Te contare que paso, yo quer\xEDa probar algo nuevo\u2026 pero no
+    me entendio.\nUna mezcla de sombras y reflejos.\nEl p\xFAblico cambi\xF3, el
+    circo cambi\xF3.\nPens\xE9 que deb\xEDa hacerlo tambi\xE9n.\nNo me di cuenta
+    de que estaba borrando lo m\xE1s importante... a ella."
   misionACompletarFase2: Escuchar la historia completa
   misionADarFase2: Encontrar papel
   misionRequeridaFase3: Encontrar papel
-  dialogoFase3: Necesito tinta ahora
+  dialogoFase3: Tambien sera necesario que me traigas tinta
   misionADarFase3: Encontrar tinta
   misionRequeridaFase4: Encontrar tinta
-  dialogoFase4: Graciaas, dale esto a porfis
+  dialogoFase4: Gracias por intentar ayudarnos, dale esto de mi parte a ella por
+    favor
   misionADarFase4: Hablar con la pintacaritas
   misionRequeridaFase5: Informar encuentro
-  dialogoFase5Inicial: Gracias por ayudarnos, sabes la verdad es que no nos peleabamos
-    hace tiempo. Quieres que te ayude con algo??
+  dialogoFase5Inicial: "Gracias por ayudarnos, nosotras no peleamos, para recompensarte
+    \xBFhay algo que quieras?"
   opcionesFase5:
   - choiceText: Preguntar sobre ellas
-    responseDialogue: Quieres saber sobre nosotras??, la cosa esdque jsjaolkskdsdsdda
+    responseDialogue: "Nosotras fuimos amigas desde siempre, incluso antes de conocer
+      este circo.\nEscapamos juntos de aquel lugar gris, con ganas de vivir y pintar
+      nuestro propio mundo.\nCuando encontramos la carpa, supe que hab\xEDamos llegado
+      a casa.\nDurante a\xF1os llenamos de color cada rinc\xF3n las mejillas de los
+      ni\xF1os, los pasillos, las sonrisas\u2026\nCada pincelada era un pedacito
+      de nuestra amistad.\nY as\xED, con ella a mi lado, aprend\xED que el color
+      m\xE1s hermoso nace cuando lo compartes."
   - choiceText: Preguntar sobre ti
-    responseDialogue: Te cuento lo que se,kajksoaoqouujdsjalkda
+    responseDialogue: "No s\xE9 mucho\u2026 solo peque\xF1os fragmentos.\nDicen que
+      apareciste en el circo como un susurro, casi como si las sombras te guiaran
+      hasta aqu\xED.\nQue conoces cada rinc\xF3n, cada pasillo, cada secreto de la
+      carpa\u2026\nY que, de alg\xFAn modo, el circo te escucha a ti.\nSolo puedo
+      decirte lo que veo te mueves con cuidado, observas todo\u2026\ny hay algo en
+      ti, algo que ni nosotros entendemos del todo."
   misionACompletarFase5: Informar encuentro
-  dialogoFinal: Listo
+  dialogoFinal: Gracias por escuchar
   typingSound: {fileID: 8300000, guid: 0bd6210a182c89f46b30762279933c96, type: 3}
-  maxCharactersPerPage: 40
+  maxCharactersPerPage: 700
   choicesUISystem: {fileID: 0}
   choicesUISystemFixed: {fileID: 687199778}
 --- !u!4 &1216253440 stripped
@@ -4526,7 +4562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1308850875
 Transform:
   m_ObjectHideFlags: 0
