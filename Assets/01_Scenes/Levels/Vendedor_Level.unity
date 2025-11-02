@@ -214,6 +214,10 @@ PrefabInstance:
       value: NpcMaestroCeremonias
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: npcImage
+      value: 
+      objectReference: {fileID: 21300000, guid: a44941ec9d746f645be8ae1e3224fead, type: 3}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: typingSound
       value: 
       objectReference: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
@@ -227,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: "Si est\xE1s buscando algo que hacer peudes preguntar a los dem\xE1s."
+      value: "Si est\xE1s buscando algo que hacer puedes preguntar a los dem\xE1s."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
