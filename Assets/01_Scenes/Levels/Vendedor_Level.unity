@@ -214,6 +214,10 @@ PrefabInstance:
       value: NpcMaestroCeremonias
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: usesMissionSystem
       value: 1
       objectReference: {fileID: 0}
@@ -223,26 +227,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: Puedes preguntar a los chicos
+      value: "Si est\xE1s buscando algo que hacer peudes preguntar a los dem\xE1s."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
-      value: Cables?, creo que tengo algunos en el almacen, los ire a buscar, vuelve
-        de un rato
+      value: "\xBFCables? Asi que se arruin\xF3 el carrito del vendedor.  Creo que
+        tengo algunos en el almacen, los ire a buscar, vuelve de un rato."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[2].dialogueText
-      value: Toma, aqui estan los cables, suerte ayudando al vendedor
+      value: Toma, aqui estan los cables, suerte ayudando al vendedor.
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[3].dialogueText
-      value: 'aoA
-
-'
+      value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
-      value: Hablar
+      value: "Hablar con los dem\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[1].missionToGive
@@ -290,19 +292,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.46
+      value: 23.59
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.17
+      value: -3.52
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -786,6 +788,133 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &181521288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 181521290}
+  - component: {fileID: 181521289}
+  m_Layer: 0
+  m_Name: Vendedor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &181521289
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181521288}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 99a4a8d53f0236f469b68c153216d1c9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.081
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &181521290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181521288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &185575276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,7 +1543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252320894
 Transform:
   m_ObjectHideFlags: 0
@@ -2153,7 +2282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &487587764
 Transform:
   m_ObjectHideFlags: 0
@@ -3117,7 +3246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &927695721
 Transform:
   m_ObjectHideFlags: 0
@@ -3418,6 +3547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: playerDialogImage
+      value: 
+      objectReference: {fileID: 21300000, guid: fd64d4777b3b6ad4ea0ef4b251ac66ae, type: 3}
     - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
       propertyPath: playerTypingSound
       value: 
@@ -4077,6 +4210,10 @@ PrefabInstance:
       value: PintaCarita1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
+    - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: usesMissionSystem
       value: 1
       objectReference: {fileID: 0}
@@ -4086,7 +4223,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: 'Yo?, por ahora todo esta bien, '
+      value: "Hola, c\xF3mo estas. \xBFQuieres saber si necesito algo? Por ahora
+        todo esta bien."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
@@ -4094,15 +4232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[2].dialogueText
-      value: Cables?, por que tendria cables
+      value: "\xBFBuscas cables? Porqu\xE9 tendr\xEDa cables."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[3].dialogueText
-      value: Creo que con la herramienta si te puedo ayudar
+      value: Creo que con la herramienta si te puedo ayudar.
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[4].dialogueText
-      value: "Hola, qu\xE9 tal estas hoy"
+      value: "C\xF3mo te encuentras hoy."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[1].missionToGive
@@ -4118,7 +4256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[0].missionRequired
-      value: Hablar
+      value: "Hablar con los dem\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: missions.Array.data[1].missionRequired
@@ -4162,7 +4300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -100.96
+      value: -100.65
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: ca75c54ffd01a3a45948d963d71024dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4559,7 +4697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: maxCharactersPerPage
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].hasChoices
@@ -4567,12 +4705,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: "No\u2026 no fue el az\xFAcar. No fue el fuego.\nFui yo.\nYo romp\xED
+      value: "No\u2026 no fue el az\xFAcar, no fue el fuego, fui yo.\nYo romp\xED
         la energ\xEDa del circo, necesito tu ayuda para encontrar los cables."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
-      value: Como te fue, estas esperando por los cables?, mientras podrias buscar
+      value: Como te fue, estas esperando por los cables? Mientras podrias buscar
         alguna herramienta para poder reconectarlos
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
@@ -4581,7 +4719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[3].dialogueText
-      value: "Ay\xFAdame a reconectar los cables, \xBFs\xED?\nTal vez\u2026 as\xED
+      value: "Ay\xFAdame a reconectar los cables, \xBFs\xED? Tal vez\u2026 as\xED
         el circo vuelva a respirar."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
@@ -4590,9 +4728,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].dialogueText
-      value: "Cre\xED que hab\xEDa roto algo que no se pod\xEDa reparar,\npero parece
+      value: "Cre\xED que hab\xEDa roto algo que no se pod\xEDa reparar, pero parece
         que solo necesitaba alguien que escuchara los cables.\nGracias\u2026 de verdad.\nA
-        veces solo hace falta una chispa para volver a iluminar todo.hmjjm"
+        veces solo hace falta una chispa para volver a iluminar todo."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
@@ -4616,7 +4754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].missionRequired
-      value: Hablar
+      value: "Hablar con los dem\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].missionRequired
@@ -4640,7 +4778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].missionToComplete
-      value: Hablar
+      value: "Hablar con los dem\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].missionToComplete
@@ -4672,17 +4810,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].responseDialogue
-      value: "Yo antes no vend\xEDa dulces\u2026 vend\xEDa ilusiones.\nHac\xEDa globos
-        que brillaban con electricidad,\npeque\xF1os rayos atrapados para los ni\xF1os.\nPero
+      value: "Yo antes no vend\xEDa dulces\u2026 vend\xEDa ilusiones. Hac\xEDa globos
+        que brillaban con electricidad, peque\xF1os rayos atrapados para los ni\xF1os.\nPero
         un d\xEDa, uno explot\xF3\u2026 y alguien result\xF3 herido.\nDesde entonces,
         jur\xE9 que solo vender\xEDa cosas que endulzaran, no que asustaran."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].responseDialogue
-      value: "Ver\xE1s\u2026 no todos lo recuerdan igual.\nPero yo estaba aqu\xED
-        la noche en que el circo cambi\xF3.\nNo fue solo que las luces se apagaran.\nFue
-        que algo se encendi\xF3.\nUna vez, vi tu reflejo en el metal del carrito\u2026\npero
-        no era el tuyo.\nEras t\xFA, s\xED, pero con otro traje.\nCon otro rostro.\nEso
+      value: "Ver\xE1s\u2026 no todos lo recuerdan igual. Pero yo estaba aqu\xED
+        la noche en que el circo cambi\xF3. No fue solo que las luces se apagaran.
+        Fue que algo se encendi\xF3.\nUna vez, vi tu reflejo en el metal del carrito\u2026\npero
+        no era el tuyo.\nEras t\xFA, s\xED, pero con otro traje, con otro rostro.\nEso
         es lo que s\xE9.\nO\u2026 lo que el circo quiere que recuerde quiso que recordara.
         gritaran.\nLos caramelos se derritieron, los globos se inflaron solos\u2026\ny
         de entre la neblina de az\xFAcar quemada, saliste t\xFA"
