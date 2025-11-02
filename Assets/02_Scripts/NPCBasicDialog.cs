@@ -23,6 +23,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     public bool usesMissionSystem = false;
     public List<NPCMission> missions = new List<NPCMission>();
     private int currentMissionIndex = 0; // Índice de la misión actual
+    private List<string> missionsAlreadyGiven = new List<string>(); // Misiones que ya se dieron
 
     [Header("Diálogo Simple (sin misiones)")]
     [TextArea(3, 10)]
@@ -62,26 +63,61 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         {
             NPCMission missionToUse = null;
             
-            // Buscar la primera misión que cumpla con los requisitos
+            // PRIORIDAD 1: Buscar misiones que requieren otra misión activa (para completar)
             for (int i = 0; i < missions.Count; i++)
             {
                 NPCMission mission = missions[i];
                 
-                // Si la misión requiere otra misión, verificar si está activa
-                if (!string.IsNullOrEmpty(mission.missionRequired))
+                if (!string.IsNullOrEmpty(mission.missionRequired) && manager.HasMission(mission.missionRequired))
                 {
-                    if (manager.HasMission(mission.missionRequired))
+                    missionToUse = mission;
+                    break;
+                }
+            }
+            
+            // PRIORIDAD 2: Buscar misiones que dan una nueva misión (y que el jugador NO tiene)
+            if (missionToUse == null)
+            {
+                for (int i = 0; i < missions.Count; i++)
+                {
+                    NPCMission mission = missions[i];
+                    
+                    // Si este diálogo da una misión, verificar que:
+                    // 1. El jugador NO la tiene actualmente
+                    // 2. Este NPC NO la ha dado antes
+                    // 3. NO tiene requisitos (o los cumple si los tiene)
+                    if (!string.IsNullOrEmpty(mission.missionToGive) && 
+                        !manager.HasMission(mission.missionToGive) &&
+                        !missionsAlreadyGiven.Contains(mission.missionToGive))
                     {
-                        // Tiene la misión requerida, usar esta misión
+                        // Verificar requisitos: si NO tiene requisitos, o si los tiene pero los cumple
+                        bool canShow = string.IsNullOrEmpty(mission.missionRequired);
+                        
+                        // Si no pasó la verificación anterior, no usar esta misión
+                        if (canShow)
+                        {
+                            missionToUse = mission;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // PRIORIDAD 3: Buscar diálogos sin requisitos ni misiones (diálogos simples de relleno)
+            if (missionToUse == null)
+            {
+                for (int i = 0; i < missions.Count; i++)
+                {
+                    NPCMission mission = missions[i];
+                    
+                    // Diálogo sin requisitos, sin dar misiones, sin completar misiones
+                    if (string.IsNullOrEmpty(mission.missionRequired) && 
+                        string.IsNullOrEmpty(mission.missionToGive) && 
+                        string.IsNullOrEmpty(mission.missionToComplete))
+                    {
                         missionToUse = mission;
                         break;
                     }
-                }
-                else
-                {
-                    // No tiene requisitos, usar esta misión
-                    missionToUse = mission;
-                    break;
                 }
             }
             
@@ -120,6 +156,11 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         if (!string.IsNullOrEmpty(missionToAdd))
         {
             manager.AddMission(missionToAdd);
+            // Registrar que esta misión ya fue dada por este NPC
+            if (!missionsAlreadyGiven.Contains(missionToAdd))
+            {
+                missionsAlreadyGiven.Add(missionToAdd);
+            }
         }
     }
     

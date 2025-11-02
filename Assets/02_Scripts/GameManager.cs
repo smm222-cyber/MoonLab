@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     // Variable para controlar si ya se mostró el diálogo de Pintacaritas
     private bool pintacaritasDialogShown = false;
+    // Variable para controlar si ya se mostró el diálogo de Vendedor
+    private bool vendedorDialogShown = false;
 
     public bool DialogFinished { get; private set; } = false;
 
@@ -90,8 +92,8 @@ public class GameManager : MonoBehaviour
         if (npcImage == null)
             Debug.LogError("npcImage no está asignado en el GameManager!");
             
-        // Verificar si estamos en la escena Pintacaritas_Level
-        CheckForPintacaritasScene();
+    // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
+    CheckForIntroScenes();
     }
 
     void Update()
@@ -351,37 +353,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Verificar si estamos en la escena Pintacaritas_Level y mostrar diálogo
-    void CheckForPintacaritasScene()
+    // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level y mostrar diálogo
+    void CheckForIntroScenes()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        
         if (currentSceneName == "Pintacaritas_Level" && !pintacaritasDialogShown)
         {
             StartCoroutine(ShowPintacaritasIntroDialog());
+        }
+        if (currentSceneName == "Vendedor_Level" && !vendedorDialogShown)
+        {
+            StartCoroutine(ShowVendedorIntroDialog());
         }
     }
 
     // Diálogo de introducción de Pintacaritas
     IEnumerator ShowPintacaritasIntroDialog()
     {
-        
         yield return new WaitForSeconds(0.5f);
-
         pintacaritasDialogShown = true;
-
-        // Obtener imagen y sonido del jugador
         PlayerController playerController = FindObjectOfType<PlayerController>();
         Sprite playerImage = null;
         AudioClip typingSound = null;
-
         if (playerController != null)
         {
             playerImage = playerController.playerDialogImage;
             typingSound = playerController.playerTypingSound;
         }
-
-        // Crear las líneas de diálogo de la protagonista hablando consigo misma
         List<string> dialogPages = new List<string>
         {
             "Hasta ahora no ví a ninguna de las pintacaritas...",
@@ -389,8 +387,28 @@ public class GameManager : MonoBehaviour
             "¿Por dónde estarán ellas?",
             "Mejor las busco."
         };
+        NPCShowText(dialogPages, "...", playerImage, typingSound);
+    }
 
-        // Mostrar el diálogo
+    // Diálogo de introducción de Vendedor
+    IEnumerator ShowVendedorIntroDialog()
+    {
+        yield return new WaitForSeconds(0.5f);
+        vendedorDialogShown = true;
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        Sprite playerImage = null;
+        AudioClip typingSound = null;
+        if (playerController != null)
+        {
+            playerImage = playerController.playerDialogImage;
+            typingSound = playerController.playerTypingSound;
+        }
+        List<string> dialogPages = new List<string>
+        {
+            "No se me ocurre qué hacer hoy...",
+            "Tal vez debería preguntar si alguien necesita algo.",
+            "Voy a caminar un poco."
+        };
         NPCShowText(dialogPages, "...", playerImage, typingSound);
     }
 
