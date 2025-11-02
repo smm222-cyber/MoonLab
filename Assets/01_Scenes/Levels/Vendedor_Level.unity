@@ -1414,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &252320894
 Transform:
   m_ObjectHideFlags: 0
@@ -4533,9 +4533,22 @@ PrefabInstance:
       value: NpcVendedor
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: npcImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 5737f6baac9316948a140f08f8229515, type: 3}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: choicesUI
       value: 
       objectReference: {fileID: 687199778}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0af82e365bc8b984ca010530f6d7a2bb, type: 3}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: dialogueText
+      value: "Toma, para cuando el camino se ponga amargo.\nNo es magia\u2026 pero
+        a veces el az\xFAcar tambi\xE9n sana."
+      objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: usesMissionSystem
       value: 1
@@ -4545,13 +4558,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: maxCharactersPerPage
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].hasChoices
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: "\xBFAyuda? Me urge ayude, ayer dsasa, creo que necesitaremo nuevos
-        cables"
+      value: "No\u2026 no fue el az\xFAcar. No fue el fuego.\nFui yo.\nYo romp\xED
+        la energ\xEDa del circo, necesito tu ayuda para encontrar los cables."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
@@ -4564,7 +4581,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[3].dialogueText
-      value: Ya tienes todo?, me podrias ayudar a reconectar los cables
+      value: "Ay\xFAdame a reconectar los cables, \xBFs\xED?\nTal vez\u2026 as\xED
+        el circo vuelva a respirar."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[4].dialogueText
@@ -4572,7 +4590,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].dialogueText
-      value: Queq uiere q te cuente
+      value: "Cre\xED que hab\xEDa roto algo que no se pod\xEDa reparar,\npero parece
+        que solo necesitaba alguien que escuchara los cables.\nGracias\u2026 de verdad.\nA
+        veces solo hace falta una chispa para volver a iluminar todo.hmjjm"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
@@ -4644,19 +4664,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].choiceText
-      value: yo
+      value: Preguntar sobre el
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].choiceText
-      value: tu
+      value: Preguntar sobre ti
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].responseDialogue
-      value: vdfd
+      value: "Yo antes no vend\xEDa dulces\u2026 vend\xEDa ilusiones.\nHac\xEDa globos
+        que brillaban con electricidad,\npeque\xF1os rayos atrapados para los ni\xF1os.\nPero
+        un d\xEDa, uno explot\xF3\u2026 y alguien result\xF3 herido.\nDesde entonces,
+        jur\xE9 que solo vender\xEDa cosas que endulzaran, no que asustaran."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].responseDialogue
-      value: dfd
+      value: "Ver\xE1s\u2026 no todos lo recuerdan igual.\nPero yo estaba aqu\xED
+        la noche en que el circo cambi\xF3.\nNo fue solo que las luces se apagaran.\nFue
+        que algo se encendi\xF3.\nUna vez, vi tu reflejo en el metal del carrito\u2026\npero
+        no era el tuyo.\nEras t\xFA, s\xED, pero con otro traje.\nCon otro rostro.\nEso
+        es lo que s\xE9.\nO\u2026 lo que el circo quiere que recuerde quiso que recordara.
+        gritaran.\nLos caramelos se derritieron, los globos se inflaron solos\u2026\ny
+        de entre la neblina de az\xFAcar quemada, saliste t\xFA"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: m_RootOrder
