@@ -37,9 +37,29 @@ public class ConnectionLine : MonoBehaviour
     {
         lr = GetComponent<LineRenderer>();
         if (lr == null) lr = gameObject.AddComponent<LineRenderer>();
+        
         lr.startWidth = lr.endWidth = width;
         lr.numCapVertices = 8;
-        if (mat != null) lr.material = mat;
+        
+        if (mat != null)
+        {
+            lr.material = mat;
+        }
+        else
+        {
+            // Si no hay material, usar el material default de Unity y ponerlo AMARILLO BRILLANTE
+            lr.material = new Material(Shader.Find("Sprites/Default"));
+            lr.startColor = Color.yellow;
+            lr.endColor = Color.yellow;
+            Debug.LogWarning("[ConnectionLine] No hay material asignado, usando amarillo por defecto");
+        }
+        
+        // CRÍTICO: Asegurar que las líneas estén ENCIMA del fondo
+        lr.sortingLayerName = "Default"; // O el sorting layer que uses
+        lr.sortingOrder = 1000; // Número muy alto para estar encima de todo
+        
+        // Esto también ayuda a que se vea en 2D
+        lr.useWorldSpace = true;
     }
 
     // actualizar objetivo en preview

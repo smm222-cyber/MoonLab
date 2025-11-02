@@ -10,11 +10,50 @@ public class ConnectingController : MonoBehaviour
     [Header("Linea / Visual")]
     public Material lineMaterial;
     public float lineWidth = 0.05f;
+    
+    [Header("Completion")]
+    [Tooltip("Número de conexiones correctas necesarias para completar. 0 = desactivado")]
+    public int requiredConnections = 0;
+    
+    [Tooltip("Cerrar automáticamente cuando se completen todas las conexiones?")]
+    public bool autoCloseOnComplete = true;
+    
+    [Tooltip("Misión a completar cuando se termine el minijuego (opcional)")]
+    public string missionToComplete = "";
 
     // Estado en tiempo de ejecución
     private ConnectablePoint startPoint;
     private ConnectionLine previewLine;
     private List<ConnectionLine> connections = new List<ConnectionLine>();
+    private GameManager manager;
+    
+    void Start()
+    {
+        manager = GameManager.Instance;
+        
+        // Verificar configuración al inicio
+        if (nodeLayerMask == 0)
+        {
+            Debug.LogWarning($"[ConnectingController] Node Layer Mask está en 'Nothing'. Configúralo en el Inspector.");
+        }
+        
+        // Buscar todos los puntos conectables
+        ConnectablePoint[] points = GetComponentsInChildren<ConnectablePoint>(true);
+        Debug.Log($"[ConnectingController] Encontrados {points.Length} puntos conectables");
+        
+        foreach (var point in points)
+        {
+            Collider2D col = point.GetComponent<Collider2D>();
+            if (col == null)
+            {
+                Debug.LogError($"[ConnectingController] El punto '{point.name}' NO tiene Collider2D!");
+            }
+            else if (col.isTrigger)
+            {
+                Debug.LogWarning($"[ConnectingController] El punto '{point.name}' tiene el Collider marcado como Trigger. Debería estar desmarcado.");
+            }
+        }
+    }
 
     void Update()
     {
@@ -22,14 +61,31 @@ public class ConnectingController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log($"[ConnectingController] Click en posición mundo: {wp}");
+            
             Collider2D col = Physics2D.OverlapPoint(wp, nodeLayerMask);
+            
             if (col != null)
             {
+                Debug.Log($"[ConnectingController] Detectado collider: {col.name}");
                 var p = col.GetComponentInParent<ConnectablePoint>();
                 if (p != null && p.CanAcceptConnection())
                 {
+                    Debug.Log($"[ConnectingController] Iniciando conexión desde: {p.GetId()}");
                     BeginDrag(p, wp);
                 }
+                else if (p != null && !p.CanAcceptConnection())
+                {
+                    Debug.Log($"[ConnectingController] El punto {p.GetId()} ya tiene una conexión");
+                }
+                else
+                {
+                    Debug.LogWarning($"[ConnectingController] El collider {col.name} no tiene ConnectablePoint");
+                }
+            }
+            else
+            {
+                Debug.Log($"[ConnectingController] No se detectó ningún collider en la posición {wp}. Verifica el Layer Mask.");
             }
         }
     // actualizar preview mientras arrastras
@@ -48,13 +104,39 @@ public class ConnectingController : MonoBehaviour
             ConnectablePoint endPoint = null;
             if (col != null) endPoint = col.GetComponentInParent<ConnectablePoint>();
 
-            if (endPoint != null && endPoint != startPoint && endPoint.CanAcceptConnection() && !ConnectionExists(startPoint, endPoint) && startPoint.AllowsConnectionTo(endPoint) && endPoint.AllowsConnectionTo(startPoint))
+            if (endPoint != null)
             {
-                FinalizeConnection(startPoint, endPoint);
+                Debug.Log($"[ConnectingController] Soltado en: {endPoint.GetId()}");
+                
+                if (endPoint == startPoint)
+                {
+                    Debug.Log("[ConnectingController] No puedes conectar un punto consigo mismo");
+                }
+                else if (!endPoint.CanAcceptConnection())
+                {
+                    Debug.Log($"[ConnectingController] El punto {endPoint.GetId()} ya tiene una conexión");
+                }
+                else if (ConnectionExists(startPoint, endPoint))
+                {
+                    Debug.Log($"[ConnectingController] Ya existe una conexión entre {startPoint.GetId()} y {endPoint.GetId()}");
+                }
+                else if (!startPoint.AllowsConnectionTo(endPoint))
+                {
+                    Debug.Log($"[ConnectingController] {startPoint.GetId()} no permite conectar con {endPoint.GetId()} (allowedTargetId: {startPoint.allowedTargetId})");
+                }
+                else if (!endPoint.AllowsConnectionTo(startPoint))
+                {
+                    Debug.Log($"[ConnectingController] {endPoint.GetId()} no permite conectar con {startPoint.GetId()} (allowedTargetId: {endPoint.allowedTargetId})");
+                }
+                else
+                {
+                    Debug.Log($"[ConnectingController] ✓ Conexión válida: {startPoint.GetId()} <-> {endPoint.GetId()}");
+                    FinalizeConnection(startPoint, endPoint);
+                }
             }
             else
             {
-                // cancelar
+                Debug.Log("[ConnectingController] Soltado fuera de un punto - conexión cancelada");
                 Destroy(previewLine.gameObject);
             }
 
@@ -104,6 +186,60 @@ public class ConnectingController : MonoBehaviour
 
         // feedback visual
         Debug.Log($"Conectado: {a.GetId()} -> {b.GetId()}");
+        
+        // Verificar si se completaron todas las conexiones necesarias
+        CheckCompletion();
+    }
+    
+    void CheckCompletion()
+    {
+        if (requiredConnections <= 0) return; // No hay requisito de completar
+        
+        // Contar conexiones válidas
+        int validConnections = 0;
+        foreach (var conn in connections)
+        {
+            if (conn != null)
+                validConnections++;
+        }
+        
+        if (validConnections >= requiredConnections)
+        {
+            Debug.Log($"¡Minijuego completado! {validConnections}/{requiredConnections} conexiones");
+            OnMiniGameComplete();
+        }
+    }
+    
+    void OnMiniGameComplete()
+    {
+        // Completar misión si está especificada
+        if (!string.IsNullOrEmpty(missionToComplete) && manager != null)
+        {
+            manager.CompleteMission(missionToComplete);
+        }
+        
+        // Cerrar el minijuego
+        if (autoCloseOnComplete)
+        {
+            StartCoroutine(CloseAfterDelay(1f)); // Esperar 1 segundo antes de cerrar
+        }
+    }
+    
+    IEnumerator CloseAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        // Buscar el trigger que abrió este minijuego y cerrarlo
+        ConnectMiniGameTrigger trigger = FindObjectOfType<ConnectMiniGameTrigger>();
+        if (trigger != null)
+        {
+            trigger.CloseMiniGame();
+        }
+        else
+        {
+            // Si no hay trigger, simplemente ocultar este gameObject
+            gameObject.SetActive(false);
+        }
     }
 
     void HighlightUnderMouse(bool enable)
