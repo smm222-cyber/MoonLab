@@ -2544,7 +2544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &738506670
 Transform:
   m_ObjectHideFlags: 0
@@ -3455,6 +3455,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: playerDialogImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 17a55fcdb58a0754cacc7ca3e5359f9f, type: 3}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
       propertyPath: playerTypingSound
       value: 
       objectReference: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
@@ -3808,50 +3812,50 @@ MonoBehaviour:
   groupIcon: {fileID: 0}
   interactUI: {fileID: 0}
   initialConversation:
-  - speakerName: Pinta caritas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: ....
   - speakerName: Maestro de ceremonias
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: a44941ec9d746f645be8ae1e3224fead, type: 3}
     speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     dialogue: "Ya van m\xE1s de una semana peleadas, deben arreglarlo ya."
   - speakerName: Maestro de ceremonias
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: 8e6ddc9d85fbb1e40a3d30008d72f39f, type: 3}
     speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     dialogue: Lo siento, pero estan afectando el ambiente del circo.
   - speakerName: ...
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: fd64d4777b3b6ad4ea0ef4b251ac66ae, type: 3}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Me pregunto que pasa, todos parecen tensos.
   missionRequired: Preguntar por la pelea
   afterMissionConversation:
-  - speakerName: Pintacaritas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "Hola, c\xF3mo estas"
   - speakerName: ...
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: fd64d4777b3b6ad4ea0ef4b251ac66ae, type: 3}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Bien... solo pasaba por aqui, paso algo?
-  - speakerName: Pintacaritas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
     dialogue: "Ella pint\xF3 un rostro sin m\xED. Una ni\xF1a con estrellas en las
       mejillas\u2026\ny olvid\xF3 el sol en sus ojos.\nDijo que el brillo ya no hac\xEDa
       falta, senti que yo no hacia falta"
-  - speakerName: Pintacaritas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
     dialogue: "Ella dice que lo \xF3lvide, pero siempre crei que pintariamos juntas,
       me dolio algo tan peque\xF1o"
   - speakerName: ...
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: 17a55fcdb58a0754cacc7ca3e5359f9f, type: 3}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
     dialogue: Ire con ella, seguro que no quiso dar a entender eso.
   missionRequiredForFinalConversation: Hablar con la pintacaritas
   finalConversation:
-  - speakerName: Pinta Caeitas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "\xBFTe das cuenta...? Cuando mezclamos, el color vuelve a ser infinito
@@ -3860,7 +3864,7 @@ MonoBehaviour:
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: Su amistad debe ser muy fuerte...
-  - speakerName: Pinta Caeitas
+  - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: "El circo\u2026 est\xE1 brillando otra vez."
@@ -4305,7 +4309,7 @@ MonoBehaviour:
   misionACompletarFase5: Informar encuentro
   dialogoFinal: Gracias por escuchar
   typingSound: {fileID: 8300000, guid: 0bd6210a182c89f46b30762279933c96, type: 3}
-  maxCharactersPerPage: 700
+  maxCharactersPerPage: 80
   choicesUISystem: {fileID: 0}
   choicesUISystemFixed: {fileID: 687199778}
 --- !u!4 &1216253440 stripped
@@ -5254,7 +5258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1506816541
 Transform:
   m_ObjectHideFlags: 0

@@ -6808,9 +6808,23 @@ PrefabInstance:
       value: NpcPayaso
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: npcImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 11fc4da6dc9d39d4798ba609236ffa82, type: 3}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: choicesUI
       value: 
       objectReference: {fileID: 687199778}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: typingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5129dfe56528e694db5f36528f46d585, type: 3}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: dialogueText
+      value: "Las risas regresaron, suaves pero sinceras.\nPorque hasta el payaso
+        m\xE1s triste puede volver a brillar\u2026\ncuando alguien le recuerda que
+        su coraz\xF3n tambi\xE9n merece un aplauso."
+      objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: usesMissionSystem
       value: 1
@@ -6820,27 +6834,37 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: maxCharactersPerPage
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[3].hasChoices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].hasChoices
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: Hola, como andas si, andaba armando una cosa de globos y se me fue uno
-        si me ayudas a recuparer, es el que es mi color favoirto
+      value: "Si vienes por risas\u2026 me temo que aqu\xED ya no quedan.\nEl \xFAltimo
+        espect\xE1culo fue un desastre.\nLos globos explotaron antes de tiempo\u2026
+        la tinta cay\xF3 sobre el p\xFAblico\u2026Y todos rieron\u2026 pero no de
+        alegr\xEDa.\nSi encuentras mis globos tal vez pueda intentarlo una vez m\xE1s.\nPero,
+        cuidado\u2026 algunos globos se esconden cuando sienten verg\xFCenza."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
-      value: Gracias, ahora necesito una cuerda para poder atarlo con los demas
+      value: Ahora necesitamos una cuerda... tal vez funcione
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[2].dialogueText
-      value: Uy, esta cuerda es vieja, trae ora porfa
+      value: "Gracias... pero esta cuerda esta vieja... mi acto volvera a salir mal
+        si seguimos as\xED"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[3].dialogueText
-      value: 'Si
-
-'
+      value: "Aqu\xED est\xE1n tus globos\u2026 y la cuerda."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[4].dialogueText
@@ -6848,7 +6872,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].dialogueText
-      value: Graciaas, que te cuento
+      value: "No s\xE9 si a\xFAn s\xE9 c\xF3mo hacer re\xEDr.\nPero\u2026 puedo intentarlo.\n\xBFSabes?
+        Siempre pens\xE9 que la risa era algo que se fabricaba.\nPero ahora entiendo
+        que\u2026 a veces, tambi\xE9n se sana."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
@@ -6915,26 +6941,48 @@ PrefabInstance:
       value: Informa al payaso
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[0].choices.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[1].choices.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[3].choices.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].choiceText
-      value: tuu
+      value: Pregunta sobre el
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].choiceText
-      value: yo
+      value: Pregunta sobre ti
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].responseDialogue
-      value: 't
-
-'
+      value: "\xBFSobre m\xED?\nBueno\u2026 yo era el que hac\xEDa re\xEDr a todos.\nMi
+        trabajo era simple, esconder mis l\xE1grimas detr\xE1s de colores brillantes.\nCada
+        globo, cada gesto, cada ca\xEDda\u2026 era para escuchar una carcajada m\xE1s.\nPero
+        en mi \xFAltimo acto, algo sali\xF3 mal.\nUn estallido de tinta, y el p\xFAblico
+        termin\xF3 cubierto de manchas.\nRieron, s\xED\u2026 pero no conmigo. De
+        m\xED.\nDesde entonces, no se si merezco estar aqu\xED.\nA veces pienso que
+        los globos saben m\xE1s de m\xED que yo mismo\u2026\nporque ellos s\xED saben
+        cu\xE1ndo volver a levantarse."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].responseDialogue
-      value: y
+      value: "No ven\xEDas caminando\u2026 Las luces se apagaron, el viento cambi\xF3,
+        y de pronto estabas ah\xED,\nmirando la pista\u2026 con esos ojos que parec\xEDan
+        recordar algo que nosotros hab\xEDamos olvidado.\nLa carpa parece reir y
+        llorar, nadie habla pero todos lo sienten.\nT\xFA dices que no sabes qui\xE9n
+        eres\u2026\npero creo que el circo s\xED lo sabe.\nY eso, peque\xF1a\u2026\nda
+        m\xE1s miedo que cualquier funci\xF3n que hayamos hecho."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_RootOrder
@@ -6950,11 +6998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -81.60146
+      value: -83.24
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.610615
+      value: -17.36
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_LocalPosition.z
