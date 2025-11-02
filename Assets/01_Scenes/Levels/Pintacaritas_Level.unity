@@ -1297,6 +1297,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1308850875}
     m_Modifications:
+    - target: {fileID: 6833689350553401790, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401790, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401791, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401791, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689351700268169, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e0970f0b5e347c409b6a731d83fc62c, type: 3}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8962264
+      objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -1307,19 +1343,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.15
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.69
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2676,6 +2712,10 @@ PrefabInstance:
       value: NpcTrapecista
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: npcImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 958c7d580fcf4874f80885bd10e670e6, type: 3}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: typingSound
       value: 
       objectReference: {fileID: 8300000, guid: 442a08b72cd33b84386c4523ecdafe6b, type: 3}
@@ -2688,12 +2728,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
+      propertyPath: maxCharactersPerPage
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
-      value: "Hola, viste qu epaso, a lo que se se no se hablan m\xE1s de una sema.a"
+      value: "\xBFT\xFA tamb\xEDen tienes curiosidad sobre qu\xE9 esta pasando con
+        las pintacaritas? Por lo que escuch\xE9 pelearon. La verdad ser\xEDa una
+        pena que su amistad acabe, cuando yo llegu\xE9 ellas ya estaban en el circo,
+        siempre las ve\xEDas juntas por todos lados. Tal vez podr\xEDas ayudarlas
+        como me ayudaste a mi. Tienes un don para reconectar las cosas."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
-      value: Asi que paso eso.., ya veo, ojala las peudas ayudar
+      value: "Asi que eso fue lo que sucedi\xF3..."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: b78914cf4ec47f14fa9b6cdb09d3ce3d, type: 3}
       propertyPath: missions.Array.data[0].missionToGive
@@ -3464,6 +3512,133 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+--- !u!1 &1041908138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041908140}
+  - component: {fileID: 1041908139}
+  m_Layer: 0
+  m_Name: PintaCaritas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1041908139
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041908138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.123
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1041908140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041908138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1054848796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,11 +4008,16 @@ MonoBehaviour:
   - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
-    dialogue: "Hola, c\xF3mo estas"
+    dialogue: "Hace c\xFAanto estas aca, no te hab\xEDa notado."
   - speakerName: ...
     speakerSprite: {fileID: 21300000, guid: fd64d4777b3b6ad4ea0ef4b251ac66ae, type: 3}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
-    dialogue: Bien... solo pasaba por aqui, paso algo?
+    dialogue: "No era mi intenci\xF3n escuchar, pero quer\xEDa ver si necesitabas
+      ayuda."
+  - speakerName: Maestro de ceremonias
+    speakerSprite: {fileID: 21300000, guid: a44941ec9d746f645be8ae1e3224fead, type: 3}
+    speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
+    dialogue: "Nuestras pintacaritas tuvieron una discusi\xF3n. "
   - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
@@ -3859,11 +4039,13 @@ MonoBehaviour:
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "\xBFTe das cuenta...? Cuando mezclamos, el color vuelve a ser infinito
-      para ambas."
+      para ambas. Gracias por traerme la carta si nos podr\xEDas ayudar con algo
+      m\xE1s. Dile que vaya alistando las pinturas para poder continuar con nuestro
+      trabajo"
   - speakerName: ...
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: 17a55fcdb58a0754cacc7ca3e5359f9f, type: 3}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
-    dialogue: Su amistad debe ser muy fuerte...
+    dialogue: "Su amistad debe ser muy fuerte... Ir\xE9 a decirle eso."
   - speakerName: Pinta Carita
     speakerSprite: {fileID: 0}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
@@ -4275,21 +4457,23 @@ MonoBehaviour:
     ahora
   misionRequeridaFase2: Escuchar la historia completa
   dialogoFase2: "Te contare que paso, yo quer\xEDa probar algo nuevo\u2026 pero no
-    me entendio.\nUna mezcla de sombras y reflejos.\nEl p\xFAblico cambi\xF3, el
-    circo cambi\xF3.\nPens\xE9 que deb\xEDa hacerlo tambi\xE9n.\nNo me di cuenta
-    de que estaba borrando lo m\xE1s importante... a ella."
+    me entendio. Una mezcla de sombras y reflejos. El p\xFAblico cambi\xF3, el circo
+    cambi\xF3. Pens\xE9 que deb\xEDa hacerlo tambi\xE9n.\nNo me di cuenta de que
+    estaba borrando lo m\xE1s importante... a ella. Debo explicarle que fue un malentendido,
+    pero no puedo hablar con ella. Me podr\xEDas traer papel para escribirle una
+    carta"
   misionACompletarFase2: Escuchar la historia completa
   misionADarFase2: Encontrar papel
   misionRequeridaFase3: Encontrar papel
-  dialogoFase3: Tambien sera necesario que me traigas tinta
+  dialogoFase3: Gracias. Tambien sera necesario que me traigas tinta.
   misionADarFase3: Encontrar tinta
   misionRequeridaFase4: Encontrar tinta
   dialogoFase4: Gracias por intentar ayudarnos, dale esto de mi parte a ella por
-    favor
+    favor. Espero que la lea.
   misionADarFase4: Hablar con la pintacaritas
   misionRequeridaFase5: Informar encuentro
-  dialogoFase5Inicial: "Gracias por ayudarnos, nosotras no peleamos, para recompensarte
-    \xBFhay algo que quieras?"
+  dialogoFase5Inicial: "Gracias por ayudarnos. Hace tiempo que nosotras no peleabamos.
+    Para recompensarte \xBFhay algo que quieras?"
   opcionesFase5:
   - choiceText: Preguntar sobre ellas
     responseDialogue: "Nosotras fuimos amigas desde siempre, incluso antes de conocer
@@ -4300,16 +4484,16 @@ MonoBehaviour:
       de nuestra amistad.\nY as\xED, con ella a mi lado, aprend\xED que el color
       m\xE1s hermoso nace cuando lo compartes."
   - choiceText: Preguntar sobre ti
-    responseDialogue: "No s\xE9 mucho\u2026 solo peque\xF1os fragmentos.\nDicen que
+    responseDialogue: "No s\xE9 mucho\u2026 solo peque\xF1os fragmentos. Dicen que
       apareciste en el circo como un susurro, casi como si las sombras te guiaran
-      hasta aqu\xED.\nQue conoces cada rinc\xF3n, cada pasillo, cada secreto de la
-      carpa\u2026\nY que, de alg\xFAn modo, el circo te escucha a ti.\nSolo puedo
-      decirte lo que veo te mueves con cuidado, observas todo\u2026\ny hay algo en
+      hasta aqu\xED. Que conoces cada rinc\xF3n, cada pasillo, cada secreto de la
+      carpa\u2026 Y que, de alg\xFAn modo, el circo te escucha a ti.\nSolo puedo
+      decirte lo que veo te mueves con cuidado, observas todo\u2026 y hay algo en
       ti, algo que ni nosotros entendemos del todo."
   misionACompletarFase5: Informar encuentro
   dialogoFinal: Gracias por escuchar
   typingSound: {fileID: 8300000, guid: 0bd6210a182c89f46b30762279933c96, type: 3}
-  maxCharactersPerPage: 80
+  maxCharactersPerPage: 45
   choicesUISystem: {fileID: 0}
   choicesUISystemFixed: {fileID: 687199778}
 --- !u!4 &1216253440 stripped
@@ -4566,7 +4750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1308850875
 Transform:
   m_ObjectHideFlags: 0
@@ -4626,6 +4810,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1308850875}
     m_Modifications:
+    - target: {fileID: 6833689350553401790, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401790, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 48.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401791, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689350553401791, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689351700268169, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9252e94ad9770a84c9b5d9937e526de7, type: 3}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4636,11 +4856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4648,7 +4868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552489, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4684,7 +4904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552490, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: lockedMessage
-      value: Un pedazo de papel
+      value: Papeles.
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552490, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: requiresMission
@@ -5258,7 +5478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1506816541
 Transform:
   m_ObjectHideFlags: 0
