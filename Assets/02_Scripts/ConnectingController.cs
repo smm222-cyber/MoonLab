@@ -100,6 +100,19 @@ public class ConnectingController : MonoBehaviour
             }
         }
         
+        // Buscar y destruir TODOS los LineRenderer en la escena que no deberían estar
+        LineRenderer[] allLineRenderers = FindObjectsOfType<LineRenderer>();
+        foreach (LineRenderer lr in allLineRenderers)
+        {
+            if (lr != null && lr.gameObject != null && 
+                (lr.gameObject.name.Contains("Connection") || lr.gameObject.name.Contains("Preview")))
+            {
+                Debug.Log($"  Destruyendo LineRenderer: {lr.gameObject.name}");
+                DestroyImmediate(lr.gameObject);
+                totalDestroyed++;
+            }
+        }
+        
         // Buscar y destruir hijos del transform con nombres específicos
         Transform[] children = GetComponentsInChildren<Transform>(true);
         foreach (Transform child in children)
@@ -182,26 +195,37 @@ public class ConnectingController : MonoBehaviour
             {
                 Debug.Log($"[ConnectingController] Soltado en: {endPoint.GetId()}");
                 
+                // Validación 1: No conectar consigo mismo
                 if (endPoint == startPoint)
                 {
-                    Debug.Log("[ConnectingController] No puedes conectar un punto consigo mismo");
+                    Debug.Log("[ConnectingController] ❌ No puedes conectar un punto consigo mismo");
+                    Destroy(previewLine.gameObject);
                 }
+                // Validación 2: Endpoint ya tiene conexión
                 else if (!endPoint.CanAcceptConnection())
                 {
-                    Debug.Log($"[ConnectingController] El punto {endPoint.GetId()} ya tiene una conexión");
+                    Debug.Log($"[ConnectingController] ❌ El punto {endPoint.GetId()} ya tiene una conexión");
+                    Destroy(previewLine.gameObject);
                 }
+                // Validación 3: Ya existe conexión entre estos puntos
                 else if (ConnectionExists(startPoint, endPoint))
                 {
-                    Debug.Log($"[ConnectingController] Ya existe una conexión entre {startPoint.GetId()} y {endPoint.GetId()}");
+                    Debug.Log($"[ConnectingController] ❌ Ya existe una conexión entre {startPoint.GetId()} y {endPoint.GetId()}");
+                    Destroy(previewLine.gameObject);
                 }
-                else if (!startPoint.AllowsConnectionTo(endPoint))
+                // Validación 4: StartPoint tiene restricciones y NO permite este endpoint
+                else if (!string.IsNullOrEmpty(startPoint.allowedTargetId) && !startPoint.AllowsConnectionTo(endPoint))
                 {
-                    Debug.Log($"[ConnectingController] {startPoint.GetId()} no permite conectar con {endPoint.GetId()} (allowedTargetId: {startPoint.allowedTargetId})");
+                    Debug.Log($"[ConnectingController] ❌ {startPoint.GetId()} solo puede conectar con '{startPoint.allowedTargetId}', no con '{endPoint.GetId()}'");
+                    Destroy(previewLine.gameObject);
                 }
-                else if (!endPoint.AllowsConnectionTo(startPoint))
+                // Validación 5: EndPoint tiene restricciones y NO permite este startpoint
+                else if (!string.IsNullOrEmpty(endPoint.allowedTargetId) && !endPoint.AllowsConnectionTo(startPoint))
                 {
-                    Debug.Log($"[ConnectingController] {endPoint.GetId()} no permite conectar con {startPoint.GetId()} (allowedTargetId: {endPoint.allowedTargetId})");
+                    Debug.Log($"[ConnectingController] ❌ {endPoint.GetId()} solo puede conectar con '{endPoint.allowedTargetId}', no con '{startPoint.GetId()}'");
+                    Destroy(previewLine.gameObject);
                 }
+                // Validación 6: Todo OK - Crear conexión
                 else
                 {
                     Debug.Log($"[ConnectingController] ✓ Conexión válida: {startPoint.GetId()} <-> {endPoint.GetId()}");

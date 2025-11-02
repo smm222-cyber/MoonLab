@@ -113,8 +113,38 @@ public class ConnectMiniGameTrigger : MonoBehaviour, IInteractable
     // Método para cerrar el minijuego (llamar desde ConnectingController cuando se complete)
     public void CloseMiniGame()
     {
+        // Forzar limpieza de líneas antes de cerrar
         if (connectMiniGameCanvas != null)
         {
+            ConnectingController controller = connectMiniGameCanvas.GetComponentInChildren<ConnectingController>();
+            if (controller != null)
+            {
+                // Llamar a la limpieza manual
+                controller.ClearAllConnections();
+            }
+            
+            // Destruir TODOS los LineRenderer y ConnectionLine huérfanos
+            LineRenderer[] allLineRenderers = FindObjectsOfType<LineRenderer>();
+            foreach (LineRenderer lr in allLineRenderers)
+            {
+                if (lr != null && lr.gameObject != null && 
+                    (lr.gameObject.name.Contains("Connection") || lr.gameObject.name.Contains("Preview")))
+                {
+                    Debug.Log($"[ConnectMiniGameTrigger] Limpiando LineRenderer: {lr.gameObject.name}");
+                    DestroyImmediate(lr.gameObject);
+                }
+            }
+            
+            ConnectionLine[] allLines = FindObjectsOfType<ConnectionLine>();
+            foreach (ConnectionLine line in allLines)
+            {
+                if (line != null && line.gameObject != null)
+                {
+                    Debug.Log($"[ConnectMiniGameTrigger] Limpiando ConnectionLine: {line.gameObject.name}");
+                    DestroyImmediate(line.gameObject);
+                }
+            }
+            
             connectMiniGameCanvas.SetActive(false);
         }
         
@@ -136,5 +166,7 @@ public class ConnectMiniGameTrigger : MonoBehaviour, IInteractable
             Camera.main.transform.position = originalCameraPosition;
             Debug.Log($"[ConnectMiniGameTrigger] Cámara restaurada a {originalCameraPosition}");
         }
+        
+        Debug.Log("[ConnectMiniGameTrigger] Minijuego cerrado y líneas limpiadas");
     }
 }
