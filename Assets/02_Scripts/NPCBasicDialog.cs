@@ -3,6 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class DialogueChoice
+{
+    [Tooltip("Texto del botón de opción")]
+    public string choiceText;
+    
+    [Tooltip("Respuesta del NPC cuando eliges esta opción")]
+    [TextArea(3, 10)]
+    public string responseDialogue;
+    
+    [Tooltip("Misión a dar después de elegir esta opción (opcional)")]
+    public string missionToGive;
+    
+    [Tooltip("Misión a completar después de elegir esta opción (opcional)")]
+    public string missionToComplete;
+}
+
+[System.Serializable]
 public class NPCMission
 {
     [TextArea(3, 10)]
@@ -10,6 +27,11 @@ public class NPCMission
     public string missionToGive;      // Misión que se da en este diálogo
     public string missionRequired;     // Misión que debe completarse para ver este diálogo
     public string missionToComplete;   // Misión que se completa con este diálogo
+    
+    [Header("Opciones de Diálogo (opcional)")]
+    [Tooltip("Si tiene opciones, se mostrarán botones después del diálogo")]
+    public bool hasChoices = false;
+    public List<DialogueChoice> choices = new List<DialogueChoice>();
 }
 
 public class NPCBasicDialog : MonoBehaviour, IInteractable
@@ -24,10 +46,15 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     public List<NPCMission> missions = new List<NPCMission>();
     private int currentMissionIndex = 0; // Índice de la misión actual
     private List<string> missionsAlreadyGiven = new List<string>(); // Misiones que ya se dieron
+    private NPCMission currentMissionWithChoices; // Guardar la misión actual si tiene opciones
 
     [Header("Diálogo Simple (sin misiones)")]
     [TextArea(3, 10)]
     public string dialogueText;
+
+    [Header("Sistema de UI de Opciones (Opcional)")]
+    [Tooltip("Arrastra aquí el DialogueChoicesUIFixed para mostrar botones de opciones")]
+    public DialogueChoicesUIFixed choicesUI;
 
     //Max caracteres por página
     public int maxCharactersPerPage = 40;
@@ -57,11 +84,11 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         string textToShow = dialogueText;
         string missionToAdd = "";
         string missionToCompleteNow = "";
+        NPCMission missionToUse = null; // Declarar aquí para que esté disponible en todo el método
 
         // Si usa el sistema de misiones, determinar qué misión mostrar
         if (usesMissionSystem && missions.Count > 0)
         {
-            NPCMission missionToUse = null;
             
             // PRIORIDAD 1: Buscar misiones que requieren otra misión activa (para completar)
             for (int i = 0; i < missions.Count; i++)
@@ -134,8 +161,14 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         List<string> pages = SplitTextIntoPages(textToShow, maxCharactersPerPage);
         manager.NPCShowText(pages, npcName, npcImage, typingSound);
 
-        // Completar y agregar misiones después de mostrar el diálogo
-        if (!string.IsNullOrEmpty(missionToCompleteNow) || !string.IsNullOrEmpty(missionToAdd))
+        // Si la misión tiene opciones, mostrarlas después del diálogo
+        if (missionToUse != null && missionToUse.hasChoices && missionToUse.choices.Count > 0)
+        {
+            currentMissionWithChoices = missionToUse;
+            StartCoroutine(ShowChoicesAfterDialog());
+        }
+        // Si no tiene opciones, completar y agregar misiones normalmente
+        else if (!string.IsNullOrEmpty(missionToCompleteNow) || !string.IsNullOrEmpty(missionToAdd))
         {
             StartCoroutine(HandleMissionsAfterDialog(missionToCompleteNow, missionToAdd));
         }
@@ -219,5 +252,93 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         }
 
         return pages;
+    }
+
+    // Mostrar opciones después del diálogo
+    IEnumerator ShowChoicesAfterDialog()
+    {
+        // Esperar a que termine el diálogo
+        yield return new WaitUntil(() => manager.DialogFinished);
+        
+        // Completar misión si es necesario (antes de mostrar opciones)
+        if (!string.IsNullOrEmpty(currentMissionWithChoices.missionToComplete))
+        {
+            manager.CompleteMission(currentMissionWithChoices.missionToComplete);
+        }
+        
+        // Pausa breve
+        yield return new WaitForSeconds(0.3f);
+        
+        Debug.Log($"[NPCBasicDialog] Mostrando {currentMissionWithChoices.choices.Count} opciones:");
+        for (int i = 0; i < currentMissionWithChoices.choices.Count; i++)
+        {
+            Debug.Log($"  Opción {i}: {currentMissionWithChoices.choices[i].choiceText}");
+        }
+        
+        // Si hay UI de opciones asignada, usarla
+        if (choicesUI != null)
+        {
+            choicesUI.ShowChoices(this, currentMissionWithChoices.choices);
+            Debug.Log("[NPCBasicDialog] ✓ UI de opciones mostrada");
+        }
+        else
+        {
+            // Modo testing: auto-seleccionar la primera opción después de 2 segundos
+            Debug.LogWarning("[NPCBasicDialog] No hay UI de opciones asignada. Auto-seleccionando opción 0 en 2 segundos...");
+            StartCoroutine(AutoSelectFirstChoice());
+        }
+    }
+    
+    IEnumerator AutoSelectFirstChoice()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("[NPCBasicDialog] Auto-seleccionando opción 0");
+        OnChoiceSelected(0);
+    }
+    
+    // Callback cuando el jugador elige una opción
+    public void OnChoiceSelected(int choiceIndex)
+    {
+        if (currentMissionWithChoices == null || choiceIndex < 0 || choiceIndex >= currentMissionWithChoices.choices.Count)
+        {
+            Debug.LogError($"[NPCBasicDialog] Índice de opción inválido: {choiceIndex}");
+            return;
+        }
+        
+        DialogueChoice selectedChoice = currentMissionWithChoices.choices[choiceIndex];
+        Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+        
+        // Mostrar respuesta del NPC
+        StartCoroutine(ShowChoiceResponse(selectedChoice));
+    }
+    
+    IEnumerator ShowChoiceResponse(DialogueChoice choice)
+    {
+        // Pausa breve
+        yield return new WaitForSeconds(0.3f);
+        
+        // Mostrar respuesta
+        List<string> pages = SplitTextIntoPages(choice.responseDialogue, maxCharactersPerPage);
+        manager.NPCShowText(pages, npcName, npcImage, typingSound);
+        
+        // Esperar a que termine
+        yield return new WaitUntil(() => manager.DialogFinished);
+        
+        // Completar o dar misión según la opción
+        if (!string.IsNullOrEmpty(choice.missionToComplete))
+        {
+            manager.CompleteMission(choice.missionToComplete);
+        }
+        
+        if (!string.IsNullOrEmpty(choice.missionToGive))
+        {
+            manager.AddMission(choice.missionToGive);
+            if (!missionsAlreadyGiven.Contains(choice.missionToGive))
+            {
+                missionsAlreadyGiven.Add(choice.missionToGive);
+            }
+        }
+        
+        currentMissionWithChoices = null;
     }
 }

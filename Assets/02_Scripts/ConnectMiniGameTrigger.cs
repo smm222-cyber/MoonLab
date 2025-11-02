@@ -81,7 +81,7 @@ public class ConnectMiniGameTrigger : MonoBehaviour, IInteractable
                 }
                 
                 // Mover cámara a posición fija (opcional)
-                if (moveCameraToPosition && cameraPositionDuringMinigame != Vector3.zero && Camera.main != null)
+                if (moveCameraToPosition && Camera.main != null)
                 {
                     originalCameraPosition = Camera.main.transform.position;
                     Camera.main.transform.position = new Vector3(
@@ -89,6 +89,7 @@ public class ConnectMiniGameTrigger : MonoBehaviour, IInteractable
                         cameraPositionDuringMinigame.y, 
                         originalCameraPosition.z // Mantener la Z original
                     );
+                    Debug.Log($"[ConnectMiniGameTrigger] Cámara movida de {originalCameraPosition} a ({cameraPositionDuringMinigame.x}, {cameraPositionDuringMinigame.y}, {originalCameraPosition.z})");
                 }
                 
                 Debug.Log("Minijuego de conectar cables iniciado");
@@ -130,9 +131,10 @@ public class ConnectMiniGameTrigger : MonoBehaviour, IInteractable
         }
         
         // Restaurar posición original de cámara
-        if (moveCameraToPosition && originalCameraPosition != Vector3.zero && Camera.main != null)
+        if (moveCameraToPosition && Camera.main != null)
         {
             Camera.main.transform.position = originalCameraPosition;
+            Debug.Log($"[ConnectMiniGameTrigger] Cámara restaurada a {originalCameraPosition}");
         }
     }
 }

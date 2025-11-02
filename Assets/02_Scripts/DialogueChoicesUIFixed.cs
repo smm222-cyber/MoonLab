@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class DialogueChoicesUIPintaCaritas : MonoBehaviour
+public class DialogueChoicesUIFixed : MonoBehaviour
 {
     [Header("Referencias UI")]
     [Tooltip("Panel de opciones")]
@@ -187,6 +187,83 @@ public class DialogueChoicesUIPintaCaritas : MonoBehaviour
     }
     
     // Limpiar botones
+    // Sobrecarga para NPCBasicDialog
+    private NPCBasicDialog currentBasicNPC;
+    
+    public void ShowChoices(NPCBasicDialog npc, List<DialogueChoice> choices)
+    {
+        Debug.Log("=== DialogueChoicesUIFixed: ShowChoices() para NPCBasicDialog ===");
+        
+        if (npc == null || choices == null || choices.Count == 0)
+        {
+            Debug.LogError("❌ DialogueChoicesUIFixed: NPC o choices inválidos!");
+            return;
+        }
+        
+        if (choicesPanel == null || buttonsContainer == null || choiceButtonPrefab == null)
+        {
+            Debug.LogError("❌ DialogueChoicesUIFixed: Referencias UI no asignadas!");
+            return;
+        }
+        
+        currentBasicNPC = npc;
+        currentNPC = null; // Limpiar referencia de Pintacaritas
+        
+        // Limpiar botones anteriores
+        ClearButtons();
+        
+        // Activar panel
+        choicesPanel.SetActive(true);
+        
+        // Crear botones
+        for (int i = 0; i < choices.Count; i++)
+        {
+            GameObject buttonObj = Instantiate(choiceButtonPrefab, buttonsContainer);
+            buttonObj.name = $"ChoiceButton_{i}";
+            
+            // Texto del botón
+            TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                buttonText.text = choices[i].choiceText;
+            }
+            else
+            {
+                Text legacyText = buttonObj.GetComponentInChildren<Text>();
+                if (legacyText != null)
+                {
+                    legacyText.text = choices[i].choiceText;
+                }
+            }
+            
+            // Configurar botón
+            Button button = buttonObj.GetComponent<Button>();
+            if (button != null)
+            {
+                int choiceIndex = i;
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => OnBasicNPCChoiceClicked(choiceIndex));
+            }
+            
+            spawnedButtons.Add(buttonObj);
+        }
+        
+        Debug.Log($"✅ {spawnedButtons.Count} botones creados para NPCBasicDialog");
+    }
+    
+    private void OnBasicNPCChoiceClicked(int choiceIndex)
+    {
+        Debug.Log($"🖱️ NPCBasicDialog: Jugador eligió opción {choiceIndex}");
+        
+        if (currentBasicNPC != null)
+        {
+            currentBasicNPC.OnChoiceSelected(choiceIndex);
+        }
+        
+        // Ocultar panel
+        HideChoices();
+    }
+    
     private void ClearButtons()
     {
         if (spawnedButtons.Count > 0)
