@@ -3988,7 +3988,7 @@ MonoBehaviour:
   interactUI: {fileID: 0}
   initialConversation:
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: ....
   - speakerName: Maestro de ceremonias
@@ -4006,7 +4006,7 @@ MonoBehaviour:
   missionRequired: Preguntar por la pelea
   afterMissionConversation:
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "Hace c\xFAanto estas aca, no te hab\xEDa notado."
   - speakerName: ...
@@ -4019,13 +4019,13 @@ MonoBehaviour:
     speakerSound: {fileID: 8300000, guid: c39d011117903cf4f8855467eb850328, type: 3}
     dialogue: "Nuestras pintacaritas tuvieron una discusi\xF3n. "
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
     dialogue: "Ella pint\xF3 un rostro sin m\xED. Una ni\xF1a con estrellas en las
       mejillas\u2026\ny olvid\xF3 el sol en sus ojos.\nDijo que el brillo ya no hac\xEDa
       falta, senti que yo no hacia falta"
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: a0db7adbbfb018447bea4d4b851fb636, type: 3}
     dialogue: "Ella dice que lo \xF3lvide, pero siempre crei que pintariamos juntas,
       me dolio algo tan peque\xF1o"
@@ -4036,7 +4036,7 @@ MonoBehaviour:
   missionRequiredForFinalConversation: Hablar con la pintacaritas
   finalConversation:
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: 550d582a1790b7d449079a34f4abcb19, type: 3}
     dialogue: "\xBFTe das cuenta...? Cuando mezclamos, el color vuelve a ser infinito
       para ambas. Gracias por traerme la carta si nos podr\xEDas ayudar con algo
@@ -4047,7 +4047,7 @@ MonoBehaviour:
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: "Su amistad debe ser muy fuerte... Ir\xE9 a decirle eso."
   - speakerName: Pinta Carita
-    speakerSprite: {fileID: 0}
+    speakerSprite: {fileID: 21300000, guid: cae34f637eea25e42842c3db9ce0aef0, type: 3}
     speakerSound: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
     dialogue: "El circo\u2026 est\xE1 brillando otra vez."
   missionToGiveAfterInitial: "Averiguar qu\xE9 est\xE1 pasando"
