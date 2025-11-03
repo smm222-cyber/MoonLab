@@ -16,6 +16,11 @@ public class FadeController : MonoBehaviour
             fadeImage.color = c;
         }
     }
+    public IEnumerator FadeOutCoroutine()
+    {
+        
+        yield return new WaitForSeconds(1.5f); 
+    }
 
     public IEnumerator FadeOut()
     {

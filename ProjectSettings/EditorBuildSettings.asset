@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/TestScenes/Tutorial.unity
     guid: 1de1248af8485d34285ad4840aba5037
+  - enabled: 1
+    path: Assets/01_Scenes/Levels/Trapecista/Trapecista_Level.unity
+    guid: 8a0fa6913d9fdb64ca87872d1068f6c9
+  - enabled: 1
+    path: Assets/01_Scenes/Levels/Trapecista/SewingScene.unity
+    guid: 99bb1a94831444f43907379a8f6596ab
   m_configObjects: {}
