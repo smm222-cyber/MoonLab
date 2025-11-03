@@ -4178,6 +4178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConnectingController
       objectReference: {fileID: 0}
+    - target: {fileID: 5692300194897190473, guid: b84ad3816f489c04398d3417a4b05d9f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5692300194897190475, guid: b84ad3816f489c04398d3417a4b05d9f, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -5823,7 +5827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784935814089243914, guid: 9244304fc83bacc489dcfd9d6d1b5df8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5797681157169958244, guid: 9244304fc83bacc489dcfd9d6d1b5df8, type: 3}
       propertyPath: m_LocalScale.x
