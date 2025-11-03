@@ -4451,7 +4451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Carita Pintada
-  npcImage: {fileID: 0}
+  npcImage: {fileID: 21300000, guid: f5f5c2eaaab6c9e48a807dba93fddd3d, type: 3}
   interactUI: {fileID: 0}
   dialogoSinHablarConPintacaritas1: Hola... lo lamento pero no quiero hablar por
     ahora
@@ -4828,7 +4828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833689351700268169, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6833689352441552488, guid: 14dd4a131e202a142ac5f86fee71d892, type: 3}
       propertyPath: m_Sprite
