@@ -243,9 +243,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Dialogo
-
-    Dialogo'
+  m_text: "Di\xE1logo\nBienvenida a mi peque\xF1o rinc\xF3n de emoci\xF3n, tal vez
+    t\xFA podr\xEDas tener un poco de aguja e hilo?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
