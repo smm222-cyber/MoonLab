@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e8d95b5dd041b43a65e581e96b2130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
+  inventoryPanel: {fileID: 2975387119607188230}
   inventorySlotPrefab: {fileID: 663369518573774399, guid: 95cf08334796d254f80cbab601ecb3b6, type: 3}
