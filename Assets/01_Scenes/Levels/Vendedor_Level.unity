@@ -3640,6 +3640,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f86830ecc2eeb548b87f2cd402e7162, type: 3}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
       propertyPath: playerDialogImage
       value: 
       objectReference: {fileID: 21300000, guid: fd64d4777b3b6ad4ea0ef4b251ac66ae, type: 3}

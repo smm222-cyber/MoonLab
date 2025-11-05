@@ -26,12 +26,23 @@ public class PlayerController : MonoBehaviour
     [Header("Configuración de Diálogos")]
     public Sprite playerDialogImage; // Imagen para diálogos
     public AudioClip playerTypingSound; // Sonido para diálogos
+    
+    [Header("Audio")]
+    public AudioClip jumpClip; // Sonido que se reproducirá al saltar
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        // Obtener o añadir un AudioSource para reproducir efectos
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
     }
 
     // Update is called once per frame
@@ -88,6 +99,11 @@ public class PlayerController : MonoBehaviour
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            // Reproducir sonido de salto si está asignado
+            if (jumpClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(jumpClip);
+            }
         }
 
         animator.SetBool("IsGrounded", onGround);
