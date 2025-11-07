@@ -28,27 +28,36 @@ public class PlayerController : MonoBehaviour
     public AudioClip playerTypingSound; // Sonido para diálogos
     
     [Header("Audio")]
-    public AudioClip jumpClip; // Sonido que se reproducirá al saltar
-    private AudioSource audioSource;
+   
+    public AudioClip walkClip; // Sonido de pasos en loop
+    private AudioSource footstepSource;
+    
+    [Header("Audio Settings")]
+   
+    [Range(0f, 2f)] public float walkVolume = 1f; // volumen pasos
+    [Range(0.1f, 3f)] public float walkPitch = 1f; // velocidad pasos
+    public bool scaleWalkPitchWithSpeed = false; // si true, el pitch de pasos varía con la velocidad del input
+    
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        // Obtener o añadir un AudioSource para reproducir efectos
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.playOnAwake = false;
-        }
+        // No se crea AudioSource para salto; solo se usa footstepSource para pasos
+        // Crear un AudioSource separado para pasos
+        footstepSource = gameObject.AddComponent<AudioSource>();
+        footstepSource.playOnAwake = false;
+        footstepSource.loop = true;
+        // Aplicar valores iniciales de volumen/pitch para pasos
+        footstepSource.volume = walkVolume;
+        footstepSource.pitch = walkPitch;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //para poder dormir
+    //para poder dormir
         if (isSleeping)
         {
             // no poder moverse ni saltar 
@@ -57,9 +66,11 @@ public class PlayerController : MonoBehaviour
            
             return;
         }
-        // Solo permitir movimiento si el GameManager lo permite
+    // Solo permitir movimiento si el GameManager lo permite
         if (GameManager.CanPlayerMove)
         {
+            // Actualizar estado de suelo antes de procesar movimiento
+            CheckGrounded();
             Movement();
             Jump();
         }
@@ -71,10 +82,8 @@ public class PlayerController : MonoBehaviour
     }
     void Movement()
     {
-        //float speedX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float speedX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-
-        //Changes the player orientation
+        // Changes the player orientation
         Vector3 scale = transform.localScale;
         if (speedX < 0)
             scale.x = -Mathf.Abs(scale.x);
@@ -83,30 +92,52 @@ public class PlayerController : MonoBehaviour
 
         transform.localScale = scale;
 
-        //Animation
-        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));
-
-        //Move
+    animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+    // Move
         Vector3 position = transform.position;
         transform.position = new Vector3(position.x + speedX, position.y, position.z);
+        
+        // Sonido de pasos: reproducir en loop mientras se mueve y está en el suelo
+        float horiz = Input.GetAxis("Horizontal");
+        bool isMoving = Mathf.Abs(horiz) > 0.01f;
+        if (isMoving && onGround && walkClip != null)
+        {
+            if (footstepSource != null && !footstepSource.isPlaying)
+            {
+                footstepSource.clip = walkClip;
+                footstepSource.loop = true;
+                // Aplicar ajustes de volumen y pitch antes de reproducir el loop
+                footstepSource.volume = walkVolume;
+                // Pitch constante definido por walkPitch (no escalar con input)
+                footstepSource.pitch = walkPitch;
+                footstepSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
+    }
+
+    // Comprueba si el jugador está en el suelo y actualiza la variable onGround
+    bool CheckGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastLenght, layerFloor);
+        onGround = hit.collider != null;
+        animator.SetBool("IsGrounded", onGround);
+        return onGround;
     }
 
     void Jump()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastLenght, layerFloor);
-        onGround = hit.collider != null;
-
+        // onGround ya se actualiza en CheckGrounded() llamada desde Update
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            // Reproducir sonido de salto si está asignado
-            if (jumpClip != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(jumpClip);
-            }
         }
-
-        animator.SetBool("IsGrounded", onGround);
 
     }
     private void OnDrawGizmos()
