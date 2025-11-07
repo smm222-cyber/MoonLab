@@ -66,7 +66,13 @@ public class GameManager : MonoBehaviour
     public GameObject dayPanel;
     public TextMeshProUGUI dayText;
     public float dayDisplayDuration = 2f;
-
+    // Diccionario que relaciona cada día con el nombre real de la escena
+    private Dictionary<int, string> dayToScene = new Dictionary<int, string>()
+    {
+        {1, "Tutorial"},
+        {2, "Pintacaritas_Level"},
+        {3, "Vendedor_Level"} // si más adelante tienes más días
+    };
     void Awake()
     {
         // Asegura que solo haya un GameManager activo
@@ -468,16 +474,35 @@ public class GameManager : MonoBehaviour
     {
         yield return fadeController.FadeOut();
 
-        string nextSceneName = "Level_" + currentDay; // asegúrate de que tus escenas se llamen así
-        SceneManager.LoadScene(nextSceneName);
+        if (dayToScene.ContainsKey(currentDay))
+        {
+            string nextSceneName = dayToScene[currentDay];
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("No hay escena asignada para el día " + currentDay);
+        }
 
         yield return fadeController.FadeIn();
     }
 
     private void LoadNextSceneDirect()
     {
-        string nextSceneName = "Level_" + currentDay;
-        SceneManager.LoadScene(nextSceneName);
+        if (dayToScene.ContainsKey(currentDay))
+        {
+            string nextSceneName = dayToScene[currentDay];
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("No hay escena asignada para el día " + currentDay);
+        }
     }
 
 }
+
+
+
+
+
