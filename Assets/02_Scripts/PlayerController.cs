@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip playerTypingSound; // Sonido para diálogos
     
     [Header("Audio")]
-   
+    public AudioClip jumpClip; // Sonido que se reproducirá al saltar
+    private AudioSource audioSource;
     public AudioClip walkClip; // Sonido de pasos en loop
     private AudioSource footstepSource;
     
@@ -44,7 +45,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        // No se crea AudioSource para salto; solo se usa footstepSource para pasos
+        // Crear AudioSource para salto
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
         // Crear un AudioSource separado para pasos
         footstepSource = gameObject.AddComponent<AudioSource>();
         footstepSource.playOnAwake = false;
@@ -137,6 +144,11 @@ public class PlayerController : MonoBehaviour
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            // Reproducir sonido de salto si está asignado
+            if (jumpClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(jumpClip);
+            }
         }
 
     }
