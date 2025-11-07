@@ -1579,6 +1579,10 @@ PrefabInstance:
       value: CorduraCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7790130611473189096, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
+      propertyPath: drainSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790130611473189096, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1654547202}
