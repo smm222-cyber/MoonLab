@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Levels/Trapecista/SewingScene.unity
     guid: 99bb1a94831444f43907379a8f6596ab
+  - enabled: 1
+    path: Assets/01_Scenes/Levels/GameOver.unity
+    guid: 2f9724aea22374248a5184c7f56abc25
   m_configObjects: {}
