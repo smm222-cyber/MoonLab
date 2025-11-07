@@ -306,6 +306,24 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         DialogueChoice selectedChoice = currentMissionWithChoices.choices[choiceIndex];
         Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
         
+        // ⭐ CONTADOR GLOBAL - Usa solo el índice de la opción (0, 1, 2, etc.)
+        // Todas las "Opción 0" de todos los NPCs suman al mismo contador
+        if (ChoiceCounterManager.Instance != null)
+        {
+            // Nombres personalizados para cada opción
+            string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
+            
+            string globalChoiceID = choiceIndex < optionNames.Length 
+                ? optionNames[choiceIndex] 
+                : $"Opcion_{choiceIndex}";
+                
+            ChoiceCounterManager.Instance.IncrementChoice(globalChoiceID);
+        }
+        else
+        {
+            Debug.LogWarning("[NPCBasicDialog] ChoiceCounterManager no encontrado en la escena");
+        }
+        
         // Mostrar respuesta del NPC
         StartCoroutine(ShowChoiceResponse(selectedChoice));
     }
