@@ -59,6 +59,14 @@ public class GameManager : MonoBehaviour
 
     public bool DialogFinished { get; private set; } = false;
 
+    // Sistema de días
+    [Header("Sistema de Días")]
+    public int currentDay = 1;
+    public int maxDays = 5;
+    public GameObject dayPanel;
+    public TextMeshProUGUI dayText;
+    public float dayDisplayDuration = 2f;
+
     void Awake()
     {
         // Asegura que solo haya un GameManager activo
@@ -94,6 +102,7 @@ public class GameManager : MonoBehaviour
             
     // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
     CheckForIntroScenes();
+        ShowDayMessage();
     }
 
     void Update()
@@ -418,6 +427,57 @@ public class GameManager : MonoBehaviour
     public void SetPlayerMovement(bool canMove)
     {
         CanPlayerMove = canMove;
+    }
+
+    // Lógica de días
+    public void ShowDayMessage()
+    {
+        if (dayPanel != null && dayText != null)
+        {
+            dayText.text = "Día " + currentDay.ToString();
+            dayPanel.SetActive(true);
+            StartCoroutine(HideDayMessageAfterDelay());
+        }
+    }
+
+    private IEnumerator HideDayMessageAfterDelay()
+    {
+        yield return new WaitForSeconds(dayDisplayDuration);
+        dayPanel.SetActive(false);
+    }
+
+    //Cambio de días
+    public void EndDayAndLoadNext()
+    {
+        currentDay++;
+
+        if (currentDay > maxDays)
+        {
+            SceneManager.LoadScene("EndScene"); // o tu pantalla de fin del juego
+            return;
+        }
+
+        // Opcional: muestra una transición o fade
+        if (fadeController != null)
+            StartCoroutine(LoadNextSceneWithFade());
+        else
+            LoadNextSceneDirect();
+    }
+
+    private IEnumerator LoadNextSceneWithFade()
+    {
+        yield return fadeController.FadeOut();
+
+        string nextSceneName = "Level_" + currentDay; // asegúrate de que tus escenas se llamen así
+        SceneManager.LoadScene(nextSceneName);
+
+        yield return fadeController.FadeIn();
+    }
+
+    private void LoadNextSceneDirect()
+    {
+        string nextSceneName = "Level_" + currentDay;
+        SceneManager.LoadScene(nextSceneName);
     }
 
 }
