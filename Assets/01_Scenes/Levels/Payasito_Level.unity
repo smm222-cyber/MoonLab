@@ -3484,6 +3484,22 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f86830ecc2eeb548b87f2cd402e7162, type: 3}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: walkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 985859aa7a78c7543bd60ae557001fcf, type: 3}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: walkPitch
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
+      propertyPath: walkVolume
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201859249859189319, guid: 262e665d1cf30cd48b3bfbce64dac4b2, type: 3}
       propertyPath: playerTypingSound
       value: 
       objectReference: {fileID: 8300000, guid: d84309797f8f75847864047828f6daf6, type: 3}
@@ -4520,7 +4536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1308850875
 Transform:
   m_ObjectHideFlags: 0
@@ -4601,7 +4617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1400054683
 Transform:
   m_ObjectHideFlags: 0
