@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -96,34 +97,34 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Verificar que las referencias estén asignadas
+        // Verificar referencias iniciales (solo para debug informativo)
         if (npcDialogBox == null)
-            Debug.LogError("npcDialogBox no está asignado en el GameManager!");
+            Debug.LogWarning("[GameManager] npcDialogBox no asignado aún. Se buscará al cargar la escena.");
         if (npcDialogText == null)
-            Debug.LogError("npcDialogText no está asignado en el GameManager!");
+            Debug.LogWarning("[GameManager] npcDialogText no asignado aún.");
         if (npcName == null)
-            Debug.LogError("npcName no está asignado en el GameManager!");
+            Debug.LogWarning("[GameManager] npcName no asignado aún.");
         if (npcImage == null)
-            Debug.LogError("npcImage no está asignado en el GameManager!");
-            
-    // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
-    CheckForIntroScenes();
+            Debug.LogWarning("[GameManager] npcImage no asignado aún.");
+
+        // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
+        CheckForIntroScenes();
         ShowDayMessage();
     }
 
     void Update()
     {
-        // Detectar click cuando el diálogo esta activo
-        if (npcDialogBox.activeSelf && Input.GetMouseButtonDown(0))
+        if (npcDialogBox != null && npcDialogBox.activeSelf && Input.GetMouseButtonDown(0))
         {
             HandleDialogClick();
         }
-        //Detecta cuando el cuadro de texto esta activo
-        if (textBox.activeSelf && Input.GetMouseButtonDown(0))
+
+        if (textBox != null && textBox.activeSelf && Input.GetMouseButtonDown(0))
         {
             CloseNonCollectableText();
         }
     }
+
 
     public void ShowNonCollectableText(string text)
     {
@@ -146,6 +147,12 @@ public class GameManager : MonoBehaviour
 
         currentTypingSound = typingSound;
         CanPlayerMove = false; 
+
+        if (npcDialogBox == null || npcName == null || npcImage == null)
+{
+    Debug.LogError("NPCShowText: Las referencias UI no están asignadas. No se puede mostrar diálogo.");
+    return;
+}
 
         ShowCurrentPage();
     }
@@ -500,9 +507,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+void OnEnable()
+{
+    SceneManager.sceneLoaded += OnSceneLoaded;
+}
+
+void OnDisable()
+{
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+}
+
+private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    // Buscar los objetos de UI de diálogo en la nueva escena
+    GameObject dialogBox = GameObject.Find("NPCDialogBox"); // nombre exacto en la jerarquía
+    if (dialogBox != null)
+    {
+        npcDialogBox = dialogBox;
+        npcDialogText = npcDialogBox.GetComponentInChildren<TextMeshProUGUI>();
+        npcName = npcDialogBox.transform.Find("NPCName")?.GetComponent<TextMeshProUGUI>();
+        npcImage = npcDialogBox.transform.Find("NPCImage")?.GetComponent<Image>();
+    }
+    else
+    {
+        Debug.LogWarning("NPCDialogBox no encontrado en la escena " + scene.name);
+    }
+
+    // Puedes también reasignar textBox, dayPanel, missionPanel, etc. si son diferentes en cada escena
 }
 
 
 
 
-
+}

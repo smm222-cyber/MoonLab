@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Levels/Pintacaritas_Level.unity
     guid: 8bdf04a8a96b11248878963ebc0c060a
+  - enabled: 1
+    path: Assets/01_Scenes/Levels/Vendedor_Level.unity
+    guid: d706fed4ff4170748b9626a6ca0a1561
+  - enabled: 1
+    path: Assets/01_Scenes/Levels/Payasito_Level.unity
+    guid: 313bee43d229cf14faf4c7b07eb3071d
   m_configObjects: {}
