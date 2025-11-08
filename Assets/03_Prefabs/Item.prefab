@@ -334,6 +334,7 @@ MonoBehaviour:
   interactUI: {fileID: 6833689351700268169}
   itemIcon: {fileID: 0}
   missionToComplete: 
+  missionToGive: 
   requiresMission: 0
   lockedMessage: No necesito esto ahora...
 --- !u!61 &3668171846117952232
