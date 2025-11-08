@@ -26,9 +26,11 @@ public class ChoiceCounterManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Persistir entre escenas
+            Debug.Log("[ChoiceCounterManager] Instancia creada y marcada DontDestroyOnLoad");
         }
         else
         {
+            Debug.Log("[ChoiceCounterManager] Instancia duplicada encontrada - destruyendo objeto adicional");
             Destroy(gameObject);
         }
     }
