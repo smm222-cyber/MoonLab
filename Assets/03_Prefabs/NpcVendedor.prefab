@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3368337943354452850}
   - component: {fileID: 3368337943354452851}
+  - component: {fileID: 3368337943354452849}
   - component: {fileID: 7614441151827884140}
   - component: {fileID: 3368337943354452812}
-  - component: {fileID: 3368337943354452849}
+  - component: {fileID: 6262677540595904234}
   - component: {fileID: 4140915219291526865}
   m_Layer: 6
   m_Name: NpcVendedor
@@ -86,6 +87,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3368337943354452849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943354452813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Vendedor
+  npcImage: {fileID: 0}
+  interactUI: {fileID: 0}
+  usesMissionSystem: 1
+  missions: []
+  dialogueText: 
+  choicesUI: {fileID: 0}
+  onDialogFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  maxCharactersPerPage: 40
+  typingSound: {fileID: 0}
 --- !u!114 &7614441151827884140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +164,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.6196344}
   m_EdgeRadius: 0
---- !u!114 &3368337943354452849
+--- !u!114 &6262677540595904234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,17 +173,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3368337943354452813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
+  m_Script: {fileID: 11500000, guid: f647c40377a83bd48bac7d6448104225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Vendedor
-  npcImage: {fileID: 0}
-  interactUI: {fileID: 0}
-  usesMissionSystem: 0
-  missions: []
-  dialogueText: 
-  maxCharactersPerPage: 40
-  typingSound: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: a3880a13327a2eb43abc3d43a82ff916, type: 3}
+  addToInventory: 1
+  missionToComplete: BuscarParche
+  missionToGive: VolverConMaestro
+  verbose: 1
 --- !u!95 &4140915219291526865
 Animator:
   serializedVersion: 5

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3368337943354452850}
   - component: {fileID: 3368337943354452851}
+  - component: {fileID: 3368337943354452849}
   - component: {fileID: 5216848992948492689}
   - component: {fileID: 3368337943354452812}
-  - component: {fileID: 3368337943354452849}
+  - component: {fileID: 603631699126937554}
   - component: {fileID: 8435523875330055030}
   m_Layer: 6
   m_Name: NpcTrapecista
@@ -86,6 +87,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3368337943354452849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943354452813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Trapecista
+  npcImage: {fileID: 0}
+  interactUI: {fileID: 0}
+  usesMissionSystem: 0
+  missions: []
+  dialogueText: 
+  choicesUI: {fileID: 0}
+  onDialogFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  maxCharactersPerPage: 40
+  typingSound: {fileID: 0}
 --- !u!114 &5216848992948492689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +152,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.6870027}
   m_EdgeRadius: 0
---- !u!114 &3368337943354452849
+--- !u!114 &603631699126937554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,17 +161,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3368337943354452813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
+  m_Script: {fileID: 11500000, guid: f647c40377a83bd48bac7d6448104225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Trapecista
-  npcImage: {fileID: 0}
-  interactUI: {fileID: 0}
-  usesMissionSystem: 0
-  missions: []
-  dialogueText: 
-  maxCharactersPerPage: 40
-  typingSound: {fileID: 0}
+  itemIcon: {fileID: 0}
+  addToInventory: 1
+  missionToComplete: 
+  missionToGive: 
+  verbose: 1
 --- !u!95 &8435523875330055030
 Animator:
   serializedVersion: 5

@@ -145,6 +145,8 @@ MonoBehaviour:
   dialogueText: 
   maxCharactersPerPage: 40
   typingSound: {fileID: 0}
+  misionRequerida: BuscarMateriales
+  itemPrefab: {fileID: 0, guid: b1c2d3e4f5678901234567890abcdef1, type: 3}
 --- !u!95 &1193307900969936966
 Animator:
   serializedVersion: 5
