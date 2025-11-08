@@ -3471,6 +3471,7 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
       propertyPath: m_SizeDelta.x
       value: -518.7117
@@ -3491,6 +3492,8 @@ PrefabInstance:
       propertyPath: debugLogs
       value: 1
       objectReference: {fileID: 0}
+=======
+>>>>>>> 2ad206c0968e0d52238c0080e43eb78d6279d81d
     - target: {fileID: 6946843475412029987, guid: d4175443a3ccfa14e839897f64013516, type: 3}
       propertyPath: m_Name
       value: CounterPanel
@@ -5484,11 +5487,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1660.553
+      value: 2056
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 938.888
+      value: 1150
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5496,7 +5499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 338
+      value: 398
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610749758882, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_UiScaleMode
@@ -5576,7 +5579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790130611473189096, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: drainSpeed
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7790130611473189096, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: playerController
