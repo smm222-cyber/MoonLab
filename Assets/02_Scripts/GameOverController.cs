@@ -1,26 +1,53 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Simple controller para la pantalla de Game Over
-// Añade este componente a un GameObject en la escena GameOver
-// y conecta su método GoToMainMenu() al OnClick del botón.
+
 public class GameOverController : MonoBehaviour
 {
-    [Tooltip("Nombre de la escena del menú principal (asegúrate de añadirla a Build Settings)")]
-    public string mainMenuSceneName = "Menu";
+    [Tooltip("Nombre de la escena del menú principal a cargar (vacío = no cargar)")]
+    public string mainMenuScene = "Menu";
 
-    // Método público para conectar al botón OnClick
-    public void GoToMainMenu()
+    [Tooltip("Si está activado, recarga la escena actual en vez de cargar otra")]
+    public bool reloadCurrentOnRetry = false;
+
+    /// <summary>
+    /// Método público para asignar al botón "Volver al menú".
+    /// </summary>
+    public void OnBackToMenu()
     {
-        if (string.IsNullOrEmpty(mainMenuSceneName))
+        if (string.IsNullOrEmpty(mainMenuScene))
         {
-            Debug.LogWarning("GameOverController: mainMenuSceneName no está configurado.");
+            Debug.LogWarning("GameOverController: mainMenuScene vacío, no se cargará ninguna escena.");
             return;
         }
 
-        // Opcional: restaurar timeScale por si el juego estaba pausado
+        // Restaurar timeScale por si el juego estaba pausado
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene(mainMenuSceneName);
+        // Cargar la escena del menú de forma segura
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+
+    public void OnRetry()
+    {
+        // Restaurar timeScale por si el juego estaba pausado
+        Time.timeScale = 1f;
+
+        if (reloadCurrentOnRetry)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            // Por defecto, volver al menú
+            OnBackToMenu();
+        }
+    }
+
+
+    public void GoToMainMenu()
+    {
+        OnBackToMenu();
     }
 }

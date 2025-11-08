@@ -740,9 +740,11 @@ MonoBehaviour:
   - " Bienvenidos\u2026 al circo eterno. "
   imageDisplay: {fileID: 1508291927}
   lineImages:
-  - {fileID: 21300000, guid: 006d29cad238d8945950159bb0929369, type: 3}
+  - {fileID: 21300000, guid: 70d027f258b880746a848508371701c4, type: 3}
   - {fileID: 21300000, guid: 0711fac62275c9e49a1078348f635303, type: 3}
+  - {fileID: 21300000, guid: 006d29cad238d8945950159bb0929369, type: 3}
   - {fileID: 21300000, guid: d6cb16f967b43ce48b3cb4c098d571f8, type: 3}
+  nextSceneName: Menu
 --- !u!114 &1948232431
 MonoBehaviour:
   m_ObjectHideFlags: 0

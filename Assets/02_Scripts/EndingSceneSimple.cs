@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 /// <summary>
@@ -37,6 +38,10 @@ public class EndingSceneSimple : MonoBehaviour
 
     [Tooltip("Lista de sprites, uno por línea. Si hay menos sprites que líneas, las restantes no mostrarán imagen")]
     public List<Sprite> lineImages = new List<Sprite>();
+
+    [Header("Navegación")]
+    [Tooltip("Nombre de la escena a cargar cuando se completen todas las líneas (vacío = no cargar)")]
+    public string nextSceneName = "MainMenu";
 
     private bool isTyping = false;
     private bool textComplete = false;
@@ -97,8 +102,16 @@ public class EndingSceneSimple : MonoBehaviour
 
             if (textComplete)
             {
-                Debug.Log("🎬 Click después de completar todo el texto - aquí puedes cargar otra escena");
-                // Ejemplo: SceneManager.LoadScene("MainMenu");
+                // Si se definió una escena, cargarla; si no, dejar un mensaje
+                if (!string.IsNullOrEmpty(nextSceneName))
+                {
+                    Debug.Log($"🎬 Cargando escena: {nextSceneName}");
+                    SceneManager.LoadScene(nextSceneName);
+                }
+                else
+                {
+                    Debug.Log("🎬 Click después de completar todo el texto - no hay escena configurada en nextSceneName");
+                }
             }
         }
     }

@@ -99,12 +99,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Detectar click cuando el diálogo esta activo
-        if (npcDialogBox.activeSelf && Input.GetMouseButtonDown(0))
+        if (npcDialogBox != null && npcDialogBox.activeSelf && Input.GetMouseButtonDown(0))
         {
             HandleDialogClick();
         }
         //Detecta cuando el cuadro de texto esta activo
-        if (textBox.activeSelf && Input.GetMouseButtonDown(0))
+        if (textBox != null && textBox.activeSelf && Input.GetMouseButtonDown(0))
         {
             CloseNonCollectableText();
         }
@@ -112,6 +112,12 @@ public class GameManager : MonoBehaviour
 
     public void ShowNonCollectableText(string text)
     {
+        if (textBox == null || infoText == null)
+        {
+            Debug.LogWarning("GameManager: textBox o infoText es null, no se puede mostrar texto.");
+            return;
+        }
+        
         textBox.SetActive(true);
         infoText.text = text;
         CanPlayerMove = false; // Bloquear movimiento del jugador
@@ -121,6 +127,12 @@ public class GameManager : MonoBehaviour
     public void NPCShowText(List<string> dialogPages, string name, Sprite image, AudioClip typingSound = null)
 
     {
+        if (npcDialogBox == null || npcDialogText == null || npcName == null || npcImage == null)
+        {
+            Debug.LogWarning("GameManager: Referencias UI de diálogo son null, no se puede mostrar diálogo.");
+            return;
+        }
+        
         currentDialogPages = dialogPages;
         currentPageIndex = 0;
         DialogFinished = false;
@@ -155,6 +167,12 @@ public class GameManager : MonoBehaviour
     // Animación de texto letra por letra
     private IEnumerator TypeText(string text)
     {
+        if (npcDialogText == null)
+        {
+            Debug.LogWarning("GameManager: npcDialogText es null, no se puede animar texto.");
+            yield break;
+        }
+        
         isTyping = true;
         npcDialogText.text = "";
 
@@ -181,6 +199,12 @@ public class GameManager : MonoBehaviour
     // Maneja los clicks en el diálogo
     private void HandleDialogClick()
     {
+        if (npcDialogText == null)
+        {
+            Debug.LogWarning("GameManager: npcDialogText es null, no se puede manejar click de diálogo.");
+            return;
+        }
+        
         // Si está escribiendo, completar el texto inmediatamente
         if (isTyping)
         {
@@ -216,7 +240,9 @@ public class GameManager : MonoBehaviour
     //Cierra los diálogos
     private void CloseDialog()
     {
-        npcDialogBox.SetActive(false);
+        if (npcDialogBox != null)
+            npcDialogBox.SetActive(false);
+            
         currentDialogPages = null;
         currentPageIndex = 0;
         isTyping = false;
