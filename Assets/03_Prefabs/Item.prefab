@@ -243,6 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6833689352441552489}
+  - component: {fileID: 2499422280002910450}
   - component: {fileID: 6833689352441552488}
   - component: {fileID: 6833689352441552490}
   - component: {fileID: 3668171846117952232}
@@ -268,6 +269,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2499422280002910450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833689352441552493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474c20b508be0f14f933b31fa29a807e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &6833689352441552488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -334,6 +347,7 @@ MonoBehaviour:
   interactUI: {fileID: 6833689351700268169}
   itemIcon: {fileID: 0}
   missionToComplete: 
+  missionToGive: 
   requiresMission: 0
   lockedMessage: No necesito esto ahora...
 --- !u!61 &3668171846117952232
