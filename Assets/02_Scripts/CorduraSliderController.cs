@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CorduraSliderController : MonoBehaviour
 {
@@ -7,21 +8,31 @@ public class CorduraSliderController : MonoBehaviour
     public Slider corduraSlider;               // Referencia al slider
     public CorduraController playerController; // Referencia al CorduraController
 
-    [Header("Par·metros")]
+    [Header("Par√°metros")]
     public float drainSpeed = 5f;              // Cantidad de cordura que se pierde por segundo
     public float recoverSpeed = 15f;           // Cantidad de cordura que se recupera por segundo
+    public string gameOverSceneName = "Menu";  // Escena que se cargar√° al perder toda la cordura
+
+    private bool gameOverTriggered = false;    // Evitar m√∫ltiples llamadas
 
     void Update()
     {
         if (playerController == null || corduraSlider == null)
             return;
 
-        // Si est· durmiendo (animaciÛn Sleeped activa), recargar gradualmente
+        // Verificar si la cordura lleg√≥ a cero
+        if (playerController.cordura <= 0 && !gameOverTriggered)
+        {
+            TriggerGameOver();
+            return;
+        }
+
+        // Si estÔøΩ durmiendo (animaciÔøΩn Sleeped activa), recargar gradualmente
         if (playerController.IsSleeping())
         {
             playerController.cordura += recoverSpeed * Time.deltaTime;
         }
-        else // Si no est· durmiendo, decrementar gradualmente
+        else // Si no estÔøΩ durmiendo, decrementar gradualmente
         {
             playerController.cordura -= drainSpeed * Time.deltaTime;
         }
@@ -31,5 +42,17 @@ public class CorduraSliderController : MonoBehaviour
 
         // Actualizar valor del slider
         corduraSlider.value = playerController.cordura;
+    }
+
+    private void TriggerGameOver()
+    {
+        gameOverTriggered = true;
+        Debug.Log("Cordura agotada - Game Over");
+        
+        // Asegurar que el tiempo est√© normal antes de cargar la escena
+        Time.timeScale = 1f;
+        
+        // Cargar escena de Game Over
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }

@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class ClockController : MonoBehaviour
 {
-    //Cuanto tiempo real equivale a un dia en juego, 3 minutos equivale a una hora
-    private const float REAL_SECONDS_PER_INGAME_DAY = 4320f;
+    //Cuanto tiempo real equivale a un dia en juego
+    private const float REAL_SECONDS_PER_INGAME_DAY = 720f;
     //Manecillas del reloj
     private Transform hourHandTransform;
     private Transform minuteHandTransform;
     //Valor entre 0 y 1, representa el avance del día(0=00:00,1=24:00)
-    private float day;
+    //Inicializado a 8:00 AM
+    private float day = 8f / 24f;
     private TextMeshProUGUI timeText;
     private void Awake()
     {
