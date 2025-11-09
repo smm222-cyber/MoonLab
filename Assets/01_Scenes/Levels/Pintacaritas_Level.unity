@@ -3128,7 +3128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7513725392858683050, guid: cbbf4caffd5d3e54fbc3cb27bab6fead, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3830,7 +3830,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1051889648
 PrefabInstance:
@@ -5834,7 +5834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8815656121266121722, guid: 8ec488b34de799b4399743cbcb8442c9, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8815656121266121722, guid: 8ec488b34de799b4399743cbcb8442c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7765,6 +7765,18 @@ PrefabInstance:
     - target: {fileID: 8518306595321988340, guid: e4a6c143511f3ac44872d5d0db9ba719, type: 3}
       propertyPath: m_Name
       value: CanvaDias
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518306595557291620, guid: e4a6c143511f3ac44872d5d0db9ba719, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.274
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518306595557291620, guid: e4a6c143511f3ac44872d5d0db9ba719, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518306595557291620, guid: e4a6c143511f3ac44872d5d0db9ba719, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 336
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a6c143511f3ac44872d5d0db9ba719, type: 3}
