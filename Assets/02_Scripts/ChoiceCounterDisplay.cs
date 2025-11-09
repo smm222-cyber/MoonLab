@@ -21,6 +21,11 @@ public class ChoiceCounterDisplay : MonoBehaviour
     
     [Tooltip("Mostrar solo contadores mayores a 0")]
     public bool hideZeroCounters = true;
+    [Tooltip("Mostrar el encabezado 'CONTADORES GLOBALES' en la salida")]
+    public bool showHeader = false;
+
+    [Tooltip("Ocultar todo el panel si no hay contadores (en vez de mostrar mensaje)")]
+    public bool hidePanelWhenEmpty = true;
     
     [Tooltip("Tecla para mostrar/ocultar el panel (opcional)")]
     public KeyCode toggleKey = KeyCode.Tab;
@@ -32,11 +37,14 @@ public class ChoiceCounterDisplay : MonoBehaviour
     
     void Start()
     {
+        // Asegurar que exista el manager lo antes posible
+        ChoiceCounterManager.EnsureExists();
+
         if (counterPanel != null)
         {
             counterPanel.SetActive(startVisible);
         }
-        
+
         UpdateDisplay();
     }
     
@@ -60,30 +68,54 @@ public class ChoiceCounterDisplay : MonoBehaviour
     /// <summary>
     /// Actualiza el texto con los contadores actuales
     /// </summary>
+    [Tooltip("Imprime logs de depuración cuando se actualiza el panel")]
+    public bool debugLogs = false;
+
     public void UpdateDisplay()
     {
+        // Asegurar que el manager exista (llamada segura)
+        ChoiceCounterManager.EnsureExists();
+
         if (counterText == null || ChoiceCounterManager.Instance == null)
             return;
-        
+
         Dictionary<string, int> counters = ChoiceCounterManager.Instance.GetAllCounters();
-        
+
+        if (debugLogs)
+        {
+            string dbg = "[ChoiceCounterDisplay] Contadores actuales:\n";
+            foreach (var kv in counters) dbg += $"  {kv.Key}: {kv.Value}\n";
+            Debug.Log(dbg);
+        }
+
         if (counters.Count == 0)
         {
-            counterText.text = "Sin opciones elegidas aún...";
+            if (hidePanelWhenEmpty && counterPanel != null)
+            {
+                counterPanel.SetActive(false);
+            }
+            else
+            {
+                counterText.text = ""; // no mostrar texto por defecto
+            }
             return;
         }
-        
-        string displayText = "📊 <b>CONTADORES GLOBALES</b>\n\n";
-        
+
+        string displayText = "";
+        if (showHeader)
+        {
+            displayText = "📊 <b>CONTADORES GLOBALES</b>\n\n";
+        }
+
         foreach (var kvp in counters)
         {
             // Saltar si está en 0 y hideZeroCounters está activo
             if (hideZeroCounters && kvp.Value == 0)
                 continue;
-            
+
             // Nombres personalizados amigables
             string displayName = kvp.Key;
-            
+
             switch (kvp.Key)
             {
                 case "SaberSobreElCirco":
@@ -97,10 +129,14 @@ public class ChoiceCounterDisplay : MonoBehaviour
                     displayName = kvp.Key.Replace("_", " ");
                     break;
             }
-            
+
             displayText += $"• {displayName}: <color=yellow><b>{kvp.Value}</b></color> veces\n";
         }
-        
+
+        // Asegurar que el panel esté visible si tenemos texto
+        if (counterPanel != null && !counterPanel.activeSelf)
+            counterPanel.SetActive(true);
+
         counterText.text = displayText;
     }
     

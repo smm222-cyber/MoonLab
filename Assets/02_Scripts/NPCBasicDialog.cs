@@ -322,20 +322,22 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         
         // ⭐ CONTADOR GLOBAL - Usa solo el índice de la opción (0, 1, 2, etc.)
         // Todas las "Opción 0" de todos los NPCs suman al mismo contador
+        ChoiceCounterManager.EnsureExists();
+
+        // Nombres personalizados para cada opción
+        string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
+        
+        string globalChoiceID = choiceIndex < optionNames.Length 
+            ? optionNames[choiceIndex] 
+            : $"Opcion_{choiceIndex}";
+
         if (ChoiceCounterManager.Instance != null)
         {
-            // Nombres personalizados para cada opción
-            string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
-            
-            string globalChoiceID = choiceIndex < optionNames.Length 
-                ? optionNames[choiceIndex] 
-                : $"Opcion_{choiceIndex}";
-                
             ChoiceCounterManager.Instance.IncrementChoice(globalChoiceID);
         }
         else
         {
-            Debug.LogWarning("[NPCBasicDialog] ChoiceCounterManager no encontrado en la escena");
+            Debug.LogWarning("[NPCBasicDialog] ChoiceCounterManager no pudo inicializarse");
         }
         
         // Mostrar respuesta del NPC
