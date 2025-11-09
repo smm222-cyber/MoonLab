@@ -2918,6 +2918,10 @@ PrefabInstance:
       propertyPath: npcDialogText
       value: 
       objectReference: {fileID: 1961056025}
+    - target: {fileID: 6434057977338507579, guid: 89c4d82468a4a394a8d97bc6074d5074, type: 3}
+      propertyPath: scenarios.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89c4d82468a4a394a8d97bc6074d5074, type: 3}
 --- !u!1 &2147122586
@@ -2954,8 +2958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302.90872, y: 73}
-  m_SizeDelta: {x: 164.4275, y: 73.89}
+  m_AnchoredPosition: {x: -302.90872, y: 59.066814}
+  m_SizeDelta: {x: 164.4275, y: 101.7564}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2147122588
 MonoBehaviour:
@@ -2990,8 +2994,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "Click con el rat\xF3n para avanzar dialogo\nRecoger globos para empezar
-    juego"
+  m_Text: "Click con el rat\xF3n para avanzar di\xE1logo\n\nRecoger globos para empezar
+    el juego"
 --- !u!222 &2147122589
 CanvasRenderer:
   m_ObjectHideFlags: 0
