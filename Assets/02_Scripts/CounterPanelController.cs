@@ -38,6 +38,7 @@ public class CounterPanelController : MonoBehaviour
 
     public void UpdateUI()
     {
+        Debug.Log("[CounterPanelController] UpdateUI llamado para panel: " + gameObject.name);
         int circo = 0;
         int yo = 0;
 

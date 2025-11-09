@@ -159,8 +159,16 @@ public class DialogueChoicesUIFixed : MonoBehaviour
     // Avisar NPC
         if (currentNPC != null)
         {
-            currentNPC.OnChoiceSelected(choiceIndex);
-            Debug.Log($"✅ Opción {choiceIndex} notificada al NPC");
+            Debug.Log($"DialogueChoicesUIFixed: currentNPC = {currentNPC.gameObject.name} (component: {currentNPC.GetType().Name})");
+            try
+            {
+                currentNPC.OnChoiceSelected(choiceIndex);
+                Debug.Log($"✅ Opción {choiceIndex} notificada al NPC");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"❌ Exception al notificar currentNPC.OnChoiceSelected: {ex}");
+            }
         }
         else
         {
@@ -257,7 +265,15 @@ public class DialogueChoicesUIFixed : MonoBehaviour
         
         if (currentBasicNPC != null)
         {
-            currentBasicNPC.OnChoiceSelected(choiceIndex);
+            Debug.Log($"DialogueChoicesUIFixed: currentBasicNPC = {currentBasicNPC.gameObject.name} (component: {currentBasicNPC.GetType().Name})");
+            try
+            {
+                currentBasicNPC.OnChoiceSelected(choiceIndex);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"❌ Exception al notificar currentBasicNPC.OnChoiceSelected: {ex}");
+            }
         }
         
         // Ocultar panel

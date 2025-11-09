@@ -395,6 +395,21 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         string responseDialogue = opcionesFase5[choiceIndex].responseDialogue;
         
         Debug.Log($"[{gameObject.name}] Jugador eligió opción {choiceIndex + 1}: {opcionesFase5[choiceIndex].choiceText}");
+
+        // ---------- CONTADOR GLOBAL: incrementar el contador global según la posición de la opción
+        // Las opciones por posición (0 = SaberSobreElCirco, 1 = SaberSobreMi, etc.)
+        ChoiceCounterManager.EnsureExists();
+        string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
+        string globalChoiceID = choiceIndex < optionNames.Length ? optionNames[choiceIndex] : $"Opcion_{choiceIndex}";
+        if (ChoiceCounterManager.Instance != null)
+        {
+            ChoiceCounterManager.Instance.IncrementChoice(globalChoiceID);
+            Debug.Log($"[{gameObject.name}] Incrementado contador global '{globalChoiceID}' desde Pintacaritas");
+        }
+        else
+        {
+            Debug.LogWarning($"[{gameObject.name}] ChoiceCounterManager no disponible para incrementar '{globalChoiceID}'");
+        }
         
         // Mostrar la respuesta del NPC
         if (!string.IsNullOrEmpty(responseDialogue))

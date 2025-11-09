@@ -107,6 +107,8 @@ public class ChoiceCounterDisplay : MonoBehaviour
             displayText = "📊 <b>CONTADORES GLOBALES</b>\n\n";
         }
 
+        Debug.Log("[ChoiceCounterDisplay] UpdateDisplay - construyendo display para panel: " + (counterPanel!=null?counterPanel.name:"<no panel>"));
+
         foreach (var kvp in counters)
         {
             // Saltar si está en 0 y hideZeroCounters está activo

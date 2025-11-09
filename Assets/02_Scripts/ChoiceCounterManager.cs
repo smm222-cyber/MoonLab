@@ -30,6 +30,10 @@ public class ChoiceCounterManager : MonoBehaviour
     /// </summary>
     public event Action OnCountersChanged;
 
+    [Header("Debug")]
+    [Tooltip("Activar para ver logs adicionales del ChoiceCounterManager en la consola")]
+    public bool debugMode = false;
+
     void Awake()
     {
         // Configurar singleton
@@ -119,8 +123,15 @@ public class ChoiceCounterManager : MonoBehaviour
 
         Debug.Log($"📊 [ChoiceCounterManager] '{choiceName}' elegida {choiceCounters[choiceName]} vez/veces");
 
-        // Notificar a listeners (UI, etc.)
+    // Notificar a listeners (UI, etc.)
+        if (debugMode) Debug.Log($"[ChoiceCounterManager] Invocando OnCountersChanged after '{choiceName}' -> {choiceCounters[choiceName]}");
         OnCountersChanged?.Invoke();
+
+        // Si está en modo debug, mostrar resumen de todos los contadores en la consola
+        if (debugMode)
+        {
+            ShowAllCounters();
+        }
     }
     
     /// <summary>
@@ -154,6 +165,16 @@ public class ChoiceCounterManager : MonoBehaviour
     {
         choiceCounters.Clear();
         Debug.Log("🔄 [ChoiceCounterManager] Todos los contadores reiniciados");
+    }
+
+    void Update()
+    {
+        // Atajo de depuración: mostrar contadores con F1 si debugMode está activo
+        if (debugMode && Input.GetKeyDown(KeyCode.F1))
+        {
+            Debug.Log("[ChoiceCounterManager] Debug hotkey F1 pulsada - mostrando contadores:");
+            ShowAllCounters();
+        }
     }
     
     /// <summary>
