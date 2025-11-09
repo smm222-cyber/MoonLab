@@ -1770,6 +1770,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1308850875}
     m_Modifications:
+    - target: {fileID: 2324121331187319887, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1060667674}
     - target: {fileID: 3368337943354452813, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_Name
       value: NpcMaestroCeremonias
@@ -4192,6 +4196,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1060667674 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7365109221284659793, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+  m_PrefabInstance: {fileID: 366116614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1085381809
 GameObject:
   m_ObjectHideFlags: 0

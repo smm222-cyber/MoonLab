@@ -336,7 +336,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 377977918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1989378281}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ChangeLevelSelector
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MaestroCeremonias_Level
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &377977918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 724726851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1989378281}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ChangeLevelSelector
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pintacaritas_Level
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &724726851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,7 +1056,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1241734574}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1989378281}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ChangeLevelSelector
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Vendedor_Level
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1241734574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,7 +1188,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1484338873}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1989378281}
+        m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
+        m_MethodName: ChangeLevelSelector
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Payasito_Level
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1484338873
 MonoBehaviour:
   m_ObjectHideFlags: 0

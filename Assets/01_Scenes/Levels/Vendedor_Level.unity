@@ -256,7 +256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[2].missionToGive
-      value: Buscar herramienta
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[3].missionToGive
@@ -272,7 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[2].missionRequired
-      value: Buscar herramienta
+      value: Esperar por los cables
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[0].missionToComplete
@@ -289,6 +289,10 @@ PrefabInstance:
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[3].missionToComplete
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: missions.Array.data[1].loadSceneAfterDialog
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_RootOrder
@@ -5112,6 +5116,14 @@ PrefabInstance:
       value: Preguntar sobre ti
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].sceneToLoad
+      value: MaestroCeremonias_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].sceneToLoad
+      value: MaestroCeremonias_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].responseDialogue
       value: "Yo antes no vend\xEDa dulces\u2026 vend\xEDa ilusiones. Hac\xEDa globos
         que brillaban con electricidad, peque\xF1os rayos atrapados para los ni\xF1os.\nPero
@@ -5127,6 +5139,22 @@ PrefabInstance:
         es lo que s\xE9.\nO\u2026 lo que el circo quiere que recuerde quiso que recordara.
         gritaran.\nLos caramelos se derritieron, los globos se inflaron solos\u2026\ny
         de entre la neblina de az\xFAcar quemada, saliste t\xFA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].loadSceneAfterChoice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].loadSceneAfterChoice
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: m_RootOrder

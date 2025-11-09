@@ -4782,6 +4782,9 @@ MonoBehaviour:
       ni\xF1os, los pasillos, las sonrisas\u2026\nCada pincelada era un pedacito
       de nuestra amistad.\nY as\xED, con ella a mi lado, aprend\xED que el color
       m\xE1s hermoso nace cuando lo compartes."
+    loadSceneAfterChoice: 1
+    sceneToLoad: Payasito_Level
+    delayBeforeSceneChange: 2
   - choiceText: Preguntar sobre ti
     responseDialogue: "No s\xE9 mucho\u2026 solo peque\xF1os fragmentos. Dicen que
       apareciste en el circo como un susurro, casi como si las sombras te guiaran
@@ -4789,8 +4792,14 @@ MonoBehaviour:
       carpa\u2026 Y que, de alg\xFAn modo, el circo te escucha a ti.\nSolo puedo
       decirte lo que veo te mueves con cuidado, observas todo\u2026 y hay algo en
       ti, algo que ni nosotros entendemos del todo."
+    loadSceneAfterChoice: 1
+    sceneToLoad: Payasito_Level
+    delayBeforeSceneChange: 2
   misionACompletarFase5: Informar encuentro
   dialogoFinal: Gracias por escuchar
+  loadSceneAfterFinalDialog: 0
+  sceneToLoadAfterFinal: 
+  delayBeforeFinalSceneChange: 2
   typingSound: {fileID: 8300000, guid: 0bd6210a182c89f46b30762279933c96, type: 3}
   maxCharactersPerPage: 45
   choicesUISystem: {fileID: 0}

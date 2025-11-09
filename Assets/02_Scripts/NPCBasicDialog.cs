@@ -19,6 +19,16 @@ public class DialogueChoice
     
     [Tooltip("Misión a completar después de elegir esta opción (opcional)")]
     public string missionToComplete;
+
+    [Header("Cambio de Escena (opcional)")]
+    [Tooltip("Si está activado, cambia de escena después de mostrar la respuesta de esta opción")]
+    public bool loadSceneAfterChoice = false;
+    
+    [Tooltip("Nombre de la escena a cargar (debe estar en Build Settings)")]
+    public string sceneToLoad = "";
+    
+    [Tooltip("Segundos de espera antes de cambiar de escena")]
+    public float delayBeforeChange = 1.5f;
 }
 
 [System.Serializable]
@@ -34,6 +44,16 @@ public class NPCMission
     [Tooltip("Si tiene opciones, se mostrarán botones después del diálogo")]
     public bool hasChoices = false;
     public List<DialogueChoice> choices = new List<DialogueChoice>();
+
+    [Header("Cambio de Escena (opcional)")]
+    [Tooltip("Si está activado, cambia de escena después de este diálogo (solo si NO tiene opciones)")]
+    public bool loadSceneAfterDialog = false;
+    
+    [Tooltip("Nombre de la escena a cargar (debe estar en Build Settings)")]
+    public string sceneToLoad = "";
+    
+    [Tooltip("Segundos de espera antes de cambiar de escena")]
+    public float delayBeforeChange = 1.5f;
 }
 
 public class NPCBasicDialog : MonoBehaviour, IInteractable
@@ -53,6 +73,16 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     [Header("Diálogo Simple (sin misiones)")]
     [TextArea(3, 10)]
     public string dialogueText;
+
+    [Header("Cambio de Escena para Diálogo Simple")]
+    [Tooltip("Si está activado, cambia de escena después del diálogo simple (solo funciona si NO usas sistema de misiones)")]
+    public bool loadSceneAfterSimpleDialog = false;
+    
+    [Tooltip("Nombre de la escena a cargar (debe estar en Build Settings)")]
+    public string simpleDialogSceneToLoad = "";
+    
+    [Tooltip("Segundos de espera antes de cambiar de escena")]
+    public float simpleDialogDelayBeforeChange = 1.5f;
 
     [Header("Sistema de UI de Opciones (Opcional)")]
     [Tooltip("Arrastra aquí el DialogueChoicesUIFixed para mostrar botones de opciones")]
@@ -174,11 +204,21 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         // Si no tiene opciones, completar y agregar misiones normalmente
         else if (!string.IsNullOrEmpty(missionToCompleteNow) || !string.IsNullOrEmpty(missionToAdd))
         {
-            StartCoroutine(HandleMissionsAfterDialog(missionToCompleteNow, missionToAdd));
+            StartCoroutine(HandleMissionsAfterDialog(missionToCompleteNow, missionToAdd, missionToUse));
+        }
+        // Si no hay misiones pero hay missionToUse (para cambio de escena sin misiones)
+        else if (missionToUse != null)
+        {
+            StartCoroutine(HandleMissionsAfterDialog("", "", missionToUse));
+        }
+        // Si usa diálogo simple (sin sistema de misiones), manejar cambio de escena
+        else if (!usesMissionSystem)
+        {
+            StartCoroutine(HandleSimpleDialogEnd());
         }
     }
 
-    IEnumerator HandleMissionsAfterDialog(string missionToComplete, string missionToAdd)
+    IEnumerator HandleMissionsAfterDialog(string missionToComplete, string missionToAdd, NPCMission mission)
     {
         // Esperar a que termine el diálogo
         yield return new WaitUntil(() => manager.DialogFinished);
@@ -207,6 +247,41 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         catch (System.Exception ex)
         {
             Debug.LogError($"Error invoking onDialogFinished for {gameObject.name}: {ex}");
+        }
+
+        // Cambiar de escena si esta misión lo tiene configurado
+        if (mission != null && mission.loadSceneAfterDialog && !string.IsNullOrEmpty(mission.sceneToLoad))
+        {
+            yield return new WaitForSeconds(mission.delayBeforeChange);
+            Debug.Log($"[NPCBasicDialog] Cambiando a escena: {mission.sceneToLoad}");
+            Time.timeScale = 1f; // Restaurar timeScale por si acaso
+            SceneManager.LoadScene(mission.sceneToLoad);
+        }
+    }
+
+    // Maneja el final del diálogo simple (sin sistema de misiones)
+    IEnumerator HandleSimpleDialogEnd()
+    {
+        // Esperar a que termine el diálogo
+        yield return new WaitUntil(() => manager.DialogFinished);
+
+        // Invocar eventos
+        try
+        {
+            onDialogFinished?.Invoke();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error invoking onDialogFinished for {gameObject.name}: {ex}");
+        }
+
+        // Cambiar de escena si está configurado
+        if (loadSceneAfterSimpleDialog && !string.IsNullOrEmpty(simpleDialogSceneToLoad))
+        {
+            yield return new WaitForSeconds(simpleDialogDelayBeforeChange);
+            Debug.Log($"[NPCBasicDialog] Cambiando a escena: {simpleDialogSceneToLoad}");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(simpleDialogSceneToLoad);
         }
     }
     
@@ -386,5 +461,14 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         }
 
         currentMissionWithChoices = null;
+
+        // Cambiar de escena si esta opción lo tiene configurado
+        if (choice.loadSceneAfterChoice && !string.IsNullOrEmpty(choice.sceneToLoad))
+        {
+            yield return new WaitForSeconds(choice.delayBeforeChange);
+            Debug.Log($"[NPCBasicDialog] Cambiando a escena: {choice.sceneToLoad}");
+            Time.timeScale = 1f; // Restaurar timeScale por si acaso
+            SceneManager.LoadScene(choice.sceneToLoad);
+        }
     }
 }

@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PintacaritasNPC : MonoBehaviour, IInteractable
+using UnityEngine.SceneManagement;public class PintacaritasNPC : MonoBehaviour, IInteractable
 {
     [Header("Información del NPC")]
     public string npcName = "Pintacaritas";
@@ -67,6 +66,16 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         [Tooltip("Diálogo que dice el NPC después de elegir esta opción")]
         [TextArea(3, 10)]
         public string responseDialogue;
+        
+        [Header("Cambio de Escena")]
+        [Tooltip("¿Cambiar de escena después de esta respuesta?")]
+        public bool loadSceneAfterChoice = false;
+        
+        [Tooltip("Nombre de la escena a cargar (debe estar en Build Settings)")]
+        public string sceneToLoad = "";
+        
+        [Tooltip("Tiempo de espera antes de cambiar de escena (segundos)")]
+        public float delayBeforeSceneChange = 2f;
     }
     
     [Tooltip("Opciones de diálogo para la FASE 5")]
@@ -79,6 +88,16 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     [Tooltip("Diálogo final después de elegir una opción")]
     [TextArea(3, 10)]
     public string dialogoFinal;
+    
+    [Header("Cambio de Escena - Diálogo Final")]
+    [Tooltip("¿Cambiar de escena después del diálogo final (FASE 6)?")]
+    public bool loadSceneAfterFinalDialog = false;
+    
+    [Tooltip("Nombre de la escena a cargar después del diálogo final")]
+    public string sceneToLoadAfterFinal = "";
+    
+    [Tooltip("Tiempo de espera antes de cambiar de escena (segundos)")]
+    public float delayBeforeFinalSceneChange = 2f;
 
     [Header("Audio")]
     public AudioClip typingSound;
@@ -168,6 +187,30 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
     {
         // Esperar a que termine el diálogo
         yield return new WaitUntil(() => manager.DialogFinished);
+        
+        // FASE 6: Diálogo final después de haber elegido una opción
+        if (opcionSeleccionada >= 0 && !string.IsNullOrEmpty(dialogoFinal))
+        {
+            Debug.Log($"[{gameObject.name}] FASE 6 - Finalizando con diálogo final");
+            
+            // Verificar si se debe cambiar de escena
+            if (loadSceneAfterFinalDialog && !string.IsNullOrEmpty(sceneToLoadAfterFinal))
+            {
+                Debug.Log($"[{gameObject.name}] FASE 6 - Preparando cambio de escena a: {sceneToLoadAfterFinal} en {delayBeforeFinalSceneChange}s");
+                
+                // Esperar el tiempo configurado
+                if (delayBeforeFinalSceneChange > 0)
+                {
+                    yield return new WaitForSeconds(delayBeforeFinalSceneChange);
+                }
+                
+                // Cargar la escena
+                Debug.Log($"[{gameObject.name}] FASE 6 - Cambiando a escena: {sceneToLoadAfterFinal}");
+                SceneManager.LoadScene(sceneToLoadAfterFinal);
+            }
+            
+            yield break; // Terminar aquí
+        }
         
         // Determinar en qué fase estamos y actuar en consecuencia
         
@@ -392,9 +435,9 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
         }
         
         opcionSeleccionada = choiceIndex;
-        string responseDialogue = opcionesFase5[choiceIndex].responseDialogue;
+        DialogueChoice selectedChoice = opcionesFase5[choiceIndex];
         
-        Debug.Log($"[{gameObject.name}] Jugador eligió opción {choiceIndex + 1}: {opcionesFase5[choiceIndex].choiceText}");
+        Debug.Log($"[{gameObject.name}] Jugador eligió opción {choiceIndex + 1}: {selectedChoice.choiceText}");
 
         // ---------- CONTADOR GLOBAL: incrementar el contador global según la posición de la opción
         // Las opciones por posición (0 = SaberSobreElCirco, 1 = SaberSobreMi, etc.)
@@ -411,11 +454,36 @@ public class PintacaritasNPC : MonoBehaviour, IInteractable
             Debug.LogWarning($"[{gameObject.name}] ChoiceCounterManager no disponible para incrementar '{globalChoiceID}'");
         }
         
+        // Iniciar corrutina para mostrar respuesta y cambiar escena si es necesario
+        StartCoroutine(HandleChoiceResponse(selectedChoice));
+    }
+    
+    IEnumerator HandleChoiceResponse(DialogueChoice choice)
+    {
         // Mostrar la respuesta del NPC
-        if (!string.IsNullOrEmpty(responseDialogue))
+        if (!string.IsNullOrEmpty(choice.responseDialogue))
         {
-            List<string> pages = SplitTextIntoPages(responseDialogue, maxCharactersPerPage);
+            List<string> pages = SplitTextIntoPages(choice.responseDialogue, maxCharactersPerPage);
             manager.NPCShowText(pages, npcName, npcImage, typingSound);
+            
+            // Esperar a que el diálogo termine
+            yield return new WaitUntil(() => manager.DialogFinished);
+        }
+        
+        // Cambiar de escena si está configurado
+        if (choice.loadSceneAfterChoice && !string.IsNullOrEmpty(choice.sceneToLoad))
+        {
+            Debug.Log($"[{gameObject.name}] Preparando cambio de escena a: {choice.sceneToLoad} en {choice.delayBeforeSceneChange}s");
+            
+            // Esperar el tiempo configurado
+            if (choice.delayBeforeSceneChange > 0)
+            {
+                yield return new WaitForSeconds(choice.delayBeforeSceneChange);
+            }
+            
+            // Cargar la escena
+            Debug.Log($"[{gameObject.name}] Cambiando a escena: {choice.sceneToLoad}");
+            SceneManager.LoadScene(choice.sceneToLoad);
         }
     }
 

@@ -61,22 +61,36 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // Asegura que solo haya un GameManager activo
+        // Permitir una instancia por escena (NO usar DontDestroyOnLoad para cambios de escena/nivel)
+        // Solo persistir si estamos en la misma escena (para cambios de escenario dentro de la misma escena)
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // NO usar DontDestroyOnLoad - cada escena tendrá su propio GameManager
+            // DontDestroyOnLoad(gameObject);
+            
             if (audioSource == null)
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.playOnAwake = false;
             }
-            Debug.Log("GameManager inicializado correctamente");
+            
+            Debug.Log($"[GameManager] Inicializado en escena: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
         }
-        else
+        else if (Instance != this)
         {
+            // Si ya existe una instancia EN ESTA ESCENA (duplicado), destruir este
             Debug.LogWarning($"GameManager duplicado encontrado en {gameObject.name}. Destruyendo este.");
             Destroy(gameObject);
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Limpiar la instancia singleton cuando se destruya
+        if (Instance == this)
+        {
+            Instance = null;
         }
     }
 
@@ -92,8 +106,8 @@ public class GameManager : MonoBehaviour
         if (npcImage == null)
             Debug.LogError("npcImage no está asignado en el GameManager!");
             
-    // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
-    CheckForIntroScenes();
+        // Verificar si estamos en la escena Pintacaritas_Level o Vendedor_Level
+        CheckForIntroScenes();
     }
 
     void Update()

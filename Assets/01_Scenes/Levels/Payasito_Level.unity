@@ -7439,6 +7439,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[0].hasChoices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[3].hasChoices
       value: 0
       objectReference: {fileID: 0}
@@ -7558,12 +7562,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[0].loadSceneAfterDialog
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].choiceText
       value: Pregunta sobre el
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].choiceText
       value: Pregunta sobre ti
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].sceneToLoad
+      value: Vendedor_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].sceneToLoad
+      value: Vendedor_Level
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].responseDialogue
@@ -7584,6 +7600,22 @@ PrefabInstance:
         parece reir y llorar, nadie habla pero todos lo sienten. T\xFA dices que
         no sabes qui\xE9n eres\u2026 pero creo que el circo s\xED lo sabe. Y eso,
         peque\xF1a\u2026 da m\xE1s miedo que cualquier funci\xF3n que hayamos hecho."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[0].loadSceneAfterChoice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
+      propertyPath: missions.Array.data[5].choices.Array.data[1].loadSceneAfterChoice
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: be4b23bc0fccb1c47803db7d6ea7a6a8, type: 3}
       propertyPath: m_RootOrder
