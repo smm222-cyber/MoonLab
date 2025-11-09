@@ -3471,29 +3471,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -518.7117
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -372.914
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -45.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 122.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5215184542753014538, guid: d4175443a3ccfa14e839897f64013516, type: 3}
-      propertyPath: debugLogs
-      value: 1
-      objectReference: {fileID: 0}
-=======
->>>>>>> 2ad206c0968e0d52238c0080e43eb78d6279d81d
     - target: {fileID: 6946843475412029987, guid: d4175443a3ccfa14e839897f64013516, type: 3}
       propertyPath: m_Name
       value: CounterPanel
