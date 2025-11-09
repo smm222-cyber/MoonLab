@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     // Diccionario que relaciona cada día con el nombre real de la escena
     private Dictionary<int, string> dayToScene = new Dictionary<int, string>()
     {
+        //Poner los siguientes niveles para que lo lea
         {1, "Tutorial"},
         {2, "Pintacaritas_Level"},
         {3, "Vendedor_Level"} // si más adelante tienes más días
