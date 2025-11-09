@@ -50,6 +50,8 @@ public class EndingSceneController : MonoBehaviour
     
     private bool textFinished = false;
     private bool canContinue = false;
+    // Guarda qué final se eligió (útil para mantener la misma elección aleatoria si el jugador salta)
+    private string chosenFinalKey = null; // "CIRCO" o "YO"
     
     void Start()
     {
@@ -96,18 +98,27 @@ public class EndingSceneController : MonoBehaviour
         }
         
         // Determinar qué final mostrar
-        string finalText = "";
+        string finalText;
         
         if (circoCount > yoCount)
         {
             finalText = endingCirco;
-            Debug.Log("[EndingScene] Final: Más interesado en el circo");
+            chosenFinalKey = "CIRCO";
+            Debug.Log($"[EndingScene] Final CIRCO (circo: {circoCount} vs yo: {yoCount})");
+        }
+        else if (yoCount > circoCount)
+        {
+            finalText = endingYo;
+            chosenFinalKey = "YO";
+            Debug.Log($"[EndingScene] Final YO (circo: {circoCount} vs yo: {yoCount})");
         }
         else
         {
-            // Si hay empate o yoCount es mayor, mostrar final "Yo"
-            finalText = endingYo;
-            Debug.Log("[EndingScene] Final: Más interesado en compartir sobre ti");
+            // EMPATE: Elegir al azar (y guardar la elección)
+            bool showCirco = Random.value >= 0.5f;
+            finalText = showCirco ? endingCirco : endingYo;
+            chosenFinalKey = showCirco ? "CIRCO" : "YO";
+            Debug.Log($"[EndingScene] EMPATE ({circoCount} vs {yoCount}) - Elegido al azar: {chosenFinalKey}");
         }
         
         // Animar texto letra por letra
@@ -160,11 +171,18 @@ public class EndingSceneController : MonoBehaviour
             yoCount = ChoiceCounterManager.Instance.GetChoiceCount("SaberSobreMi");
         }
         
-        string finalText = "";
-        if (circoCount > yoCount)
-            finalText = endingCirco;
+        string finalText;
+        if (!string.IsNullOrEmpty(chosenFinalKey))
+        {
+            finalText = chosenFinalKey == "CIRCO" ? endingCirco : endingYo;
+        }
         else
-            finalText = endingYo;
+        {
+            // Fallback por seguridad: decidir según contadores actuales
+            if (circoCount > yoCount) finalText = endingCirco;
+            else if (yoCount > circoCount) finalText = endingYo;
+            else finalText = endingYo; // si hay empate y no hay elección previa, caer en YO por defecto
+        }
         
         guionText.text = finalText;
         canContinue = true;

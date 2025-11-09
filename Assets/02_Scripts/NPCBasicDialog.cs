@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class DialogueChoice
@@ -29,6 +29,13 @@ public class DialogueChoice
     
     [Tooltip("Segundos de espera antes de cambiar de escena")]
     public float delayBeforeChange = 1.5f;
+    
+    [Header("Contador global (opcional)")]
+    [Tooltip("Clave del contador global que se incrementará al elegir esta opción. Si está vacío, se usará el mapeo por índice (legacy). Ej: 'SaberSobreElCirco' o 'SaberSobreMi'")]
+    public string globalChoiceID = "";
+    
+    [Tooltip("Si está activado, esta opción disparará la lógica de final (decidir y cargar el final según contadores) después de ejecutarse.")]
+    public bool triggersFinal = false;
 }
 
 [System.Serializable]
@@ -107,6 +114,34 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         {
             Debug.LogError($"GameManager.Instance es null para {gameObject.name}. Asegúrate de que el GameManager existe y se inicializa primero.");
         }
+    }
+
+    // Esperar hasta que GameManager registre la misión (o timeout) y luego decidir el final
+    IEnumerator WaitForMissionAndDecide(string missionName)
+    {
+        float timeout = 1.0f; // segundos
+        float waited = 0f;
+
+        // esperar hasta que GameManager exista
+        while (GameManager.Instance == null && waited < timeout)
+        {
+            yield return null;
+            waited += Time.unscaledDeltaTime;
+        }
+
+        // esperar hasta que la misión esté registrada o timeout
+        waited = 0f;
+        while ((GameManager.Instance == null || !GameManager.Instance.HasMission(missionName)) && waited < timeout)
+        {
+            yield return null;
+            waited += Time.unscaledDeltaTime;
+        }
+
+        Debug.Log($"[NPCBasicDialog] WaitForMissionAndDecide: comprobado misión '{missionName}' (registered={GameManager.Instance != null && GameManager.Instance.HasMission(missionName)})");
+
+        // Llamar al helper para decidir y cargar el final
+        MissionToEndingChooserHelper.DecideAndLoad();
+        yield break;
     }
 
     public void Interact()
@@ -399,16 +434,22 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     // Debug adicional: mostrar escena y índice para trazar problemas multi-escena
     Debug.Log($"[NPCBasicDialog] OnChoiceSelected - Escena: {SceneManager.GetActiveScene().name}, Índice: {choiceIndex}");
         
-        // ⭐ CONTADOR GLOBAL - Usa solo el índice de la opción (0, 1, 2, etc.)
-        // Todas las "Opción 0" de todos los NPCs suman al mismo contador
+        // ⭐ CONTADOR GLOBAL - preferimos la clave explícita en la opción si existe,
+        // si no, caemos al comportamiento legacy basado en el índice.
         ChoiceCounterManager.EnsureExists();
 
-        // Nombres personalizados para cada opción
-        string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
-        
-        string globalChoiceID = choiceIndex < optionNames.Length 
-            ? optionNames[choiceIndex] 
-            : $"Opcion_{choiceIndex}";
+        string globalChoiceID = selectedChoice != null && !string.IsNullOrEmpty(selectedChoice.globalChoiceID)
+            ? selectedChoice.globalChoiceID
+            : null;
+
+        // Legacy fallback: mapear por índice si no hay globalChoiceID
+        if (string.IsNullOrEmpty(globalChoiceID))
+        {
+            string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
+            globalChoiceID = choiceIndex < optionNames.Length
+                ? optionNames[choiceIndex]
+                : $"Opcion_{choiceIndex}";
+        }
 
         if (ChoiceCounterManager.Instance != null)
         {
@@ -448,6 +489,31 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             {
                 missionsAlreadyGiven.Add(choice.missionToGive);
             }
+
+            // Si esta opción da la misión que activa el final inmediato, esperar a que GameManager la registre y decidir el final
+            if (!string.IsNullOrEmpty(choice.missionToGive) &&
+                string.Equals(choice.missionToGive.Trim(), "Abrir portal secreto", System.StringComparison.OrdinalIgnoreCase))
+            {
+                Debug.Log("[NPCBasicDialog] Opción dio 'Abrir portal secreto' -> Esperando confirmación de GameManager para decidir final");
+                // Esperar a que el GameManager registre la misión y luego decidir el final (evita race conditions)
+                StartCoroutine(WaitForMissionAndDecide(choice.missionToGive));
+                yield break; // salir del coroutine actual, la decisión se hará desde WaitForMissionAndDecide
+            }
+            // Si la opción está marcada para disparar final (trigger) y no era el caso 'Abrir portal secreto'
+            if (choice.triggersFinal)
+            {
+                Debug.Log("[NPCBasicDialog] Opción marcada para disparar final -> Decidiendo según contadores");
+                // Si la opción además da una misión, esperar a que se registre; si no, decidir inmediatamente
+                if (!string.IsNullOrEmpty(choice.missionToGive))
+                {
+                    StartCoroutine(WaitForMissionAndDecide(choice.missionToGive));
+                }
+                else
+                {
+                    MissionToEndingChooserHelper.DecideAndLoad();
+                }
+                yield break;
+            }
         }
         
         // Invocar eventos (por ejemplo: dar un item automáticamente tras la opción)
@@ -470,5 +536,7 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             Time.timeScale = 1f; // Restaurar timeScale por si acaso
             SceneManager.LoadScene(choice.sceneToLoad);
         }
+
+        yield break;
     }
 }

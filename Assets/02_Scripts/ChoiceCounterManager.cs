@@ -11,8 +11,14 @@ public class ChoiceCounterManager : MonoBehaviour
     // Singleton para acceso global
     public static ChoiceCounterManager Instance { get; private set; }
     
-    // Diccionario para guardar los contadores: Key = nombre de la opción, Value = contador
+    // Diccionario para guardar los contadores: Key = normalized nombre de la opción (trim + lower), Value = contador
     private Dictionary<string, int> choiceCounters = new Dictionary<string, int>();
+
+    // Normaliza claves para evitar discrepancias por mayúsculas/espacios
+    private string NormalizeKey(string key)
+    {
+        return string.IsNullOrEmpty(key) ? "" : key.Trim().ToLowerInvariant();
+    }
     
     [System.Serializable]
     public struct InitialCounter
@@ -49,8 +55,9 @@ public class ChoiceCounterManager : MonoBehaviour
                 foreach (var ic in initialCounters)
                 {
                     if (string.IsNullOrEmpty(ic.key)) continue;
-                    if (!choiceCounters.ContainsKey(ic.key)) choiceCounters[ic.key] = 0;
-                    choiceCounters[ic.key] += ic.count;
+                    var nkey = NormalizeKey(ic.key);
+                    if (!choiceCounters.ContainsKey(nkey)) choiceCounters[nkey] = 0;
+                    choiceCounters[nkey] += ic.count;
                 }
 
                 // Notificar al inicio si hay datos
@@ -68,7 +75,7 @@ public class ChoiceCounterManager : MonoBehaviour
                 foreach (var ic in initialCounters)
                 {
                     if (string.IsNullOrEmpty(ic.key)) continue;
-                    // sumar al manager persistente
+                    // sumar al manager persistente (usar claves normalizadas)
                     int existing = Instance.GetChoiceCount(ic.key);
                     for (int i = 0; i < ic.count; i++)
                         Instance.IncrementChoice(ic.key);
@@ -113,18 +120,19 @@ public class ChoiceCounterManager : MonoBehaviour
             Debug.LogWarning("[ChoiceCounterManager] Nombre de opción vacío!");
             return;
         }
-        
-        if (!choiceCounters.ContainsKey(choiceName))
-        {
-            choiceCounters[choiceName] = 0;
-        }
-        
-        choiceCounters[choiceName]++;
 
-        Debug.Log($"📊 [ChoiceCounterManager] '{choiceName}' elegida {choiceCounters[choiceName]} vez/veces");
+        var nkey = NormalizeKey(choiceName);
+        if (!choiceCounters.ContainsKey(nkey))
+        {
+            choiceCounters[nkey] = 0;
+        }
+
+        choiceCounters[nkey]++;
+
+        Debug.Log($"📊 [ChoiceCounterManager] '{nkey}' elegida {choiceCounters[nkey]} vez/veces (input: '{choiceName}')");
 
     // Notificar a listeners (UI, etc.)
-        if (debugMode) Debug.Log($"[ChoiceCounterManager] Invocando OnCountersChanged after '{choiceName}' -> {choiceCounters[choiceName]}");
+        if (debugMode) Debug.Log($"[ChoiceCounterManager] Invocando OnCountersChanged after '{nkey}' -> {choiceCounters[nkey]}");
         OnCountersChanged?.Invoke();
 
         // Si está en modo debug, mostrar resumen de todos los contadores en la consola
@@ -139,9 +147,10 @@ public class ChoiceCounterManager : MonoBehaviour
     /// </summary>
     public int GetChoiceCount(string choiceName)
     {
-        if (choiceCounters.ContainsKey(choiceName))
+        var nkey = NormalizeKey(choiceName);
+        if (choiceCounters.ContainsKey(nkey))
         {
-            return choiceCounters[choiceName];
+            return choiceCounters[nkey];
         }
         return 0;
     }
@@ -151,10 +160,11 @@ public class ChoiceCounterManager : MonoBehaviour
     /// </summary>
     public void ResetChoice(string choiceName)
     {
-        if (choiceCounters.ContainsKey(choiceName))
+        var nkey = NormalizeKey(choiceName);
+        if (choiceCounters.ContainsKey(nkey))
         {
-            choiceCounters[choiceName] = 0;
-            Debug.Log($"🔄 [ChoiceCounterManager] Contador de '{choiceName}' reiniciado");
+            choiceCounters[nkey] = 0;
+            Debug.Log($"🔄 [ChoiceCounterManager] Contador de '{nkey}' reiniciado (input: '{choiceName}')");
         }
     }
     
