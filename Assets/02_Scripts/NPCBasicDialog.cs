@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -56,6 +57,10 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     [Header("Sistema de UI de Opciones (Opcional)")]
     [Tooltip("Arrastra aquí el DialogueChoicesUIFixed para mostrar botones de opciones")]
     public DialogueChoicesUIFixed choicesUI;
+
+    [Header("Eventos")]
+    [Tooltip("Se invoca cuando el diálogo (y las acciones de misión asociadas) han terminado. Úsalo para dar items automáticamente u otras acciones.")]
+    public UnityEvent onDialogFinished;
 
     //Max caracteres por página
     public int maxCharactersPerPage = 40;
@@ -193,6 +198,15 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             {
                 missionsAlreadyGiven.Add(missionToAdd);
             }
+        }
+        // Invocar eventos adicionales (por ejemplo: dar un item automáticamente)
+        try
+        {
+            onDialogFinished?.Invoke();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error invoking onDialogFinished for {gameObject.name}: {ex}");
         }
     }
     
@@ -361,6 +375,16 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             }
         }
         
+        // Invocar eventos (por ejemplo: dar un item automáticamente tras la opción)
+        try
+        {
+            onDialogFinished?.Invoke();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error invoking onDialogFinished after choice for {gameObject.name}: {ex}");
+        }
+
         currentMissionWithChoices = null;
     }
 }

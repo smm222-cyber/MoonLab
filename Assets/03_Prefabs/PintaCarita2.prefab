@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3368337943354452850}
   - component: {fileID: 3368337943354452851}
+  - component: {fileID: 5908688367402084264}
+  - component: {fileID: 3411654205954866856}
   - component: {fileID: 7213778041898532703}
   - component: {fileID: 3368337943354452812}
-  - component: {fileID: 3368337943354452849}
   - component: {fileID: 2319790592153471497}
   m_Layer: 6
   m_Name: PintaCarita2
@@ -86,6 +87,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5908688367402084264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943354452813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: PintaCarita2
+  npcImage: {fileID: 21300000, guid: f5f5c2eaaab6c9e48a807dba93fddd3d, type: 3}
+  interactUI: {fileID: 3368337943354452813}
+  usesMissionSystem: 1
+  missions: []
+  dialogueText: 
+  choicesUI: {fileID: 0}
+  onDialogFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  maxCharactersPerPage: 40
+  typingSound: {fileID: 0}
+--- !u!114 &3411654205954866856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368337943354452813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f647c40377a83bd48bac7d6448104225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 557c63d641bf49d4eb0ad071de9493ef, type: 3}
+  addToInventory: 1
+  missionToComplete: BuscarAguja
+  missionToGive: BuscarParche
+  verbose: 1
 --- !u!114 &7213778041898532703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,26 +167,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4095265, y: 4.2212086}
   m_EdgeRadius: 0
---- !u!114 &3368337943354452849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368337943354452813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05dc7b497987e244d862190f64521fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcName: Carita Pintada
-  npcImage: {fileID: 0}
-  interactUI: {fileID: 0}
-  usesMissionSystem: 0
-  missions: []
-  dialogueText: 
-  maxCharactersPerPage: 40
-  typingSound: {fileID: 0}
 --- !u!95 &2319790592153471497
 Animator:
   serializedVersion: 5
