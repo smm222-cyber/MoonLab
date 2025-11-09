@@ -14,6 +14,17 @@ public class ChoiceCounterManager : MonoBehaviour
     // Diccionario para guardar los contadores: Key = nombre de la opción, Value = contador
     private Dictionary<string, int> choiceCounters = new Dictionary<string, int>();
     
+    [System.Serializable]
+    public struct InitialCounter
+    {
+        public string key;
+        public int count;
+    }
+
+    [Header("Optional: initial counters for this scene (will be merged)")]
+    [Tooltip("Valores opcionales que este manager añadirá al manager persistente cuando se cargue la escena. Útil si quieres que cada escena aporte valores iniciales.")]
+    public InitialCounter[] initialCounters;
+    
     /// <summary>
     /// Evento que se dispara cuando cambian los contadores (para que la UI se actualice)
     /// </summary>
@@ -27,10 +38,40 @@ public class ChoiceCounterManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); // Persistir entre escenas
             Debug.Log("[ChoiceCounterManager] Instancia creada y marcada DontDestroyOnLoad");
+
+            // Si este manager tiene counters iniciales definidos en el inspector, aplicarlos
+            if (initialCounters != null && initialCounters.Length > 0)
+            {
+                foreach (var ic in initialCounters)
+                {
+                    if (string.IsNullOrEmpty(ic.key)) continue;
+                    if (!choiceCounters.ContainsKey(ic.key)) choiceCounters[ic.key] = 0;
+                    choiceCounters[ic.key] += ic.count;
+                }
+
+                // Notificar al inicio si hay datos
+                if (choiceCounters.Count > 0)
+                    OnCountersChanged?.Invoke();
+            }
         }
         else
         {
-            Debug.Log("[ChoiceCounterManager] Instancia duplicada encontrada - destruyendo objeto adicional");
+            Debug.Log("[ChoiceCounterManager] Instancia duplicada encontrada - fusionando (merge) contadores e destruyendo objeto adicional");
+
+            // Si el manager duplicado tiene initialCounters definidos, fusionarlos en la instancia existente
+            if (initialCounters != null && initialCounters.Length > 0)
+            {
+                foreach (var ic in initialCounters)
+                {
+                    if (string.IsNullOrEmpty(ic.key)) continue;
+                    // sumar al manager persistente
+                    int existing = Instance.GetChoiceCount(ic.key);
+                    for (int i = 0; i < ic.count; i++)
+                        Instance.IncrementChoice(ic.key);
+                    Debug.Log($"[ChoiceCounterManager] Merge: añadidos {ic.count} a '{ic.key}' (antes {existing}, ahora {Instance.GetChoiceCount(ic.key)})");
+                }
+            }
+
             Destroy(gameObject);
         }
     }

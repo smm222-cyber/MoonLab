@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DialogueChoice
@@ -304,7 +305,10 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         }
         
         DialogueChoice selectedChoice = currentMissionWithChoices.choices[choiceIndex];
-        Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+    Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+
+    // Debug adicional: mostrar escena y índice para trazar problemas multi-escena
+    Debug.Log($"[NPCBasicDialog] OnChoiceSelected - Escena: {SceneManager.GetActiveScene().name}, Índice: {choiceIndex}");
         
         // ⭐ CONTADOR GLOBAL - Usa solo el índice de la opción (0, 1, 2, etc.)
         // Todas las "Opción 0" de todos los NPCs suman al mismo contador
