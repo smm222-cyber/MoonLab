@@ -106,8 +106,18 @@ public class PlayerController : MonoBehaviour
         
         // Sonido de pasos: reproducir en loop mientras se mueve y está en el suelo
         float horiz = Input.GetAxis("Horizontal");
-        bool isMoving = Mathf.Abs(horiz) > 0.01f;
-        if (isMoving && onGround && walkClip != null)
+        bool isMoving = Mathf.Abs(horiz) > 0.01f && GameManager.CanPlayerMove;
+        
+        // Detener sonido si el movimiento está bloqueado o no hay movimiento
+        if (!GameManager.CanPlayerMove || !isMoving || !onGround || walkClip == null)
+        {
+            if (footstepSource != null && footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
+        // Reproducir sonido solo si podemos movernos y estamos en movimiento
+        else if (isMoving && onGround && walkClip != null)
         {
             if (footstepSource != null && !footstepSource.isPlaying)
             {
@@ -118,13 +128,6 @@ public class PlayerController : MonoBehaviour
                 // Pitch constante definido por walkPitch (no escalar con input)
                 footstepSource.pitch = walkPitch;
                 footstepSource.Play();
-            }
-        }
-        else
-        {
-            if (footstepSource != null && footstepSource.isPlaying)
-            {
-                footstepSource.Stop();
             }
         }
     }

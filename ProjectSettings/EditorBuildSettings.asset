@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/01_Scenes/Levels/Vendedor_Level.unity
     guid: d706fed4ff4170748b9626a6ca0a1561
   - enabled: 1
+    path: Assets/01_Scenes/Levels/Trapecista/TrapecistaNivelS.unity
+    guid: a1b2c3d4e5f607182930ab4c5d6e7f80
+  - enabled: 1
     path: Assets/01_Scenes/Levels/Levels.unity
     guid: 80bf3ba7aacbc7e4db6b2592f3c08838
   - enabled: 1

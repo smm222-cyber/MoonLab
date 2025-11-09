@@ -57,6 +57,9 @@ public class ChoiceCounterManager : MonoBehaviour
                 if (choiceCounters.Count > 0)
                     OnCountersChanged?.Invoke();
             }
+            
+            // Intentar cargar contadores previos guardados en PlayerPrefs
+            LoadFromPlayerPrefs();
         }
         else
         {
@@ -77,6 +80,65 @@ public class ChoiceCounterManager : MonoBehaviour
             }
 
             Destroy(gameObject);
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        // Guardar contadores al salir (también se puede llamar manualmente desde UI o manager)
+        SaveToPlayerPrefs();
+    }
+
+    /// <summary>
+    /// Guarda todos los contadores en PlayerPrefs (serializados como JSON).
+    /// </summary>
+    public void SaveToPlayerPrefs()
+    {
+        try
+        {
+            var all = GetAllCounters();
+            var list = new List<SerializableEntry>();
+            foreach (var kv in all)
+            {
+                list.Add(new SerializableEntry() { key = kv.Key, value = kv.Value });
+            }
+            var wrapper = new SerializableWrapper() { entries = list.ToArray() };
+            string json = JsonUtility.ToJson(wrapper);
+            PlayerPrefs.SetString("ChoiceCounters_v1", json);
+            PlayerPrefs.Save();
+            if (debugMode) Debug.Log("[ChoiceCounterManager] Contadores guardados en PlayerPrefs.");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning("[ChoiceCounterManager] Error guardando PlayerPrefs: " + ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Carga contadores desde PlayerPrefs si existen.
+    /// </summary>
+    public void LoadFromPlayerPrefs()
+    {
+        try
+        {
+            if (!PlayerPrefs.HasKey("ChoiceCounters_v1")) return;
+            string json = PlayerPrefs.GetString("ChoiceCounters_v1");
+            if (string.IsNullOrEmpty(json)) return;
+            var wrapper = JsonUtility.FromJson<SerializableWrapper>(json);
+            if (wrapper != null && wrapper.entries != null)
+            {
+                foreach (var e in wrapper.entries)
+                {
+                    if (string.IsNullOrEmpty(e.key)) continue;
+                    choiceCounters[e.key] = e.value;
+                }
+                OnCountersChanged?.Invoke();
+                if (debugMode) Debug.Log("[ChoiceCounterManager] Contadores cargados desde PlayerPrefs.");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning("[ChoiceCounterManager] Error cargando PlayerPrefs: " + ex.Message);
         }
     }
 
@@ -203,5 +265,19 @@ public class ChoiceCounterManager : MonoBehaviour
     public Dictionary<string, int> GetAllCounters()
     {
         return new Dictionary<string, int>(choiceCounters);
+    }
+
+    // Clases auxiliares para serializar el diccionario en PlayerPrefs
+    [System.Serializable]
+    private class SerializableEntry
+    {
+        public string key;
+        public int value;
+    }
+
+    [System.Serializable]
+    private class SerializableWrapper
+    {
+        public SerializableEntry[] entries;
     }
 }

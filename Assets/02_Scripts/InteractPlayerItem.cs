@@ -25,8 +25,10 @@ public class InteractPlayerItem : MonoBehaviour
         //Se tiene un input manager llamado interact que se activa cuando apretas la tecla E
         if (Input.GetButtonDown("Interact"))
         {
-            Interact();
+            // Si el movimiento ya está bloqueado, no procesar otra interacción
+            if (!GameManager.CanPlayerMove) return;
 
+            Interact();
             animator.SetTrigger("pickUp");
         }
     }

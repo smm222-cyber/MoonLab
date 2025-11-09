@@ -59,6 +59,9 @@ public class EndingSceneController : MonoBehaviour
             backgroundPanel.SetActive(true);
         }
         
+        // Asegurar que el acumulador de decisiones exista (si venimos desde menú)
+        ChoiceCounterManager.EnsureExists();
+
         // Determinar qué final mostrar
         StartCoroutine(ShowEnding());
     }
@@ -103,11 +106,17 @@ public class EndingSceneController : MonoBehaviour
             finalText = endingCirco;
             Debug.Log("[EndingScene] Final: Más interesado en el circo");
         }
-        else
+        else if (yoCount > circoCount)
         {
-            // Si hay empate o yoCount es mayor, mostrar final "Yo"
             finalText = endingYo;
             Debug.Log("[EndingScene] Final: Más interesado en compartir sobre ti");
+        }
+        else
+        {
+            // Empate -> elegir al azar
+            bool chooseCirco = (Random.value > 0.5f);
+            finalText = chooseCirco ? endingCirco : endingYo;
+            Debug.Log("[EndingScene] Empate en contadores. Elegido al azar: " + (chooseCirco ? "Circo" : "Yo"));
         }
         
         // Animar texto letra por letra
@@ -163,8 +172,13 @@ public class EndingSceneController : MonoBehaviour
         string finalText = "";
         if (circoCount > yoCount)
             finalText = endingCirco;
-        else
+        else if (yoCount > circoCount)
             finalText = endingYo;
+        else
+        {
+            bool chooseCirco = (Random.value > 0.5f);
+            finalText = chooseCirco ? endingCirco : endingYo;
+        }
         
         guionText.text = finalText;
         canContinue = true;
