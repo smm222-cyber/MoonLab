@@ -3471,6 +3471,26 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -526.5911
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -363.7414
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -54.25939
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300399843421511355, guid: d4175443a3ccfa14e839897f64013516, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 120.808624
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215184542753014538, guid: d4175443a3ccfa14e839897f64013516, type: 3}
+      propertyPath: debugLogs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6946843475412029987, guid: d4175443a3ccfa14e839897f64013516, type: 3}
       propertyPath: m_Name
       value: CounterPanel
@@ -3559,7 +3579,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6683939972037494699, guid: d4175443a3ccfa14e839897f64013516, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4175443a3ccfa14e839897f64013516, type: 3}
 --- !u!1 &1013804273
 GameObject:
@@ -5529,11 +5550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 435
+      value: 411
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610632811916, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 398
+      value: 305
       objectReference: {fileID: 0}
     - target: {fileID: 7790130610749758882, guid: cadc47a71ee01ed468c897991db5274b, type: 3}
       propertyPath: m_UiScaleMode
