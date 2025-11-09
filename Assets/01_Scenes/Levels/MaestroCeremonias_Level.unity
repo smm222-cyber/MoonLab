@@ -1871,6 +1871,10 @@ PrefabInstance:
         tiempo, gracias por escogernos, Dionne
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: missions.Array.data[1].choices.Array.data[0].triggersFinal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[1].choices.Array.data[1].responseDialogue
       value: El portal se ha abierto. Una nueva aventura te espera... Espero que
         hayas difrutado tu tiempo en el circo, Dionne, puedes tener tu libertad
@@ -1879,6 +1883,10 @@ PrefabInstance:
       propertyPath: missions.Array.data[2].choices.Array.data[0].responseDialogue
       value: Gracias por traer todo! Ahora el show puede empezar.. Despues de tanto
         tiempo, gracias por escogernos, Dionne
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
+      propertyPath: missions.Array.data[2].choices.Array.data[0].triggersFinal
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: m_RootOrder
