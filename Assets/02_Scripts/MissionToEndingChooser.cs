@@ -59,7 +59,7 @@ public static class MissionToEndingChooserHelper
 /// </summary>
 public class MissionToEndingChooser : MonoBehaviour
 {
-    [Tooltip("Nombre de la misión que activará la elección del final (p. ej. 'Abrir portal secreto')")]
+    [Tooltip("Nombre de la misión que activará la elección del final (p. ej. 'Abrir portal secreto'). NOTA: Si usas 'triggersFinal' en las opciones de diálogo, deja esto vacío para desactivar este sistema.")]
     public string missionName = "Abrir portal secreto";
 
     [Tooltip("Nombre de la escena de final si gana 'SaberSobreElCirco'")]
@@ -74,9 +74,17 @@ public class MissionToEndingChooser : MonoBehaviour
     void Update()
     {
         if (triggered) return;
+        
+        // Si missionName está vacío, este componente no hace nada (se usa el sistema de triggersFinal en las opciones)
+        if (string.IsNullOrEmpty(missionName))
+        {
+            enabled = false; // Desactivar Update para no seguir comprobando
+            return;
+        }
+        
         if (GameManager.Instance == null) return;
 
-        if (!string.IsNullOrEmpty(missionName) && GameManager.Instance.HasMission(missionName))
+        if (GameManager.Instance.HasMission(missionName))
         {
             triggered = true;
             Debug.Log($"[MissionToEndingChooser] Misión '{missionName}' detectada. Decidiendo final según contadores...");

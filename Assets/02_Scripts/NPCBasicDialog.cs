@@ -462,10 +462,12 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         }
         
         DialogueChoice selectedChoice = currentMissionWithChoices.choices[choiceIndex];
-    Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
-
-    // Debug adicional: mostrar escena y índice para trazar problemas multi-escena
-    Debug.Log($"[NPCBasicDialog] OnChoiceSelected - Escena: {SceneManager.GetActiveScene().name}, Índice: {choiceIndex}");
+        Debug.Log($"[NPCBasicDialog] ========== OPCIÓN ELEGIDA ==========");
+        Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+        Debug.Log($"[NPCBasicDialog] Escena: {SceneManager.GetActiveScene().name}, Índice: {choiceIndex}");
+        Debug.Log($"[NPCBasicDialog] triggersFinal: {selectedChoice.triggersFinal}");
+        Debug.Log($"[NPCBasicDialog] globalChoiceID: {selectedChoice.globalChoiceID}");
+        Debug.Log($"[NPCBasicDialog] =====================================");
         
         // ⭐ CONTADOR GLOBAL - preferimos la clave explícita en la opción si existe,
         // si no, caemos al comportamiento legacy basado en el índice.
@@ -543,11 +545,23 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
                 yield break; // salir del coroutine actual, la decisión se hará desde WaitForMissionAndDecide
             }
 
-            // Si la opción está marcada para disparar final (trigger), decidir ahora
+            // Si la opción está marcada para disparar final (trigger), cargar la escena configurada
             if (choice.triggersFinal)
             {
-                Debug.Log("[NPCBasicDialog] Opción marcada para disparar final -> Decidiendo según contadores");
-                MissionToEndingChooserHelper.DecideAndLoad();
+                Debug.Log("[NPCBasicDialog] Opción marcada para disparar final");
+                
+                // Si la opción tiene una escena configurada, cargarla directamente
+                if (choice.loadSceneAfterChoice && !string.IsNullOrEmpty(choice.sceneToLoad))
+                {
+                    Debug.Log($"[NPCBasicDialog] Cargando escena final configurada: {choice.sceneToLoad}");
+                    yield return new WaitForSeconds(choice.delayBeforeChange);
+                    Time.timeScale = 1f;
+                    SceneManager.LoadScene(choice.sceneToLoad);
+                }
+                else
+                {
+                    Debug.LogWarning("[NPCBasicDialog] La opción tiene triggersFinal activado pero no tiene escena configurada (loadSceneAfterChoice y sceneToLoad)");
+                }
                 yield break;
             }
         }
@@ -575,4 +589,91 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
 
         yield break;
     }
+
+    /// <summary>
+    /// Decide qué escena final cargar según los contadores acumulados y carga la escena.
+    /// Este método se ejecuta cuando una opción tiene triggersFinal activado.
+    /// </summary>
+    IEnumerator DecideAndLoadFinalScene(float delayBeforeChange = 2f)
+    {
+        Debug.Log($"[NPCBasicDialog] DecideAndLoadFinalScene - Iniciando decisión del final");
+        
+        // Asegurar que existe el ChoiceCounterManager
+        ChoiceCounterManager.EnsureExists();
+        
+        // Esperar el tiempo configurado antes de cambiar
+        if (delayBeforeChange > 0)
+        {
+            Debug.Log($"[NPCBasicDialog] Esperando {delayBeforeChange} segundos antes de decidir...");
+            yield return new WaitForSeconds(delayBeforeChange);
+        }
+        
+        // Obtener los contadores
+        int circoCount = 0;
+        int yoCount = 0;
+        
+        if (ChoiceCounterManager.Instance != null)
+        {
+            circoCount = ChoiceCounterManager.Instance.GetChoiceCount("SaberSobreElCirco");
+            yoCount = ChoiceCounterManager.Instance.GetChoiceCount("SaberSobreMi");
+            Debug.Log($"[NPCBasicDialog] Contadores - SaberSobreElCirco: {circoCount}, SaberSobreMi: {yoCount}");
+        }
+        else
+        {
+            Debug.LogError("[NPCBasicDialog] ChoiceCounterManager.Instance es null! No se puede decidir el final.");
+            yield break;
+        }
+        
+        // Buscar el GameObject EndingResolver para obtener los nombres de las escenas
+        MissionToEndingChooser endingResolver = FindObjectOfType<MissionToEndingChooser>();
+        string finalIfCirco = "Final2"; // Valor por defecto
+        string finalIfYo = "Final1";    // Valor por defecto
+        
+        if (endingResolver != null)
+        {
+            finalIfCirco = string.IsNullOrEmpty(endingResolver.finalIfCirco) ? "Final2" : endingResolver.finalIfCirco;
+            finalIfYo = string.IsNullOrEmpty(endingResolver.finalIfYo) ? "Final1" : endingResolver.finalIfYo;
+            Debug.Log($"[NPCBasicDialog] Usando configuración de EndingResolver - finalIfCirco: {finalIfCirco}, finalIfYo: {finalIfYo}");
+        }
+        else
+        {
+            Debug.LogWarning("[NPCBasicDialog] No se encontró EndingResolver, usando valores por defecto");
+        }
+        
+        // Decidir qué final cargar
+        string sceneToLoad;
+        
+        if (circoCount > yoCount)
+        {
+            sceneToLoad = finalIfCirco;
+            Debug.Log($"[NPCBasicDialog] 🎪 GANÓ CIRCO ({circoCount} vs {yoCount}) -> Cargando: {sceneToLoad}");
+        }
+        else if (yoCount > circoCount)
+        {
+            sceneToLoad = finalIfYo;
+            Debug.Log($"[NPCBasicDialog] 👤 GANÓ PROTAGONISTA ({yoCount} vs {circoCount}) -> Cargando: {sceneToLoad}");
+        }
+        else
+        {
+            // Empate - elegir aleatoriamente
+            bool chooseCirco = Random.value >= 0.5f;
+            sceneToLoad = chooseCirco ? finalIfCirco : finalIfYo;
+            Debug.Log($"[NPCBasicDialog] ⚖️ EMPATE ({circoCount} vs {yoCount}) - Elegido aleatoriamente: {sceneToLoad}");
+        }
+        
+        // Cargar la escena
+        Debug.Log($"[NPCBasicDialog] 🎬 CARGANDO ESCENA FINAL: {sceneToLoad}");
+        Time.timeScale = 1f; // Restaurar timeScale por si acaso
+        
+        try
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[NPCBasicDialog] ERROR al cargar escena '{sceneToLoad}': {ex.Message}");
+            Debug.LogError($"[NPCBasicDialog] Verifica que la escena '{sceneToLoad}' esté en Build Settings");
+        }
+    }
 }
+

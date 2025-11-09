@@ -145,7 +145,7 @@ MonoBehaviour:
   dialogueText: 
   maxCharactersPerPage: 40
   typingSound: {fileID: 0}
-  triggerFinalAfterDialog: 1
+  triggerFinalAfterDialog: 0
 --- !u!95 &7365109221284659793
 Animator:
   serializedVersion: 5
