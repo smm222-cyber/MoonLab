@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DialogueChoice
@@ -304,24 +305,29 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
         }
         
         DialogueChoice selectedChoice = currentMissionWithChoices.choices[choiceIndex];
-        Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+    Debug.Log($"[NPCBasicDialog] Jugador eligió: {selectedChoice.choiceText}");
+
+    // Debug adicional: mostrar escena y índice para trazar problemas multi-escena
+    Debug.Log($"[NPCBasicDialog] OnChoiceSelected - Escena: {SceneManager.GetActiveScene().name}, Índice: {choiceIndex}");
         
         // ⭐ CONTADOR GLOBAL - Usa solo el índice de la opción (0, 1, 2, etc.)
         // Todas las "Opción 0" de todos los NPCs suman al mismo contador
+        ChoiceCounterManager.EnsureExists();
+
+        // Nombres personalizados para cada opción
+        string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
+        
+        string globalChoiceID = choiceIndex < optionNames.Length 
+            ? optionNames[choiceIndex] 
+            : $"Opcion_{choiceIndex}";
+
         if (ChoiceCounterManager.Instance != null)
         {
-            // Nombres personalizados para cada opción
-            string[] optionNames = { "SaberSobreElCirco", "SaberSobreMi" };
-            
-            string globalChoiceID = choiceIndex < optionNames.Length 
-                ? optionNames[choiceIndex] 
-                : $"Opcion_{choiceIndex}";
-                
             ChoiceCounterManager.Instance.IncrementChoice(globalChoiceID);
         }
         else
         {
-            Debug.LogWarning("[NPCBasicDialog] ChoiceCounterManager no encontrado en la escena");
+            Debug.LogWarning("[NPCBasicDialog] ChoiceCounterManager no pudo inicializarse");
         }
         
         // Mostrar respuesta del NPC
