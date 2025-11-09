@@ -256,7 +256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[2].missionToGive
-      value: 
+      value: Entregar los cables
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f189459fb87902e44b9cf4d4667a35c9, type: 3}
       propertyPath: missions.Array.data[3].missionToGive
@@ -5011,14 +5011,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].hasChoices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].dialogueText
       value: "No\u2026 no fue el az\xFAcar, no fue el fuego, fui yo.\nYo romp\xED
         la energ\xEDa del circo, necesito tu ayuda para encontrar los cables."
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].dialogueText
-      value: Como te fue, estas esperando por los cables? Mientras podrias buscar
-        alguna herramienta para poder reconectarlos
+      value: Podrias buscar alguna herramienta para poder reconectarlos
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[2].dialogueText
@@ -5035,6 +5038,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].dialogueText
+      value: "Cre\xED que hab\xEDa roto algo que no se pod\xEDa reparar, pero parece
+        que solo necesitaba alguien que escuchara los cables.\nGracias\u2026 de verdad.\nA
+        veces solo hace falta una chispa para volver a iluminar todo."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].dialogueText
       value: "Cre\xED que hab\xEDa roto algo que no se pod\xEDa reparar, pero parece
         que solo necesitaba alguien que escuchara los cables.\nGracias\u2026 de verdad.\nA
         veces solo hace falta una chispa para volver a iluminar todo."
@@ -5065,7 +5074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].missionRequired
-      value: Esperar por los cables
+      value: Entregar los cables
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[2].missionRequired
@@ -5084,12 +5093,16 @@ PrefabInstance:
       value: Informa al vendedor
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].missionRequired
+      value: Entregar los cables
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[0].missionToComplete
       value: "Hablar con los dem\xE1s"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[1].missionToComplete
-      value: 
+      value: Entregar los cables
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[3].missionToComplete
@@ -5104,8 +5117,16 @@ PrefabInstance:
       value: Informa al vendedor
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].missionToComplete
+      value: Entregar los cables
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].choiceText
@@ -5116,11 +5137,27 @@ PrefabInstance:
       value: Preguntar sobre ti
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[0].choiceText
+      value: Preguntar sobre el
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[1].choiceText
+      value: Preguntar sobre ti
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].sceneToLoad
       value: MaestroCeremonias_Level
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].sceneToLoad
+      value: MaestroCeremonias_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[0].sceneToLoad
+      value: MaestroCeremonias_Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[1].sceneToLoad
       value: MaestroCeremonias_Level
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
@@ -5141,6 +5178,23 @@ PrefabInstance:
         de entre la neblina de az\xFAcar quemada, saliste t\xFA"
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[0].responseDialogue
+      value: "Yo antes no vend\xEDa dulces\u2026 vend\xEDa ilusiones. Hac\xEDa globos
+        que brillaban con electricidad, peque\xF1os rayos atrapados para los ni\xF1os.\nPero
+        un d\xEDa, uno explot\xF3\u2026 y alguien result\xF3 herido.\nDesde entonces,
+        jur\xE9 que solo vender\xEDa cosas que endulzaran, no que asustaran."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[1].responseDialogue
+      value: "Ver\xE1s\u2026 no todos lo recuerdan igual. Pero yo estaba aqu\xED
+        la noche en que el circo cambi\xF3. No fue solo que las luces se apagaran.
+        Fue que algo se encendi\xF3.\nUna vez, vi tu reflejo en el metal del carrito\u2026\npero
+        no era el tuyo.\nEras t\xFA, s\xED, pero con otro traje, con otro rostro.\nEso
+        es lo que s\xE9.\nO\u2026 lo que el circo quiere que recuerde quiso que recordara.
+        gritaran.\nLos caramelos se derritieron, los globos se inflaron solos\u2026\ny
+        de entre la neblina de az\xFAcar quemada, saliste t\xFA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].delayBeforeChange
       value: 2
       objectReference: {fileID: 0}
@@ -5149,11 +5203,27 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[0].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[1].delayBeforeChange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[0].loadSceneAfterChoice
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
       propertyPath: missions.Array.data[5].choices.Array.data[1].loadSceneAfterChoice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[0].loadSceneAfterChoice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368337943354452849, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
+      propertyPath: missions.Array.data[6].choices.Array.data[1].loadSceneAfterChoice
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3368337943354452850, guid: f7ec3859a5c9fe74b818bd9c42420a54, type: 3}
