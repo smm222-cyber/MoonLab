@@ -36,6 +36,9 @@ public class DialogueChoice
     
     [Tooltip("Si está activado, esta opción disparará la lógica de final (decidir y cargar el final según contadores) después de ejecutarse.")]
     public bool triggersFinal = false;
+    
+    [Tooltip("Si está activado, y esta opción da una misión, el sistema esperará a que GameManager registre la misión antes de decidir el final (evita race conditions). Conserva compatibilidad con la misión 'Abrir portal secreto'.")]
+    public bool waitForMissionRegistration = false;
 }
 
 [System.Serializable]
@@ -521,27 +524,30 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             }
 
             // Si esta opción da la misión que activa el final inmediato, esperar a que GameManager la registre y decidir el final
-            if (!string.IsNullOrEmpty(choice.missionToGive) &&
-                string.Equals(choice.missionToGive.Trim(), "Abrir portal secreto", System.StringComparison.OrdinalIgnoreCase))
+            // Si la opción da una misión que requiere esperar a que GameManager la registre
+            // (compatibilidad: tratamos 'Abrir portal secreto' como caso especial) o si el diseñador
+            // marcó waitForMissionRegistration en el inspector, esperar y luego decidir el final.
+            bool shouldWaitForMission = false;
+            if (!string.IsNullOrEmpty(choice.missionToGive))
             {
-                Debug.Log("[NPCBasicDialog] Opción dio 'Abrir portal secreto' -> Esperando confirmación de GameManager para decidir final");
-                // Esperar a que el GameManager registre la misión y luego decidir el final (evita race conditions)
+                if (string.Equals(choice.missionToGive.Trim(), "Abrir portal secreto", System.StringComparison.OrdinalIgnoreCase))
+                    shouldWaitForMission = true;
+                if (choice.waitForMissionRegistration)
+                    shouldWaitForMission = true;
+            }
+
+            if (shouldWaitForMission)
+            {
+                Debug.Log($"[NPCBasicDialog] Opción dio '{choice.missionToGive}' -> Esperando confirmación de GameManager para decidir final");
                 StartCoroutine(WaitForMissionAndDecide(choice.missionToGive));
                 yield break; // salir del coroutine actual, la decisión se hará desde WaitForMissionAndDecide
             }
-            // Si la opción está marcada para disparar final (trigger) y no era el caso 'Abrir portal secreto'
+
+            // Si la opción está marcada para disparar final (trigger), decidir ahora
             if (choice.triggersFinal)
             {
                 Debug.Log("[NPCBasicDialog] Opción marcada para disparar final -> Decidiendo según contadores");
-                // Si la opción además da una misión, esperar a que se registre; si no, decidir inmediatamente
-                if (!string.IsNullOrEmpty(choice.missionToGive))
-                {
-                    StartCoroutine(WaitForMissionAndDecide(choice.missionToGive));
-                }
-                else
-                {
-                    MissionToEndingChooserHelper.DecideAndLoad();
-                }
+                MissionToEndingChooserHelper.DecideAndLoad();
                 yield break;
             }
         }
