@@ -99,6 +99,12 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
     [Tooltip("Se invoca cuando el diálogo (y las acciones de misión asociadas) han terminado. Úsalo para dar items automáticamente u otras acciones.")]
     public UnityEvent onDialogFinished;
 
+    [Tooltip("Si está activado, decidir y cargar el final inmediatamente después de que termine el diálogo con este NPC (útil para el Maestro).")]
+    public bool triggerFinalAfterDialog = false;
+
+    // Evitar disparos múltiples del final desde este NPC
+    private bool finalTriggered = false;
+
     //Max caracteres por página
     public int maxCharactersPerPage = 40;
     //Audio
@@ -284,6 +290,23 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             Debug.LogError($"Error invoking onDialogFinished for {gameObject.name}: {ex}");
         }
 
+        // Si este NPC está configurado para disparar el final tras el diálogo, hacerlo aquí.
+        if (triggerFinalAfterDialog && !finalTriggered)
+        {
+            finalTriggered = true;
+            // Si acabamos de añadir una misión, esperar a que GameManager la registre antes de decidir
+            if (!string.IsNullOrEmpty(missionToAdd))
+            {
+                StartCoroutine(WaitForMissionAndDecide(missionToAdd));
+                yield break;
+            }
+            else
+            {
+                MissionToEndingChooserHelper.DecideAndLoad();
+                yield break;
+            }
+        }
+
         // Cambiar de escena si esta misión lo tiene configurado
         if (mission != null && mission.loadSceneAfterDialog && !string.IsNullOrEmpty(mission.sceneToLoad))
         {
@@ -310,6 +333,13 @@ public class NPCBasicDialog : MonoBehaviour, IInteractable
             Debug.LogError($"Error invoking onDialogFinished for {gameObject.name}: {ex}");
         }
 
+        // Si este NPC está configurado para disparar el final tras el diálogo (diálogo simple), hacerlo aquí
+        if (triggerFinalAfterDialog && !finalTriggered)
+        {
+            finalTriggered = true;
+            MissionToEndingChooserHelper.DecideAndLoad();
+            yield break;
+        }
         // Cambiar de escena si está configurado
         if (loadSceneAfterSimpleDialog && !string.IsNullOrEmpty(simpleDialogSceneToLoad))
         {
